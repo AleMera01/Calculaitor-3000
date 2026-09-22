@@ -1,0 +1,1047 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+
+<meta charset="utf-8">
+
+<meta name="viewport"
+      content="width=device-width,initial-scale=1">
+
+<title>Castilla-La Mancha · Calculador Magistral</title>
+
+<link rel="manifest" href="../manifest.json">
+<meta name="theme-color" content="#166534">
+
+<style>
+
+/* =========================================================
+   COLORES CASTILLA-LA MANCHA
+   ========================================================= */
+
+:root{
+
+  --green-dark:#166534;
+  --green:#15803d;
+  --green-light:#dcfce7;
+  --green-pale:#edf8f0;
+
+  --line:#cfe2d5;
+
+  --muted:#486050;
+
+  --text:#172c3d;
+
+}
+
+
+/* =========================================================
+   GENERAL
+   ========================================================= */
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+
+  margin:0;
+
+  background:#f3faf5;
+
+  color:var(--text);
+
+  font:
+    14px/1.35
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+}
+
+
+/* =========================================================
+   CABECERA
+   ========================================================= */
+
+header{
+
+  background:var(--green-dark);
+
+  color:#fff;
+
+  padding:
+    13px
+    max(22px,calc((100vw - 1400px)/2));
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  border-bottom:4px solid #86efac;
+
+}
+
+header h1{
+
+  font-size:19px;
+
+  margin:0;
+
+}
+
+header a{
+
+  color:#dcfce7;
+
+  text-decoration:none;
+
+  font-size:13px;
+
+  font-weight:600;
+
+}
+
+
+/* =========================================================
+   CONTENIDO
+   ========================================================= */
+
+main{
+
+  max-width:1400px;
+
+  margin:14px auto;
+
+  padding:0 18px;
+
+}
+
+
+/* =========================================================
+   AVISO
+   ========================================================= */
+
+.notice{
+
+  background:#edf8f0;
+
+  border:
+    1px solid
+    #c7e8d0;
+
+  border-radius:9px;
+
+  padding:9px 12px;
+
+  color:#27613c;
+
+  margin-bottom:12px;
+
+}
+
+
+/* =========================================================
+   DISTRIBUCIÓN PRINCIPAL
+   ========================================================= */
+
+.layout{
+
+  display:grid;
+
+  grid-template-columns:
+    minmax(0,1fr)
+    325px;
+
+  gap:14px;
+
+}
+
+
+/* =========================================================
+   COLUMNA IZQUIERDA
+   ========================================================= */
+
+.layout>section{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,minmax(0,1fr));
+
+  gap:12px;
+
+  align-content:start;
+
+}
+
+
+.layout>section .card{
+
+  margin:0;
+
+}
+
+
+/* Primera tarjeta ocupa las dos columnas */
+
+.layout>section .card:first-child{
+
+  grid-column:1/-1;
+
+}
+
+
+/* =========================================================
+   TARJETAS
+   ========================================================= */
+
+.card{
+
+  background:#fff;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:10px;
+
+  padding:14px;
+
+  margin-bottom:12px;
+
+}
+
+
+.card h2{
+
+  font-size:16px;
+
+  margin:0 0 9px;
+
+  color:var(--green-dark);
+
+}
+
+
+/* =========================================================
+   FORMULARIOS
+   ========================================================= */
+
+.form-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    1fr
+    150px;
+
+  gap:9px;
+
+  align-items:end;
+
+}
+
+
+label{
+
+  display:block;
+
+  color:var(--muted);
+
+  font-weight:600;
+
+  font-size:12px;
+
+  margin-bottom:3px;
+
+}
+
+
+select,
+input{
+
+  width:100%;
+
+  padding:7px;
+
+  border:
+    1px solid
+    #b9d2c0;
+
+  border-radius:6px;
+
+  background:#fff;
+
+  font:inherit;
+
+}
+
+
+/* =========================================================
+   FILAS
+   ========================================================= */
+
+.rows>div{
+
+  display:grid;
+
+  grid-template-columns:
+    minmax(0,1fr)
+    120px
+    72px;
+
+  gap:6px;
+
+  margin:5px 0;
+
+  align-items:center;
+
+}
+
+.rows select{
+
+  min-width:0;
+
+}
+
+
+/* =========================================================
+   BOTONES
+   ========================================================= */
+
+.add,
+.reset,
+.search{
+
+  border:0;
+
+  border-radius:6px;
+
+  padding:7px 10px;
+
+  font:
+    600 13px
+    inherit;
+
+  cursor:pointer;
+
+}
+
+
+.add{
+
+  background:#e3f3e8;
+
+  color:#185c32;
+
+}
+
+
+.search{
+
+  background:#dcfce7;
+
+  color:#166534;
+
+}
+
+
+.reset{
+
+  background:#fbeaea;
+
+  color:#8c2525;
+
+}
+
+
+/* =========================================================
+   TOTALES INDIVIDUALES
+   ========================================================= */
+
+.card p strong,
+.card>p>strong{
+
+  display:inline-block;
+
+  color:var(--green-dark);
+
+  font-size:21px;
+
+  font-weight:850;
+
+  margin-top:2px;
+
+}
+
+
+/* =========================================================
+   PANEL RESULTADO
+   ========================================================= */
+
+.total{
+
+  position:sticky;
+
+  top:10px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ecfdf5,
+      #fff
+    );
+
+  border-color:#86efac;
+
+}
+
+
+.total h2{
+
+  color:var(--green-dark);
+
+}
+
+
+.amount{
+
+  font-size:36px;
+
+  font-weight:750;
+
+  color:var(--green-dark);
+
+  margin:2px 0 8px;
+
+}
+
+
+.breakdown{
+
+  border-top:
+    1px solid
+    #d7ebe3;
+
+  padding-top:6px;
+
+}
+
+
+.line{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  padding:3px 0;
+
+  color:#536b78;
+
+}
+
+
+.line strong{
+
+  color:#172c3d;
+
+}
+
+
+.total .line strong{
+
+  font-size:17px;
+
+  font-weight:850;
+
+}
+
+
+/* =========================================================
+   FÓRMULAS TIPIFICADAS
+   ========================================================= */
+
+.prep-result{
+
+  margin-top:8px;
+
+}
+
+
+.prep-box{
+
+  background:#f4fbf6;
+
+  border:
+    1px solid
+    #c7e8d0;
+
+  border-radius:8px;
+
+  padding:12px;
+
+  margin-top:8px;
+
+}
+
+
+.prep-title{
+
+  color:var(--green-dark);
+
+  font-size:15px;
+
+  font-weight:750;
+
+  margin-bottom:7px;
+
+}
+
+
+.prep-box .line{
+
+  padding:4px 0;
+
+}
+
+
+.prep-total{
+
+  border-top:
+    1px solid
+    #c7e8d0;
+
+  margin-top:6px;
+
+  padding-top:7px;
+
+}
+
+
+/* =========================================================
+   TEXTO AUXILIAR
+   ========================================================= */
+
+.helper{
+
+  color:var(--muted);
+
+  font-size:11px;
+
+  margin:0 0 7px;
+
+}
+
+
+.back{
+
+  display:block;
+
+  margin:18px 0;
+
+  color:#27613c;
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media(max-width:900px){
+
+  .layout{
+
+    grid-template-columns:1fr;
+
+  }
+
+
+  .layout>section{
+
+    grid-template-columns:1fr;
+
+  }
+
+
+  .layout>section .card:first-child{
+
+    grid-column:auto;
+
+  }
+
+
+  .total{
+
+    position:static;
+
+  }
+
+}
+
+
+@media(max-width:600px){
+
+  header{
+
+    padding:12px 14px;
+
+  }
+
+
+  header a{
+
+    font-size:12px;
+
+  }
+
+
+  header h1{
+
+    font-size:16px;
+
+  }
+
+
+  main{
+
+    padding:0 10px;
+
+  }
+
+
+  .form-grid{
+
+    grid-template-columns:1fr;
+
+  }
+
+
+  .rows>div{
+
+    grid-template-columns:1fr;
+
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =======================================================
+     CABECERA
+     ======================================================= -->
+
+<header>
+
+  <h1>
+    Castilla-La Mancha · cálculo individualizado
+  </h1>
+
+  <a href="../index.html">
+    ← Comunidades
+  </a>
+
+</header>
+
+
+<main>
+
+
+<!-- =======================================================
+     AVISO
+     ======================================================= -->
+
+<div class="notice">
+
+  <strong>Calculador de fórmulas magistrales:</strong>
+
+  suma principios activos, excipientes, envases y
+  honorarios según los datos de Castilla-La Mancha.
+
+</div>
+
+
+<div class="layout">
+
+
+<!-- =======================================================
+     COLUMNA IZQUIERDA
+     ======================================================= -->
+
+<section>
+
+
+<!-- =====================================================
+     FÓRMULAS TIPIFICADAS
+     ===================================================== -->
+
+<div class="card">
+
+  <h2>
+    Fórmulas Tipificadas Castilla-La Mancha
+  </h2>
+
+  <p class="helper">
+    Introduce el código de la fórmula para consultar su precio.
+  </p>
+
+
+  <div class="form-grid">
+
+    <div>
+
+      <label for="codigoPreparada">
+        Código de la fórmula
+      </label>
+
+      <input
+        type="text"
+        id="codigoPreparada"
+        placeholder="Ejemplo: 140117"
+      >
+
+    </div>
+
+
+    <button
+      type="button"
+      class="search"
+      id="buscarPreparada"
+    >
+      🔍 Buscar
+    </button>
+
+  </div>
+
+
+  <div id="resultadoPreparada"></div>
+
+</div>
+
+
+<!-- =====================================================
+     HONORARIOS
+     ===================================================== -->
+
+<div class="card">
+
+  <h2>
+    Honorarios
+  </h2>
+
+
+  <div class="form-grid">
+
+
+    <div>
+
+      <label for="forma">
+        Forma farmacéutica
+      </label>
+
+      <select id="forma"></select>
+
+    </div>
+
+
+    <div>
+
+      <label for="cantidad" id="labelCantidad">
+        Cantidad
+      </label>
+
+      <input
+        type="number"
+        id="cantidad"
+        min="1"
+        step="1"
+      >
+
+    </div>
+
+
+  </div>
+
+
+  <p>
+
+    <strong id="totalHonorarios">
+      Total Honorarios: €0.00
+    </strong>
+
+  </p>
+
+</div>
+
+
+<!-- =====================================================
+     PRINCIPIOS ACTIVOS
+     ===================================================== -->
+
+<div class="card">
+
+  <h2>
+    Principios activos
+  </h2>
+
+
+  <div
+    id="principiosActivosContainer"
+    class="rows"
+  ></div>
+
+
+  <button
+    type="button"
+    class="add"
+    onclick="agregarPrincipioActivo();calcular()"
+  >
+    + Añadir principio activo
+  </button>
+
+
+  <p>
+
+    <strong id="totalPrincipioActivo">
+      Total Principio Activo: €0.00
+    </strong>
+
+  </p>
+
+</div>
+
+
+<!-- =====================================================
+     EXCIPIENTES
+     ===================================================== -->
+
+<div class="card">
+
+  <h2>
+    Excipientes
+  </h2>
+
+
+  <div
+    id="excipientesContainer"
+    class="rows"
+  ></div>
+
+
+  <button
+    type="button"
+    class="add"
+    onclick="agregarExcipiente();calcular()"
+  >
+    + Añadir excipiente
+  </button>
+
+
+  <p>
+
+    <strong id="totalExcipiente">
+      Total Excipiente: €0.00
+    </strong>
+
+  </p>
+
+</div>
+
+
+<!-- =====================================================
+     ENVASES
+     ===================================================== -->
+
+<div class="card">
+
+  <h2>
+    Envases
+  </h2>
+
+
+  <div
+    id="envasesContainer"
+    class="rows"
+  ></div>
+
+
+  <button
+    type="button"
+    class="add"
+    onclick="agregarEnvase();calcular()"
+  >
+    + Añadir envase
+  </button>
+
+
+  <p>
+
+    <strong id="totalEnvase">
+      Total Envase: €0.00
+    </strong>
+
+  </p>
+
+</div>
+
+
+</section>
+
+
+<!-- =======================================================
+     PANEL DERECHO
+     ======================================================= -->
+
+<aside>
+
+
+<div class="card total">
+
+
+  <h2>
+    Resultado financiado
+  </h2>
+
+
+  <div
+    class="amount"
+    id="totalGeneral"
+  >
+    €0.00
+  </div>
+
+
+  <div class="breakdown">
+
+
+    <div class="line">
+
+      <span>
+        Honorarios
+      </span>
+
+      <strong id="sumHonorarios">
+        €0.00
+      </strong>
+
+    </div>
+
+
+    <div class="line">
+
+      <span>
+        Principios activos
+      </span>
+
+      <strong id="sumPrincipios">
+        €0.00
+      </strong>
+
+    </div>
+
+
+    <div class="line">
+
+      <span>
+        Excipientes
+      </span>
+
+      <strong id="sumExcipientes">
+        €0.00
+      </strong>
+
+    </div>
+
+
+    <div class="line">
+
+      <span>
+        Envases
+      </span>
+
+      <strong id="sumEnvases">
+        €0.00
+      </strong>
+
+    </div>
+
+
+    <div class="line">
+  <span>Subtotal</span>
+  <strong id="sumSubtotal">€0.00</strong>
+</div>
+
+<div class="line">
+  <span>IVA (4 %)</span>
+  <strong id="sumIva">€0.00</strong>
+</div>
+
+<div class="line">
+  <span>Total</span>
+  <strong id="sumTotal">€0.00</strong>
+</div>
+
+
+  </div>
+
+
+  <button
+    class="reset"
+    type="button"
+    id="reset"
+    style="margin-top:12px;width:100%;"
+  >
+    Reiniciar cálculo
+  </button>
+
+
+</div>
+
+
+</aside>
+
+
+</div>
+
+
+</main>
+
+
+<!-- =======================================================
+     JAVASCRIPT
+     ======================================================= -->
+
+<script src="js/honorarios.js"></script>
+
+<script src="js/principios.js"></script>
+
+<script src="js/excipientes.js"></script>
+
+<script src="js/envases.js"></script>
+
+<script src="js/pretasadas.js"></script>
+
+<script src="js/calculadora.js"></script>
+
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("../sw.js")
+      .then(() => console.log("PWA registrada correctamente"))
+      .catch(error => console.error("Error al registrar la PWA:", error));
+  });
+}
+</script>
+
+</body>
+
+</html>
