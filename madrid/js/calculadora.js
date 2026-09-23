@@ -1,88 +1,342 @@
-// calculadora.js
-// Une principios activos + excipientes + honorarios + envases en el total
+// ====================================================
+// CALCULADORA MADRID
+// Une principios activos + excipientes + envases
+// + honorarios + IVA 4 %
+// ====================================================
+
+const IVA_MEDICAMENTOS = 0.04;
+
+
+// ====================================================
+// CÁLCULO GENERAL
+// ====================================================
 
 function calcular() {
-  let total = 0;
 
-  // 1️⃣ Principios activos
-  if (typeof calcularPrincipios === "function") {
-    let principio = calcularPrincipios();
-    total += isNaN(principio) ? 0 : principio;
-  }
+  // 1. Principios activos
+  const principios =
+    typeof calcularTotalesPrincipioActivo === "function"
+      ? calcularTotalesPrincipioActivo()
+      : 0;
 
-  // 2️⃣ Excipientes
-  if (typeof calcularExcipientes === "function") {
-    let excipiente = calcularExcipientes();
-    total += isNaN(excipiente) ? 0 : excipiente;
-  }
+  // 2. Excipientes
+  const excipientes =
+    typeof calcularExcipientes === "function"
+      ? calcularExcipientes()
+      : 0;
 
-  // 3️⃣ Envases
-  if (typeof calcularEnvase === "function") {
-    let envase = calcularEnvase();
-    total += isNaN(envase) ? 0 : envase;
-  }
+  // 3. Envases
+  const envases =
+    typeof calcularEnvase === "function"
+      ? calcularEnvase()
+      : 0;
 
-  // 4️⃣ Honorarios
-  if (typeof calcularHonorarios === "function") {
-    let honorarios = calcularHonorarios();
-    total += isNaN(honorarios) ? 0 : honorarios;
-  }
+  // 4. Honorarios Madrid
+ // Honorarios
+let honorarios = 0;
 
-  // Mostrar total general
-  document.getElementById("totalGeneral").innerText =
-    "💶 Total General: €" + total.toFixed(2);
+if (typeof calcularHonorariosCorregidos === "function") {
+  calcularHonorariosCorregidos();
+}
+
+// Tomamos el valor que la función de honorarios
+// acaba de calcular y mostrar en pantalla
+const textoHonorarios =
+  document.getElementById("totalHonorarios")?.innerText || "";
+
+const numeroHonorarios =
+  textoHonorarios.match(/[\d.,]+/);
+
+if (numeroHonorarios) {
+  honorarios = parseFloat(
+    numeroHonorarios[0].replace(",", ".")
+  ) || 0;
 }
 
 
-// ---------------------------
-// Reiniciar formulario
-// ---------------------------
-function reiniciar() {
-  if (confirm("¿Seguro que quieres reiniciar la calculadora?")) {
+  // ==================================================
+  // SUBTOTAL
+  // ==================================================
 
-    // Principios activos
-    document.getElementById("principiosContainer").innerHTML = "";
-    if (typeof agregarActivo === "function") agregarActivo();
+  const subtotal =
+    principios +
+    excipientes +
+    envases +
+    honorarios;
 
-    // Excipientes
-    document.getElementById("excipientesContainer").innerHTML = "";
-    if (typeof agregarExcipiente === "function") agregarExcipiente();
 
-    // Envases
-    if (document.getElementById("envasesContainer")) {
-      document.getElementById("envasesContainer").innerHTML = "";
-      if (typeof agregarEnvase === "function") agregarEnvase();
-    }
+  // ==================================================
+  // IVA 4 %
+  // ==================================================
 
-    // Totales
-    document.getElementById("totalPrincipio").innerText =
-      "Total Principios Activos: €0.00";
+  const iva =
+    subtotal * IVA_MEDICAMENTOS;
 
-    document.getElementById("totalExcipiente").innerText =
-      "Total Excipiente: €0.00";
 
-    if (document.getElementById("totalEnvase")) {
-      document.getElementById("totalEnvase").innerText =
-        "Total Envase: €0.00";
-    }
+  // ==================================================
+  // TOTAL GENERAL
+  // ==================================================
 
-    if (document.getElementById("totalHonorarios")) {
-      document.getElementById("totalHonorarios").innerText =
-        "Total Honorarios: €0.00";
-    }
+  const total =
+    subtotal + iva;
 
-    document.getElementById("totalGeneral").innerText =
-      "💶 Total General: €0.00";
 
-    // Limpiar búsqueda de preparadas
-    if (document.getElementById("codigoPreparada")) {
-      document.getElementById("codigoPreparada").value = "";
-    }
+  // ==================================================
+  // ACTUALIZAR PANEL DERECHO
+  // ==================================================
 
-    if (document.getElementById("resultadoPreparada")) {
-      document.getElementById("resultadoPreparada").innerHTML = "";
-    }
+  const elementoTotal =
+    document.getElementById("totalGeneral");
+
+  if (elementoTotal) {
+    elementoTotal.innerText =
+      "💶 Total General: €" + total.toFixed(2);
   }
+
+
+  const sumHonorarios =
+    document.getElementById("sumHonorarios");
+
+  if (sumHonorarios) {
+    sumHonorarios.innerText =
+      "€" + honorarios.toFixed(2);
+  }
+
+
+  const sumPrincipios =
+    document.getElementById("sumPrincipios");
+
+  if (sumPrincipios) {
+    sumPrincipios.innerText =
+      "€" + principios.toFixed(2);
+  }
+
+
+  const sumExcipientes =
+    document.getElementById("sumExcipientes");
+
+  if (sumExcipientes) {
+    sumExcipientes.innerText =
+      "€" + excipientes.toFixed(2);
+  }
+
+
+  const sumEnvases =
+    document.getElementById("sumEnvases");
+
+  if (sumEnvases) {
+    sumEnvases.innerText =
+      "€" + envases.toFixed(2);
+  }
+
+
+  const subtotalElemento =
+    document.getElementById("subtotal");
+
+  if (subtotalElemento) {
+    subtotalElemento.innerText =
+      "€" + subtotal.toFixed(2);
+  }
+
+
+  const ivaElemento =
+    document.getElementById("iva");
+
+  if (ivaElemento) {
+    ivaElemento.innerText =
+      "€" + iva.toFixed(2);
+  }
+
+
+  return total;
+}
+
+
+// ====================================================
+// REINICIAR FORMULARIO
+// ====================================================
+
+function reiniciar() {
+
+  if (!confirm("¿Seguro que quieres reiniciar la calculadora?")) {
+    return;
+  }
+
+
+  // ----------------------------------------------
+  // Principios activos
+  // ----------------------------------------------
+
+  const principiosContainer =
+    document.getElementById("principiosActivosContainer");
+
+  if (principiosContainer) {
+
+    principiosContainer.innerHTML = "";
+
+    if (typeof agregarActivo === "function") {
+      agregarActivo();
+    }
+
+  }
+
+
+  // ----------------------------------------------
+  // Excipientes
+  // ----------------------------------------------
+
+  const excipientesContainer =
+    document.getElementById("excipientesContainer");
+
+  if (excipientesContainer) {
+
+    excipientesContainer.innerHTML = "";
+
+    if (typeof agregarExcipiente === "function") {
+      agregarExcipiente();
+    }
+
+  }
+
+
+  // ----------------------------------------------
+  // Envases
+  // ----------------------------------------------
+
+  const envasesContainer =
+    document.getElementById("envasesContainer");
+
+  if (envasesContainer) {
+
+    envasesContainer.innerHTML = "";
+
+    if (typeof agregarEnvase === "function") {
+      agregarEnvase();
+    }
+
+  }
+
+
+  // ----------------------------------------------
+  // Totales individuales
+  // ----------------------------------------------
+
+  const totalPrincipio =
+    document.getElementById("totalPrincipioActivo");
+
+  if (totalPrincipio) {
+    totalPrincipio.innerText =
+      "Total Principio Activo: €0.00";
+  }
+
+
+  const totalExcipiente =
+    document.getElementById("totalExcipiente");
+
+  if (totalExcipiente) {
+    totalExcipiente.innerText =
+      "Total Excipiente: €0.00";
+  }
+
+
+  const totalEnvase =
+    document.getElementById("totalEnvase");
+
+  if (totalEnvase) {
+    totalEnvase.innerText =
+      "Total Envase: €0.00";
+  }
+
+
+  const totalHonorarios =
+    document.getElementById("totalHonorarios");
+
+  if (totalHonorarios) {
+    totalHonorarios.innerText =
+      "Total Honorarios: €0.00";
+  }
+
+
+  // ----------------------------------------------
+  // Panel derecho
+  // ----------------------------------------------
+
+  const totalGeneral =
+    document.getElementById("totalGeneral");
+
+  if (totalGeneral) {
+    totalGeneral.innerText =
+      "💶 Total General: €0.00";
+  }
+
+
+  const sumHonorarios =
+    document.getElementById("sumHonorarios");
+
+  if (sumHonorarios) {
+    sumHonorarios.innerText = "€0.00";
+  }
+
+
+  const sumPrincipios =
+    document.getElementById("sumPrincipios");
+
+  if (sumPrincipios) {
+    sumPrincipios.innerText = "€0.00";
+  }
+
+
+  const sumExcipientes =
+    document.getElementById("sumExcipientes");
+
+  if (sumExcipientes) {
+    sumExcipientes.innerText = "€0.00";
+  }
+
+
+  const sumEnvases =
+    document.getElementById("sumEnvases");
+
+  if (sumEnvases) {
+    sumEnvases.innerText = "€0.00";
+  }
+
+
+  const subtotal =
+    document.getElementById("subtotal");
+
+  if (subtotal) {
+    subtotal.innerText = "€0.00";
+  }
+
+
+  const iva =
+    document.getElementById("iva");
+
+  if (iva) {
+    iva.innerText = "€0.00";
+  }
+
+
+  // ----------------------------------------------
+  // Limpiar buscador de preparadas
+  // ----------------------------------------------
+
+  const codigoPreparada =
+    document.getElementById("codigoPreparada");
+
+  if (codigoPreparada) {
+    codigoPreparada.value = "";
+  }
+
+
+  const resultadoPreparada =
+    document.getElementById("resultadoPreparada");
+
+  if (resultadoPreparada) {
+    resultadoPreparada.innerHTML = "";
+  }
+
 }
 
 
@@ -93,79 +347,164 @@ function reiniciar() {
 function buscarPreparada() {
 
   if (typeof preparadasMadrid === "undefined") {
+
     alert("No se ha cargado preparadas.js");
+
     return;
   }
 
-  const codigo = document
-      .getElementById("codigoPreparada")
-      .value
-      .trim();
 
-  const resultado = document.getElementById("resultadoPreparada");
+  const codigoElemento =
+    document.getElementById("codigoPreparada");
+
+  const resultado =
+    document.getElementById("resultadoPreparada");
+
+
+  if (!codigoElemento || !resultado) {
+    return;
+  }
+
+
+  const codigo =
+    codigoElemento.value.trim();
+
 
   if (codigo === "") {
-      resultado.innerHTML = "";
-      return;
+
+    resultado.innerHTML = "";
+
+    return;
   }
+
 
   if (preparadasMadrid[codigo]) {
 
-      const f = preparadasMadrid[codigo];
+    const f =
+      preparadasMadrid[codigo];
 
-      resultado.innerHTML =
-      `
-      <div style="padding:10px;border:1px solid #0a8;border-radius:8px;background:#eefdf7;">
-          <div><b>Código:</b> ${codigo}</div>
-          <div><b>Fórmula:</b> ${f.nombre}</div>
-          <div style="margin-top:8px;font-size:20px;color:darkgreen;">
-              💶 <b>${f.precio.toFixed(2).replace(".", ",")} €</b>
-          </div>
+
+    resultado.innerHTML = `
+      <div style="
+        padding:10px;
+        border:1px solid #0a8;
+        border-radius:8px;
+        background:#eefdf7;
+      ">
+
+        <div>
+          <b>Código:</b> ${codigo}
+        </div>
+
+        <div>
+          <b>Fórmula:</b> ${f.nombre}
+        </div>
+
+        <div style="
+          margin-top:8px;
+          font-size:20px;
+          color:darkgreen;
+        ">
+
+          💶 <b>
+            ${f.precio.toFixed(2).replace(".", ",")} €
+          </b>
+
+        </div>
+
       </div>
-      `;
+    `;
 
   } else {
 
-      resultado.innerHTML =
-      `
-      <div style="padding:10px;border:1px solid red;border-radius:8px;background:#fff0f0;color:red;">
-          ❌ Código no encontrado.
+    resultado.innerHTML = `
+      <div style="
+        padding:10px;
+        border:1px solid red;
+        border-radius:8px;
+        background:#fff0f0;
+        color:red;
+      ">
+
+        ❌ Código no encontrado.
+
       </div>
-      `;
+    `;
+
   }
+
 }
 
 
-// Buscar al pulsar ENTER
-document.addEventListener("keydown", function(e){
+// ====================================================
+// ENTER EN BUSCADOR
+// ====================================================
 
-    if(e.key==="Enter"){
+document.addEventListener("keydown", function(e) {
 
-        if(document.activeElement &&
-           document.activeElement.id==="codigoPreparada"){
+  if (
+    e.key === "Enter" &&
+    document.activeElement &&
+    document.activeElement.id === "codigoPreparada"
+  ) {
 
-            e.preventDefault();
-            buscarPreparada();
+    e.preventDefault();
 
-        }
+    buscarPreparada();
 
-    }
+  }
 
 });
 
 
-// ---------------------------
-// Ejecutar cálculo automático en cada cambio
-// ---------------------------
+// ====================================================
+// CÁLCULO AUTOMÁTICO
+// ====================================================
+
 document.addEventListener("input", calcular);
+
 document.addEventListener("change", calcular);
 
 
-// Inicializar al cargar
-window.onload = () => {
+// ====================================================
+// BOTÓN REINICIAR
+// ====================================================
 
-  if (typeof agregarActivo === "function") agregarActivo();
-  if (typeof agregarExcipiente === "function") agregarExcipiente();
-  if (typeof agregarEnvase === "function") agregarEnvase();
+document.addEventListener("DOMContentLoaded", function() {
 
-};
+  const reset =
+    document.getElementById("reset");
+
+  if (reset) {
+
+    reset.addEventListener(
+      "click",
+      reiniciar
+    );
+
+  }
+
+});
+
+
+// ====================================================
+// INICIALIZACIÓN
+// ====================================================
+
+window.addEventListener("load", function() {
+
+  if (typeof agregarActivo === "function") {
+    agregarActivo();
+  }
+
+  if (typeof agregarExcipiente === "function") {
+    agregarExcipiente();
+  }
+
+  if (typeof agregarEnvase === "function") {
+    agregarEnvase();
+  }
+
+  calcular();
+
+});
