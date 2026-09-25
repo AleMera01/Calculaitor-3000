@@ -1,4 +1,4 @@
-const CACHE_NAME = "calculaitor-3000-v2";
+const CACHE_NAME = "calculaitor-3000-v3";
 
 
 /* =========================
