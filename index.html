@@ -1,222 +1,577 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
 
-<meta charset="utf-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport"
-      content="width=device-width,initial-scale=1">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-<title>Calculador Magistral</title>
+    <title>CALCULAITOR 3000</title>
 
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#102a43">
+    <link
+        rel="manifest"
+        href="manifest.json"
+    >
 
-<style>
+    <meta
+        name="theme-color"
+        content="#102a43"
+    >
 
-:root{
-  --navy:#102a43;
-  --blue:#1264df;
-  --line:#d7e2ec;
-  --muted:#607386;
-}
+    <style>
 
-*{
-  box-sizing:border-box;
-}
+        * {
+            box-sizing: border-box;
+        }
 
-body{
-  margin:0;
-  background:#f5f8fb;
-  color:#172c3d;
-  font:16px/1.45 "Segoe UI",Arial,sans-serif;
-}
+        body {
+            margin: 0;
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
 
-header{
-  background:var(--navy);
-  color:white;
-  padding:25px max(25px,calc((100vw - 1000px)/2));
-}
+            background:
+                linear-gradient(
+                    135deg,
+                    #f4f7fa 0%,
+                    #e9eef3 100%
+                );
 
-h1{
-  font-size:25px;
-  margin:0;
-}
+            color: #243447;
 
-header p{
-  opacity:.85;
-  margin:5px 0 0;
-}
+            min-height: 100vh;
+        }
 
-main{
-  max-width:1000px;
-  padding:35px 24px;
-  margin:auto;
-}
 
-.alert{
-  background:#fff8d9;
-  border:1px solid #eedc89;
-  border-radius:10px;
-  padding:14px 16px;
-  color:#655415;
-  margin-bottom:25px;
-}
+        /* =========================
+           CONTENEDOR PRINCIPAL
+           ========================= */
 
-.grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:18px;
-}
+        .container {
 
-.card{
-  background:white;
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:24px;
-  box-shadow:0 2px 10px #102a4308;
-}
+            width: 92%;
+            max-width: 1050px;
 
-.card h2{
-  margin:0;
-  font-size:20px;
-}
+            margin: 0 auto;
 
-.card p{
-  color:var(--muted);
-  min-height:69px;
-}
+            padding:
+                45px 0 35px;
+        }
 
-.card a{
-  display:inline-block;
-  background:var(--blue);
-  color:white;
-  text-decoration:none;
-  padding:10px 15px;
-  border-radius:8px;
-  font-weight:600;
-}
 
-.card small{
-  display:block;
-  color:#557089;
-  margin-top:18px;
-}
+        /* =========================
+           CABECERA
+           ========================= */
 
-@media(max-width:650px){
+        .header {
 
-  .grid{
-    grid-template-columns:1fr;
-  }
+            background:
+                linear-gradient(
+                    135deg,
+                    #102a43,
+                    #1f4e79
+                );
 
-}
+            color: white;
 
-</style>
+            border-radius: 18px;
+
+            padding:
+                38px 35px 34px;
+
+            text-align: center;
+
+            box-shadow:
+                0 8px 25px
+                rgba(16, 42, 67, 0.16);
+
+            margin-bottom: 38px;
+        }
+
+
+        .header h1 {
+
+            margin: 0;
+
+            font-size: 34px;
+
+            letter-spacing: 1px;
+
+            font-weight: 700;
+        }
+
+
+        .header p {
+
+            margin:
+                10px 0 0;
+
+            font-size: 16px;
+
+            opacity: 0.88;
+        }
+
+
+        /* =========================
+           TÍTULO DE SECCIÓN
+           ========================= */
+
+        .section-title {
+
+            text-align: center;
+
+            margin-bottom: 22px;
+
+            color: #405568;
+
+            font-size: 19px;
+
+            font-weight: 600;
+        }
+
+
+        /* =========================
+           MENÚ PRINCIPAL
+           ========================= */
+
+        .menu {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 24px;
+        }
+
+
+        /* =========================
+           TARJETAS
+           ========================= */
+
+        .card {
+
+            position: relative;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            min-height: 260px;
+
+            padding: 32px;
+
+            border-radius: 18px;
+
+            text-decoration: none;
+
+            color: #243447;
+
+            background: white;
+
+            border:
+                1px solid #dce3e9;
+
+            box-shadow:
+                0 6px 20px
+                rgba(0, 0, 0, 0.07);
+
+            transition:
+                transform 0.18s ease,
+                box-shadow 0.18s ease;
+        }
+
+
+        .card:hover {
+
+            transform:
+                translateY(-4px);
+
+            box-shadow:
+                0 12px 28px
+                rgba(0, 0, 0, 0.12);
+        }
+
+
+        .card:active {
+
+            transform:
+                translateY(-1px);
+        }
+
+
+        /* =========================
+           FRANJA SUPERIOR
+           ========================= */
+
+        .card::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+            right: 0;
+
+            height: 7px;
+
+            border-radius:
+                18px 18px 0 0;
+        }
+
+
+        .card.calculadores::before {
+
+            background: #102a43;
+        }
+
+
+        .card.documentacion::before {
+
+            background: #166534;
+        }
+
+
+        /* =========================
+           ICONOS
+           ========================= */
+
+        .icon {
+
+            width: 76px;
+            height: 76px;
+
+            border-radius: 20px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 38px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .calculadores .icon {
+
+            background: #eaf0f6;
+        }
+
+
+        .documentacion .icon {
+
+            background: #eaf5ef;
+        }
+
+
+        /* =========================
+           TEXTOS TARJETAS
+           ========================= */
+
+        .card h2 {
+
+            margin:
+                0 0 10px;
+
+            font-size: 24px;
+
+            font-weight: 700;
+
+            color: #26384a;
+        }
+
+
+        .card p {
+
+            margin: 0;
+
+            text-align: center;
+
+            line-height: 1.5;
+
+            color: #6c7b88;
+
+            font-size: 14px;
+
+            max-width: 320px;
+        }
+
+
+        /* =========================
+           BOTÓN ENTRAR
+           ========================= */
+
+        .enter {
+
+            margin-top: 24px;
+
+            padding:
+                10px 22px;
+
+            border-radius: 9px;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            color: white;
+
+            transition:
+                opacity 0.18s ease;
+        }
+
+
+        .calculadores .enter {
+
+            background: #102a43;
+        }
+
+
+        .documentacion .enter {
+
+            background: #166534;
+        }
+
+
+        .card:hover .enter {
+
+            opacity: 0.9;
+        }
+
+
+        /* =========================
+           PIE
+           ========================= */
+
+        .footer {
+
+            text-align: center;
+
+            margin-top: 35px;
+
+            color: #87939e;
+
+            font-size: 12px;
+        }
+
+
+        /* =========================
+           MÓVIL
+           ========================= */
+
+        @media (max-width: 700px) {
+
+            .container {
+
+                width: 94%;
+
+                padding-top: 25px;
+            }
+
+
+            .header {
+
+                padding:
+                    30px 20px;
+            }
+
+
+            .header h1 {
+
+                font-size: 27px;
+            }
+
+
+            .header p {
+
+                font-size: 14px;
+            }
+
+
+            .menu {
+
+                grid-template-columns: 1fr;
+
+                gap: 18px;
+            }
+
+
+            .card {
+
+                min-height: 225px;
+            }
+        }
+
+    </style>
 
 </head>
 
+
 <body>
 
-<header>
 
-  <h1>
-    Calculador de fórmulas magistrales financiadas
-  </h1>
-
-  <p>
-    Aplicación independiente · versión de revisión
-  </p>
-
-</header>
-
-<main>
-
-  <div class="alert">
-
-    <strong>Importante:</strong>
-    esta aplicación no modifica la carpeta original.
-    Madrid incorpora la corrección del total general detectada durante la revisión.
-
-  </div>
+<div class="container">
 
 
-  <div class="grid">
+    <!-- =========================
+         CABECERA
+         ========================= -->
+
+    <header class="header">
+
+        <h1>
+            CALCULAITOR 3000
+        </h1>
+
+        <p>
+            Calculador de fórmulas magistrales
+        </p>
+
+    </header>
 
 
-    <!-- MADRID -->
+    <!-- =========================
+         MENÚ
+         ========================= -->
 
-    <section
-      class="card"
-      style="border-top:6px solid #9f1239"
-    >
+    <div class="section-title">
 
-      <h2 style="color:#9f1239">
-        Comunidad de Madrid
-      </h2>
+        ¿Qué quieres hacer?
 
-      <p>
-        Honorarios, principios activos, excipientes,
-        envases y fórmulas preparadas, con el total
-        general corregido.
-      </p>
+    </div>
 
-    <a href="madrid/index.html" style="background:#9f1239">
-    Abrir calculadora de Madrid
+
+    <main class="menu">
+
+
+        <!-- =====================
+             CALCULADORES
+             ===================== -->
+
+       <a href="calculadoras/index.html" class="card calculadores">
+
+            <div class="icon">
+                🧮
+            </div>
+
+            <h2>
+                Calculadores
+            </h2>
+
+            <p>
+                Accede a los calculadores
+                de fórmulas magistrales
+                por comunidad autónoma.
+            </p>
+
+            <div class="enter">
+                Entrar →
+            </div>
+
+        </a>
+
+
+        <!-- =====================
+             DOCUMENTACIÓN
+             ===================== -->
+
+
+<a
+    href="documentacion/index.html"
+    class="card documentacion"
+>
+
+    <div class="icon">
+        📚
+    </div>
+
+    <h2>
+        Documentación galénica
+    </h2>
+
+    <p>
+        Conversiones, principios activos,
+        bases, fórmulas tipo,
+        propiedades e incompatibilidades.
+    </p>
+
+    <div class="enter">
+        Entrar →
+    </div>
+
 </a>
-     
-
-      <small>
-        Identificador visual: rojo granate.
-      </small>
-
-    </section>
 
 
-    <!-- CASTILLA-LA MANCHA -->
-
-    <section
-      class="card"
-      style="border-top:6px solid #166534"
-    >
-
-      <h2 style="color:#166534">
-        Castilla-La Mancha
-      </h2>
-
-      <p>
-        Acceso independiente a los criterios,
-        tarifas y fórmulas tipificadas ya incorporados
-        en la calculadora actual.
-      </p>
-
-      <a
-        href="castilla-la-mancha/index.html"
-        style="background:#166534"
-      >
-        Abrir calculadora de Castilla-La Mancha
-      </a>
-
-      <small>
-        Identificador visual: verde.
-      </small>
-
-    </section>
+    </main>
 
 
-  </div>
+    <!-- =========================
+         PIE
+         ========================= -->
 
-</main>
+    <footer class="footer">
+
+        CALCULAITOR 3000
+
+        <br>
+
+        Herramientas para formulación magistral
+
+    </footer>
+
+
+</div>
+
+
+<!-- =============================
+     SERVICE WORKER
+     ============================= -->
 
 <script>
+
 if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("./sw.js")
-      .then(() => console.log("PWA registrada correctamente"))
-      .catch(error => console.error("Error al registrar la PWA:", error));
-  });
+
+    window.addEventListener(
+        "load",
+        () => {
+
+            navigator.serviceWorker
+                .register("./sw.js")
+                .then(() => {
+
+                    console.log(
+                        "PWA registrada correctamente"
+                    );
+
+                })
+                .catch(error => {
+
+                    console.error(
+                        "Error al registrar la PWA:",
+                        error
+                    );
+
+                });
+
+        }
+    );
+
 }
+
 </script>
+
 
 </body>
 

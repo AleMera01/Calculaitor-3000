@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Conversiones - CALCULAITOR 3000</title>
+
+    <link rel="manifest" href="../../manifest.json">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f8fb;
+            color: #243b53;
+        }
+
+        header {
+            background: linear-gradient(135deg, #102a43, #1f4e79);
+            color: white;
+            text-align: center;
+            padding: 35px 20px 30px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        header p {
+            margin: 10px 0 0;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 35px auto;
+            padding: 0 20px;
+        }
+
+        .titulo-seccion {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .titulo-seccion h2 {
+            margin: 0;
+            color: #102a43;
+            font-size: 1.5rem;
+        }
+
+        .titulo-seccion p {
+            margin-top: 8px;
+            color: #627d98;
+        }
+
+        .calculadora {
+            background: white;
+            border-radius: 14px;
+            padding: 30px;
+            box-shadow: 0 4px 14px rgba(16, 42, 67, 0.10);
+        }
+
+        .bloque {
+            margin-bottom: 25px;
+        }
+
+        .bloque:last-child {
+            margin-bottom: 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #102a43;
+        }
+
+        select,
+        input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #bcccdc;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: white;
+            color: #243b53;
+        }
+
+        select:focus,
+        input:focus {
+            outline: none;
+            border-color: #1f4e79;
+            box-shadow: 0 0 0 2px rgba(31, 78, 121, 0.12);
+        }
+
+        .unidad {
+            display: flex;
+            gap: 10px;
+        }
+
+        .unidad input {
+            flex: 1;
+        }
+
+        .unidad select {
+            width: 130px;
+        }
+
+        .conversiones-disponibles {
+            margin-top: 25px;
+        }
+
+        .conversiones-disponibles h3 {
+            margin: 0 0 15px;
+            color: #102a43;
+            font-size: 1.15rem;
+        }
+
+        .mensaje-inicial {
+            background: #f5f8fb;
+            border-radius: 10px;
+            padding: 18px;
+            color: #627d98;
+            text-align: center;
+        }
+
+        .resultado {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 10px;
+            background: #f0fdf4;
+            border-left: 5px solid #166534;
+        }
+
+        .resultado h3 {
+            margin: 0 0 10px;
+            color: #166534;
+        }
+
+        .resultado-valor {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #102a43;
+        }
+
+        .volver {
+            display: inline-block;
+            margin-top: 30px;
+            color: #1f4e79;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .volver:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px 20px 30px;
+            color: #829ab1;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 600px) {
+
+            header {
+                padding: 28px 15px 25px;
+            }
+
+            header h1 {
+                font-size: 1.6rem;
+            }
+
+            main {
+                margin: 25px auto;
+            }
+
+            .calculadora {
+                padding: 22px 18px;
+            }
+
+            .unidad {
+                flex-direction: column;
+            }
+
+            .unidad select {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>🔄 Conversiones</h1>
+    <p>Conversión de principios activos · CALCULAITOR 3000</p>
+</header>
+
+<main>
+
+    <div class="titulo-seccion">
+        <h2>Conversiones de principios activos</h2>
+        <p>
+            Introduce una cantidad y selecciona la conversión que quieras realizar.
+        </p>
+    </div>
+
+
+    <div class="calculadora">
+
+        <!-- PRINCIPIO ACTIVO -->
+        <div class="bloque">
+
+            <label for="principioActivo">
+                Principio activo
+            </label>
+
+            <select id="principioActivo">
+                <option value="">
+                    Selecciona un principio activo
+                </option>
+            </select>
+
+        </div>
+
+
+        <!-- CANTIDAD -->
+        <div class="bloque">
+
+            <label for="cantidad">
+                Cantidad
+            </label>
+
+            <div class="unidad">
+
+                <input
+                    type="number"
+                    id="cantidad"
+                    min="0"
+                    step="any"
+                    placeholder="Introduce la cantidad"
+                >
+
+                <select id="unidad">
+                    <option value="mg">mg</option>
+                    <option value="g">g</option>
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <!-- CONVERSIONES DISPONIBLES -->
+        <div class="conversiones-disponibles">
+
+            <h3>Conversiones disponibles</h3>
+
+            <div class="mensaje-inicial">
+                Selecciona un principio activo para mostrar
+                las conversiones disponibles.
+            </div>
+
+        </div>
+
+
+        <!-- RESULTADO -->
+        <div class="resultado">
+
+            <h3>Resultado</h3>
+
+            <div class="resultado-valor">
+                —
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <a href="../index.html" class="volver">
+        ← Volver a Documentación
+    </a>
+
+</main>
+
+
+<footer>
+    CALCULAITOR 3000 · Documentación galénica
+</footer>
+
+<script src="js/conversiones.js"></script>
+
+<script>
+    if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("../../sw.js")
+            .catch(error => {
+                console.error(
+                    "Error registrando Service Worker:",
+                    error
+                );
+            });
+    }
+</script>
+
+</body>
+</html>
