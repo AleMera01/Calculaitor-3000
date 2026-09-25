@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Documentación galénica - CALCULAITOR 3000</title>
+
+    <link rel="manifest" href="../manifest.json">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f8fb;
+            color: #243b53;
+        }
+
+        header {
+            background: linear-gradient(135deg, #102a43, #1f4e79);
+            color: white;
+            text-align: center;
+            padding: 35px 20px 30px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        header p {
+            margin: 10px 0 0;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 35px auto;
+            padding: 0 20px;
+        }
+
+        .titulo-seccion {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .titulo-seccion h2 {
+            margin: 0;
+            color: #102a43;
+            font-size: 1.5rem;
+        }
+
+        .titulo-seccion p {
+            margin-top: 8px;
+            color: #627d98;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 22px;
+        }
+
+        .card {
+            position: relative;
+            display: block;
+            background: white;
+            border-radius: 14px;
+            padding: 28px 24px;
+            text-decoration: none;
+            color: #243b53;
+            box-shadow: 0 4px 14px rgba(16, 42, 67, 0.10);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: #166534;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(16, 42, 67, 0.16);
+        }
+
+        .icono {
+            font-size: 2.4rem;
+            margin-bottom: 12px;
+        }
+
+        .card h3 {
+            margin: 0 0 10px;
+            font-size: 1.25rem;
+            color: #102a43;
+        }
+
+        .card p {
+            margin: 0;
+            line-height: 1.5;
+            color: #627d98;
+        }
+
+        .flecha {
+            display: block;
+            margin-top: 20px;
+            color: #166534;
+            font-weight: bold;
+        }
+
+        .proximamente {
+            cursor: default;
+        }
+
+        .proximamente:hover {
+            transform: none;
+        }
+
+        .proximamente::before {
+            background: #829ab1;
+        }
+
+        .proximamente .flecha {
+            color: #829ab1;
+        }
+
+        .volver {
+            display: inline-block;
+            margin-top: 30px;
+            color: #1f4e79;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .volver:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px 20px 30px;
+            color: #829ab1;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 28px 15px 25px;
+            }
+
+            header h1 {
+                font-size: 1.6rem;
+            }
+
+            main {
+                margin: 25px auto;
+            }
+
+            .card {
+                padding: 24px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>📚 Documentación galénica</h1>
+    <p>CALCULAITOR 3000</p>
+</header>
+
+<main>
+
+    <div class="titulo-seccion">
+        <h2>¿Qué quieres consultar?</h2>
+        <p>Selecciona una sección de documentación galénica.</p>
+    </div>
+
+    <div class="grid">
+
+        <!-- CONVERSIONES -->
+        <a href="conversiones/index.html" class="card">
+            <div class="icono">🔄</div>
+
+            <h3>Conversiones</h3>
+
+            <p>
+                Conversiones y equivalencias de principios activos
+                para la elaboración de fórmulas magistrales.
+            </p>
+
+            <span class="flecha">Entrar →</span>
+        </a>
+
+
+        <!-- PRINCIPIOS ACTIVOS -->
+        <div class="card proximamente">
+            <div class="icono">🧪</div>
+
+            <h3>Principios activos</h3>
+
+            <p>
+                Información y documentación sobre principios activos.
+            </p>
+
+            <span class="flecha">Próximamente</span>
+        </div>
+
+
+        <!-- BASES Y SALES -->
+        <div class="card proximamente">
+            <div class="icono">⚗️</div>
+
+            <h3>Bases y sales</h3>
+
+            <p>
+                Equivalencias, características y consideraciones
+                galénicas de bases y sales.
+            </p>
+
+            <span class="flecha">Próximamente</span>
+        </div>
+
+
+        <!-- FÓRMULAS TIPO -->
+        <div class="card proximamente">
+            <div class="icono">📋</div>
+
+            <h3>Fórmulas tipo</h3>
+
+            <p>
+                Fórmulas magistrales, procedimientos y documentación
+                de elaboración.
+            </p>
+
+            <span class="flecha">Próximamente</span>
+        </div>
+
+
+        <!-- EXCIPIENTES -->
+        <div class="card proximamente">
+            <div class="icono">📦</div>
+
+            <h3>Excipientes</h3>
+
+            <p>
+                Información y características de los excipientes
+                utilizados en formulación magistral.
+            </p>
+
+            <span class="flecha">Próximamente</span>
+        </div>
+
+
+        <!-- INCOMPATIBILIDADES -->
+        <div class="card proximamente">
+            <div class="icono">⚠️</div>
+
+            <h3>Incompatibilidades</h3>
+
+            <p>
+                Incompatibilidades y consideraciones de estabilidad
+                en formulación magistral.
+            </p>
+
+            <span class="flecha">Próximamente</span>
+        </div>
+
+
+        <!-- BIBLIOGRAFÍA -->
+        <div class="card proximamente">
+            <div class="icono">📖</div>
+
+            <h3>Bibliografía y fuentes</h3>
+
+            <p>
+                Fuentes bibliográficas y documentación de referencia.
+            </p>
+
+            <span class="flecha">Próximamente</span>
+        </div>
+
+    </div>
+
+    <a href="../index.html" class="volver">← Volver al inicio</a>
+
+</main>
+
+<footer>
+    CALCULAITOR 3000 · Calculador de fórmulas magistrales
+</footer>
+
+<script>
+    if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("../sw.js")
+            .catch(error => {
+                console.error("Error registrando Service Worker:", error);
+            });
+    }
+</script>
+
+</body>
+</html>

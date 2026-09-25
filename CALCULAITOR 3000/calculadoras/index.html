@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Calculadoras · Calculaitor 3000</title>
+
+    <link rel="manifest" href="../manifest.json">
+
+    <meta name="theme-color" content="#102a43">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f8fb;
+            color: #243b53;
+        }
+
+        /* CABECERA */
+
+        header {
+            background: linear-gradient(
+                135deg,
+                #102a43,
+                #1f4e79
+            );
+
+            color: white;
+            padding: 32px 20px 28px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 30px;
+            font-weight: 700;
+        }
+
+        header p {
+            margin: 8px 0 0;
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        /* CONTENIDO */
+
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 35px 20px 50px;
+        }
+
+        .titulo {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .titulo h2 {
+            margin: 0;
+            font-size: 24px;
+            color: #243b53;
+        }
+
+        .titulo p {
+            margin: 8px 0 0;
+            color: #627d98;
+            font-size: 15px;
+        }
+
+        /* TARJETAS */
+
+        .calculadoras {
+            display: grid;
+            grid-template-columns: repeat(
+                auto-fit,
+                minmax(280px, 1fr)
+            );
+
+            gap: 22px;
+        }
+
+        .card {
+            position: relative;
+
+            display: block;
+
+            background: white;
+
+            border-radius: 14px;
+
+            padding: 30px 26px 28px;
+
+            text-decoration: none;
+            color: inherit;
+
+            box-shadow:
+                0 5px 18px rgba(16, 42, 67, 0.08);
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+            right: 0;
+
+            height: 6px;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 10px 25px rgba(16, 42, 67, 0.14);
+        }
+
+        /* MADRID */
+
+        .madrid::before {
+            background: #9f1239;
+        }
+
+        .madrid .icono {
+            background: #fce7f3;
+        }
+
+        .madrid h3 {
+            color: #9f1239;
+        }
+
+        /* CASTILLA-LA MANCHA */
+
+        .clm::before {
+            background: #166534;
+        }
+
+        .clm .icono {
+            background: #dcfce7;
+        }
+
+        .clm h3 {
+            color: #166534;
+        }
+
+        /* CONTENIDO TARJETAS */
+
+        .icono {
+            width: 58px;
+            height: 58px;
+
+            border-radius: 14px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 30px;
+
+            margin-bottom: 18px;
+        }
+
+        .card h3 {
+            margin: 0 0 9px;
+
+            font-size: 22px;
+        }
+
+        .card p {
+            margin: 0;
+
+            color: #627d98;
+
+            line-height: 1.5;
+
+            font-size: 15px;
+        }
+
+        .entrar {
+            margin-top: 22px;
+
+            font-size: 15px;
+
+            font-weight: 700;
+        }
+
+        .madrid .entrar {
+            color: #9f1239;
+        }
+
+        .clm .entrar {
+            color: #166534;
+        }
+
+        /* VOLVER */
+
+        .volver {
+            display: block;
+
+            width: fit-content;
+
+            margin: 32px auto 0;
+
+            padding: 10px 18px;
+
+            border-radius: 9px;
+
+            background: white;
+
+            color: #486581;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            box-shadow:
+                0 3px 12px rgba(16, 42, 67, 0.07);
+
+            transition: background 0.2s ease;
+        }
+
+        .volver:hover {
+            background: #edf2f7;
+        }
+
+        /* PIE */
+
+        footer {
+            text-align: center;
+
+            padding: 20px;
+
+            color: #829ab1;
+
+            font-size: 13px;
+        }
+
+        /* MÓVIL */
+
+        @media (max-width: 600px) {
+
+            header {
+                padding: 26px 18px 24px;
+            }
+
+            header h1 {
+                font-size: 25px;
+            }
+
+            main {
+                padding: 28px 16px 40px;
+            }
+
+            .titulo h2 {
+                font-size: 21px;
+            }
+
+            .card {
+                padding: 26px 22px;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <h1>Calculaitor 3000</h1>
+
+    <p>Calculadoras de fórmulas magistrales</p>
+
+</header>
+
+
+<main>
+
+    <div class="titulo">
+
+        <h2>Selecciona tu calculadora</h2>
+
+        <p>
+            Elige la comunidad autónoma correspondiente
+        </p>
+
+    </div>
+
+
+    <div class="calculadoras">
+
+
+        <!-- MADRID -->
+
+        <a href="madrid/index.html"
+           class="card madrid">
+
+            <div class="icono">
+                🧮
+            </div>
+
+            <h3>Madrid</h3>
+
+            <p>
+                Calculadora de fórmulas magistrales
+                financiadas para la Comunidad de Madrid.
+            </p>
+
+            <div class="entrar">
+                Entrar →
+            </div>
+
+        </a>
+
+
+        <!-- CASTILLA-LA MANCHA -->
+
+        <a href="castilla-la-mancha/index.html"
+           class="card clm">
+
+            <div class="icono">
+                🧮
+            </div>
+
+            <h3>Castilla-La Mancha</h3>
+
+            <p>
+                Calculadora de fórmulas magistrales
+                financiadas para Castilla-La Mancha.
+            </p>
+
+            <div class="entrar">
+                Entrar →
+            </div>
+
+        </a>
+
+
+    </div>
+
+
+    <a href="../index.html" class="volver">
+        ← Volver al inicio
+    </a>
+
+</main>
+
+
+<footer>
+
+    CALCULAITOR 3000 · Calculador de fórmulas magistrales
+
+</footer>
+
+
+<script>
+
+    if ("serviceWorker" in navigator) {
+
+        window.addEventListener("load", () => {
+
+            navigator.serviceWorker.register("../sw.js")
+
+                .then(() => {
+                    console.log(
+                        "PWA registrada correctamente"
+                    );
+                })
+
+                .catch(error => {
+                    console.error(
+                        "Error al registrar la PWA:",
+                        error
+                    );
+                });
+
+        });
+
+    }
+
+</script>
+
+</body>
+</html>
