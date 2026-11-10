@@ -1,467 +1,704 @@
-const principiosActivos = {
-    "5-AMINOSALICILICO, ACIDO (5-ASA, mesalazina)": 1.166177,
-  "ACETATO VITAMINA A (retinol acetato)": 0.881721,
-  "ACETAZOLAMIDA": 1.79943,
-  "ACETILSALICILICO, ACIDO": 0.069703,
-  "ACETOHIDROXAMICO, ACIDO": 3.146814,
-  "ACICLOVIR": 2.185707,
-  "ADRENALINA, CRISTAL": 26.447524,
-  "ALOPURINOL": 1.529515,
-  "AMANTADINA, CLORHIDRATO": 0.732098,
-  "AMILOCAINA, CLORHIDRATO": 1.262959,
-  "AMINOBENZOICO, ACIDO": 0.398992,
-  "AMINOFILINA": 1.058184,
-  "AMINOSALICILICO, ACIDO = mesalazina = 5-ASA": 0.40655,
-  "AMIODARONA, CLORHIDRATO": 4.455388,
-  "AMITRIPTILINA": 0.64539,
-  "AMLODIPINO": 29.3861,
-  "AMOXICILINA, TRIHIDRATO": 0.268509,
-  "AMPICILINA, TRIHIDRATO": 0.453302,
-  "ANTRALINA (ditranol)": 10.395372,
-  "ARGININA, CLORHIDRATO": 0.15739,
-  "ARNICA, EXTRACTO FLUIDO": 0.129559,
-  "ASA = mesalazina = acido aminosalicílico": 1.166177,
-  "ASCORBICO, ACIDO (vitamina C)": 0.058421,
-  "ASPARTICO, ACIDO": 0.263916,
-  "ASTEMIZOL": 9.682134,
-  "ATENOLOL": 1.468335,
-  "ATROPINA, SULFATO": 21.536031,
-  "AZUFRE COLOIDAL": 0.076179,
-  "AZUFRE LAVADO": 0.022548,
-  "AZUFRE PRECIPITADO": 0.054799,
-  "AZUFRE SUBLIMADO": 0.015749,
-  "BACITRACINA": 11.055696,
-  "BARBITAL": 0.026577,
-  "BECLOMETASONA, DIPROPIONATO": 40.862048,
-  "BELLADONA, EXTRACTO BLANDO ACUOSO": 0.238514,
-  "BENCIDAMINA, CLORHIDRATO": 0.065233,
-  "BENCILO, BENZOATO": 0.683783,
-  "BENTONITA": 0.100288,
-  "BENZOCAINA": 0.710655,
-  "BETAINA": 0.165304,
-  "BETAMETASONA": 22.785171,
-  "BETAMETASONA, 17-21 DIPROPIONATO": 12.392072,
-  "BETAMETASONA, 17-VALERATO": 20.297567,
-  "BETAMETASONA, DIPROPIONATO": 12.392072,
-  "BETAMETASONA, VALERATO": 20.297567,
-  "BIFONAZOL": 9.608954,
-  "BIOAZUFRE FLUIDO": 0.134597,
-  "BIOAZUFRE, POLVO": 0.515837,
-  "BIOTINA (vitamina H)": 9.045133,
-  "BISMUTO, SUBCITRATO": 2.448853,
-  "BISMUTO, SUBNITRATO": 0.319099,
-  "BORICO, ACIDO POLVO": 0.016315,
-  "BROMOCRIPTINA, MESILATO": 58.772471,
-  "BUDESONIDA": 59.3505,
-  "BUMETANIDA": 25.072053,
-  "BUTILESCOPOLAMINA, BROMURO": 18.108365,
-  "CAFEINA ANHIDRA": 0.553911,
-  "CAFEINA DIFFUCAPS RETARD": 0.334605,
-  "CAFEINA, CITRATO": 0.161785,
-  "CALCIO, ACETATO": 0.126768,
-  "CALCIO, CARBONATO PRECIPITADO": 0.051824,
-  "CALCIO, CITRATO": 0.081917,
-  "CALCIO, CLORURO ANHIDRO": 0.015962,
-  "CALCIO, CLORURO CRISTAL": 0.121179,
-  "CALCIO, DOBESILATO": 0.158781,
-  "CALCIO, FOSFATO DIBASICO": 0.03498,
-  "CALCIO, FOSFATO MONOBASICO": 0.036289,
-  "CALCIO, FOSFATO TRIBASICO": 0.055086,
-  "CALCIO, GLICEROFOSFATO POLVO": 0.157928,
-  "CALCIO, GLUCONATO": 0.039252,
-  "CALCIO, HIDROXIDO": 0.050024,
-  "CALCIO, LACTATO": 0.076896,
-  "CALCIO, SULFATO": 0.020537,
-  "CANRENONA": 8.699018,
-  "CAOLIN": 0.021233,
-  "CAPSICUM, OLEORRESINA": 0.671667,
-  "CAPTOPRILO": 13.552,
-  "CARBAMAZEPINA": 1.393958,
-  "CARVEDILOL": 12.4909,
-  "CEFALEXINA, MONOHIDRATO": 0.167101,
-  "CEFALOTINA": 2.693738,
-  "CELULOSA DEAE": 0.031958,
-  "CELULOSA, FOSFATO": 0.031958,
-  "CIANOCOBALAMINA (vitamina B12)": 32.74962,
-  "CICLOPIROX ETANOLAMINA": 10.736597,
-  "CICLOSPORINA": 21.4896,
-  "CIMETIDINA": 0.81934,
-  "CIPROTERONA, ACETATO": 35.946254,
-  "CIS-RETINOICO, ACIDO (isotretinoína)": 26.379639,
-  "CISTEAMINA": 0.166522,
-  "CISTEINA, CLORHIDRATO": 0.131118,
-  "CLINDAMICINA, CLORHIDRATO": 8.241388,
-  "CLIOQUINOL (cloroiodoquina, iodochlorhidroxiquinoleína)": 0.429908,
-  "CLOBETASOL, PROPIONATO": 16.752337,
-  "CLOFIBRATO": 0.029386,
-  "CLONIDINA, CLORHIDRATO": 58.421483,
-  "CLORAL, HIDRATO": 0.280703,
-  "CLORANFENICOL, PALMITATO": 0.657871,
-  "CLORANFENICOL, SUCCINATO": 0.657871,
-  "CLORAZEPATO DIPOTASICO": 1.429346,
-  "CLORDIAZEPOXIDO": 1.163668,
-  "CLORFENAMINA, MALEATO": 1.515124,
-  "CLOROTIAZIDA": 0.129053,
-  "CLORPROMAZINA, CLORHIDRATO": 0.642124,
-  "CLORPROPAMIDA": 0.2833,
-  "CLORTALIDONA": 2.0538,
-  "CLOTRIMAZOL": 1.581099,
-  "CLOXACILINA SODICA": 0.492607,
-  "COBRE, SULFATO CRISTAL": 0.066459,
-  "COBRE, SULFATO POLVO": 0.128698,
-  "COCAINA, CLORHIDRATO": 0.595122,
-  "CODEINA": 0.894691,
-  "CODEINA, FOSFATO": 0.711194,
-  "COLECALCIFEROL (vitamina D3)": 23.596521,
-  "CROMOGLICATO DISODICO": 3.478897,
-  "D-CICLOSERINA": 4.001425,
-  "DESOXIMETASONA": 72.121141,
-  "DEXAMETASONA": 10.580646,
-  "DEXAMETASONA, FOSFATO SODICO": 12.859924,
-  "DEXPANTENOL": 0.294627,
-  "DEXTROMETORFANO, BROMHIDRATO": 4.882357,
-  "DIAZEPAM": 2.213363,
-  "DICLORISONA, 21 ACETATO": 26.236048,
-  "DICLORISONA, ACETATO": 26.236048,
-  "DICLOXACILINA SODICA": 0.332632,
-  "DIETILAMINOETILCELULOSA": 0.419216,
-  "DIETILESTILBESTROL": 7.123337,
-  "DIFENILHIDANTOINA (fenitoína)": 0.606338,
-  "DIFILINA": 0.065088,
-  "DIFLUCORTOLONA, VALERATO": 91.926863,
-  "DIHIDROXIPROPILTEOFILINA": 0.065088,
-  "DILTIAZEM, CLORHIDRATO": 6.933802,
-  "DIMETICONA": 0.033014,
-  "DIMETILPOLISILOXANO": 0.033014,
-  "DIOCTILSULFOSUCCINATO SODICO": 0.005411,
-  "DIPIRONA": 0.04747,
-  "DIPROFILINA": 0.169792,
-  "DITRANOL (antralina)": 10.395372,
-  "DOCUSATO SODICO": 0.16049,
-  "DOMPERIDONA": 8.398709,
-  "DOXICICLINA": 0.427544,
-  "DROSERA, EXTRACTO FLUIDO": 0.263916,
-  "DROSERA, TINTURA": 0.058704,
-  "ECONAZOL, NITRATO": 2.997852,
-  "EDETATO DISODICO": 0.959696,
-  "EDETICO, ACIDO": 0.959696,
-  "EDTA": 0.959696,
-  "EFEDRINA, CLORHIDRATO": 0.202148,
-  "ENALAPRILO": 6.3283,
-  "EPINEFRINA": 59.417167,
-  "ERGOCALCIFEROL (vitamina D2)": 18.958071,
-  "ERGOTAMINA, TARTRATO": 195.727021,
-  "ERITROMICINA BASE": 1.486329,
-  "ERITROMICINA, ESTOLATO": 0.543702,
-  "ESCOPOLAMINA, BROMURO": 18.10946,
-  "ESCOPOLAMINA, BUTILBROMURO": 9.577764,
-  "ESPIRONOLACTONA": 3.114213,
-  "ESTRADIOL 17-ALFA": 89.203726,
-  "ESTRADIOL 17-BETA": 27.855171,
-  "ESTREPTOMICINA, SULFATO": 0.238432,
-  "ESTROGENOS CONJUGADOS": 60.042985,
-  "ESTRONA": 51.15019,
-  "ETAMBUTOL CLORHIDRATO": 0.7959,
-  "ETILENDIAMINOTETRACETICO, ACIDO": 0.959696,
-  "ETINILESTRADIOL": 57.7377,
-  "FAMOTIDINA": 1.789833,
-  "FENACETINA": 0.046116,
-  "FENAZONA": 0.176431,
-  "FENAZOPIRIDINA, CLORHIDRATO": 0.256257,
-  "FENILALANINA": 0.261037,
-  "FENILEFRINA, CLORHIDRATO": 3.102217,
-  "FENILISOHIDANTOINA": 0.432437,
-  "FENILPROPANOLAMINA, CLORHIDRATO": 0.217362,
-  "FENILPROPANOLAMINA, CLORHIDRATO DIFFUCAPS": 0.137849,
-  "FENITOINA": 0.606338,
-  "FENOBARBITAL": 0.182794,
-  "FENOXIBENZAMINA, CLORHIDRATO": 0.896314,
-  "FITOMENADIONA (vitamina K1)": 17.661597,
-  "FLECAINIDA ACETATO": 4.52056,
-  "FLUDROCORTISONA": 110.1503,
-  "FLUMETASONA, PIVALATO": 57.795903,
-  "FLUOCINOLONA ACETONIDO": 10.8497,
-  "FLUOROURACILO": 8.853194,
-  "FOLICO, ACIDO": 1.553508,
-  "FUROSEMIDA": 1.494726,
-  "GABAPENTINA": 1.6527,
-  "GENTAMICINA, SULFATO": 13.37576,
-  "GLICERINA": 0.047505,
-  "GLICOCOLA": 0.080854,
-  "GLUCOSA ANHIDRA": 0.02476,
-  "GLUTAMINA": 0.203456,
-  "GOMA GUAR": 0.065859,
-  "GOMENOL": 0.229847,
-  "GRISEOFULVINA": 2.55039,
-  "GUAYACOL CRISTAL": 0.292707,
-  "GUAYAZULENO": 0.21543,
-  "HIDRALAZINA, CLORHIDRATO": 0.818141,
-  "HIDROCLOROTIAZIDA": 0.818141,
-  "HIDROCORTISONA BASE": 7.221711,
-  "HIDROCORTISONA, ACETATO": 7.353669,
-  "HIDROXIPROGESTERONA 11-ALFA": 6.706194,
-  "HIDROXIPROGESTERONA 17-ALFA": 3.675814,
-  "HIDROXIZINA, CLORHIDRATO": 2.346456,
-  "HIERRO, GLUCONATO": 0.088028,
-  "HIERRO, OXALATO": 0.004247,
-  "HIERRO, SULFATO CRISTAL (Ferroso)": 0.081382,
-  "HISTAMINA, CLORHIDRATO": 14.756206,
-  "HOMATROPINA, METILBROMURO": 2.557362,
-  "ICTAMOL": 0.34717,
-  "ICTIOL": 0.34717,
-  "IMIPRAMINA, CLORHIDRATO": 3.367169,
-  "INDOMETACINA": 1.218814,
-  "IODO METALOIDE": 0.232486,
-  "IODOCLORHIDROXIQUINOLEINA (clioquinol)": 0.429908,
-  "ISOLEUCINA": 0.843093,
-  "ISONIAZIDA": 0.861807,
-  "ISOTRETINOINA (13-cis retinoico)": 26.379639,
+// js/castilla-la-mancha/principios.js
+// Principios activos con sus precios en €/g para Castilla-La Mancha
+
+// js/castilla-la-mancha/principios.js
+// Principios activos Castilla-La Mancha - BLOQUE 1
+
+var principiosCastillaLaMancha = {
+  "ACEITE DE CADE": 0.06,
+  "ACETATO VITAMINA A": 0.48,
+  "ACETAZOLAMIDA": 0.59,
+  "ACETILSALICILICO, ACIDO": 0.08,
+  "ALOPURINOL": 2.32,
+  "AMIODARONA, CLORHIDRATO": 4.49,
+  "AMITRIPTILINA": 0.98,
+  "AMLODIPINO": 30.38,
+  "ATENOLOL": 2.42,
+  "ATROPINA, SULFATO": 15.42,
+  "AZUFRE PRECIPITADO": 0.05,
+  "BECLOMETASONA, DIPROPIONATO": 34.00,
+  "BENZOATO DE BENCILO": 0.08,
+  "BETAMETASONA": 40.22,
+  "BETAMETASONA, 17-21-DIPROPIONATO": 12.60,
+  "BETAMETASONA, 17-VALERATO": 17.24,
+  "BIOTINA": 10.39,
+  "BUDESONIDA": 59.36,
+  "CALCIO, CARBONATO PRECIPITADO": 0.01,
+  "CALCIO, CITRATO": 0.08,
+  "CALCIO, FOSFATO DIBASICO": 0.02,
+  "CALCIO, GLUCONATO": 0.02,
+  "CALCIO, HIDROXIDO": 0.02,
+  "CALCIO, LACTATO": 0.02,
+  "CAPTOPRILO": 15.32,
+  "CARBAMAZEPINA": 0.56,
+  "CARVEDILOL": 17.85,
+  "CLINDAMICINA, CLORHIDRATO": 2.40,
+  "CLOBETASOL, PROPIONATO": 9.61,
+  "CLONIDINA, CLORHIDRATO": 121.00,
+  "CLOTRIMAZOL": 2.41,
+  "COBRE, SULFATO CRISTAL": 0.08,
+  "COBRE, SULFATO POLVO": 0.08,
+  "CROMOGLICATO DISODICO": 2.82,
+  "DEXAMETASONA": 13.30,
+  "DIAZEPAM": 9.95,
+  "DILTIAZEM, CLORHIDRATO": 2.80,
+  "ENALAPRIL": 4.87,
+  "ERITROMICINA BASE": 1.92,
+  "ESPIRONOLACTONA": 3.92,
+  "ESTRADIOL 17-ALFA": 93.75,
+  "ESTRADIOL 17-BETA": 23.06,
+  "FENOBARBITAL": 3.64,
+  "FLECAINIDA": 5.13,
+  "FLUOCINOLONA, ACETONIDO": 27.39,
+  "FUROSEMIDA": 2.07,
+  "GABAPENTINA": 1.65,
+  "GRISEOFULVINA": 2.70,
+  "HIDRALAZINA CLORHIDRATO": 6.89,
+  "HIDROCLOROTIAZIDA": 0.82,
+  "HIDROCORTISONA BASE": 7.36, 
+  "ISONIAZIDA": 0.39,
   "IVERMECTINA": 29.04,
-  "KETOCONAZOL": 6.130057,
-  "KETOPROFENO": 1.949382,
-  "KETOTIFENO, FUMARATO": 54.461857,
-  "L-CISTEINA": 0.328216,
-  "LEUCINA": 0.239324,
-  "LEVODOPA": 2.363238,
-  "LEVOTIROXINA (tiroxina)": 28.811787,
-  "L-GLUTAMINA": 0.074424,
-  "LIDOCAINA, CLORHIDRATO": 0.308062,
-  "LIOTIRONINA (triyodotironina)": 147.413175,
-  "LISINA, CLORHIDRATO": 0.190979,
-  "L-ISOLEUCINA": 0.843093,
-  "LITIO, BENZOATO": 0.05654,
-  "LITIO, CARBONATO": 0.14653,
-  "L-LEUCINA": 0.239324,
-  "L-PROLINA": 1.0084,
-  "L-TREONINA": 0.230327,
-  "MANITOL": 0.070658,
-  "MEBENDAZOL": 0.469798,
-  "MEDROXIPROGESTERONA, ACETATO": 17.545,
-  "MENADIONA (vitamina K3 hidrosoluble)": 7.40052,
-  "MEPROBAMATO": 0.23163,
-  "MESALAZINA (5-ASA)": 0.406551,
-  "METADONA, CLORHIDRATO": 1.172025,
-  "METAMIZOL MAGNESICO": 0.079132,
-  "METAMIZOL SODICO": 0.04747,
-  "METENAMINA": 0.07557,
-  "METFORMINA": 0.106886,
-  "METILNICOTINATO": 0.588774,
-  "METILPREDNISOLONA 6-ALFA": 23.69,
-  "METILROSANILINA": 1.813825,
-  "METILSALICILATO (salicilato de metilo)": 0.075096,
-  "METILTESTOSTERONA": 9.414202,
-  "METILTIONINA, CLORURO (azul de metileno)": 1.666272,
-  "METIONINA": 0.246882,
-  "METOCLOPRAMIDA, CLORHIDRATO": 6.433,
-  "METOXALENO (8-metoxipsoraleno)": 10.136787,
-  "METOXIPSORALENO-8": 10.136787,
-  "METRONIDAZOL": 0.728169,
-  "MICONAZOL, NITRATO": 1.626684,
-  "MORFINA, CLORHIDRATO": 0.588774,
-  "NAFAZOLINA, CLORHIDRATO": 1.338947,
-  "NAFTALAN (perhidronaftaleno)": 0.03719, // (en tu tabla también aparece 0.003719)
-  "NALIDIXICO, ACIDO": 0.493695,
-  "NAPROXENO": 0.930479,
-  "NEOMICINA, SULFATO": 1.350772,
-  "NEOMICINA, UNDECILINATO": 0.564664,
-  "NICARDIPINO, CLORHIDRATO": 3.295505,
-  "NICLOSAMIDA": 1.077495,
-  "NICOTINAMIDA (vitamina PP)": 1.146837,
-  "NICOTINATO DE METILO": 0.3145032,
-  "NICOTINICO, ACIDO": 0.19038,
-  "NIFEDIPINA": 2.333021,
-  "NISTATINA": 1.720255,
-  "NITROFURANTOINA": 0.143993,
-  "NORETISTERONA, ACETATO": 32.229052,
-  "NORTRIPTILINA": 4.533029,
-  "OCTILDIMETILPABA": 0.211079,
-  "OCTILMETOXICINAMATO": 0.059211,
-  "OMEPRAZOL BASE": 10.016825,
-  "OMEPRAZOL SODICO": 2.840217,
-  "ORNITINA, CLORHIDRATO": 0.182582,
-  "OXIFENBUTAZONA": 0.82462,
-  "OXITETRACICLINA, CLORHIDRATO": 0.239924,
-  "PABA": 0.128992,
-  "P-AMINOBENZOICO, ACIDO": 0.128992,
-  "PANTENOL": 0.242798,
-  "PAPAVERINA BASE": 0.60211,
-  "PAPAVERINA, CLORHIDRATO": 2.690751,
-  "PARACETAMOL": 0.118165,
-  "PAS (p-aminosalicílico)": 0.099567,
-  "PERHIDRONAFTALENO (naftalan)": 0.03719,
-  "PILOCARPINA, CLORHIDRATO": 18.300847,
-  "PIPERAZINA, CITRATO": 0.021905,
-  "PIRAZINAMIDA": 1.10557,
-  "PIRIDOXINA, CLORHIDRATO (vitamina B6)": 0.53503,
-  "PIRVINIO, PAMOATO": 0.56327,
-  "PODOPHYLLUM PELTATUM, RESINA": 5.233701,
-  "POLIMIXINA, SULFATO": 9.492734,
-  "POTASIO, BICARBONATO": 0.040931,
-  "POTASIO, BITARTRATO": 0.021161,
-  "POTASIO, CITRATO": 0.071257,
-  "POTASIO, CLORURO": 1.398757,
-  "POTASIO, HIDROXIDO": 0.065019,
-  "POTASIO, IODURO": 0.15667,
-  "POTASIO, SULFOGUAYACOLATO": 0.031029,
-  "PREDNISOLONA": 3.104616,
-  "PREDNISONA": 5.002414,
-  "PROBENECIDA": 1.513567,
-  "PROCAINA, CLORHIDRATO": 1.247605,
-  "PROGESTERONA": 2.447224,
-  "PROLINA": 1.0084,
-  "PROMETAZINA, CLORHIDRATO": 0.21591,
-  "PROPAFENONA": 3.463423,
-  "PROPRANOLOL": 1.131241,
-  "PROTIONAMIDA": 1.082747,
-  "QUIMOTRIPSINA": 20.868527,
-  "QUINIDINA, SULFATO": 0.330375,
-  "QUINIDINA, SULFATO BASICO": 6.03332,
-  "QUININA, CLORHIDRATO": 0.659191,
-  "QUININA, SALICILATO": 0.459426,
-  "QUININA, SULFATO": 0.571859,
-  "RESERPINA": 3.424664,
-  "RETINOICO, ACIDO (13-CIS, isotretinoína)": 26.379639,
-  "RETINOL (vitamina A)": 0.320949,
-  "RETINOL, ACETATO (vitamina A acetato)": 0.881721,
-  "RETINOL, PALMITATO": 0.862766,
-  "RIBOFLAVINA (vitamina B2)": 0.363245,
-  "RIFAMPICINA": 0.886999,
-  "RUTOSIDO": 0.253249,
-  "SALBUTAMOL, SULFATO": 7.282899,
-  "SALICILAMIDA": 0.046116,
-  "SALICILATO DE METILO (metilsalicilato)": 0.075096,
-  "SALICILICO, ACIDO": 0.136997,
-  "SODIO, BICARBONATO": 0.009537,
-  "SODIO, CITRATO CRISTAL": 0.032822,
-  "SODIO, CLORURO": 0.049904,
-  "SODIO, FLUORURO": 0.100888,
-  "SODIO, FOSFATO TRIBASICO": 0.015044,
-  "SODIO, HIPOSULFITO CRISTAL": 0.047745,
-  "SODIO, IODURO": 0.249737,
-  "SODIO, SALICILATO": 0.080494,
-  "SODIO, TIOSULFATO": 0.047745,
-  "SODIO, VALPROATO": 0.670827,
-  "SUBCITRATO DE BISMUTO": 2.448853,
-  "SULFACETAMIDA SODICA": 0.25192,
-  "SULFADIACINA (sulfadiazina, sulfapirimidina)": 0.151996,
-  "SULFAFURAZOL": 0.039182,
-  "SULFAMETOXAZOL": 0.045323,
-  "SULFAMETOXIPIRIDAZINA": 0.099342,
-  "SULFANILAMIDA": 0.092318,
-  "SULFAPIRIMIDINA": 0.092318,
-  "SULFATIAZOL": 0.628452,
-  "SULFISOXAZOL": 0.039372,
-  "SULISOBENZONA": 0.188512,
-  "SULPIRIDE": 0.637111,
-  "TARDOAK": 0.06711,
-  "TEOFILINA ANHIDRA": 0.148777,
-  "TEOFILINA RETARDADA MICRONIZ. (563 mg/g)": 0.113092,
-  "TEOFILINATO DE COLINA": 0.063581,
-  "TERBUTALINA": 10.349979,
-  "TERPINA": 0.015693,
-  "TESTOSTERONA, PROPIONATO": 7.593593,
-  "TETRACAINA, CLORHIDRATO": 1.398757,
-  "TETRACICLINA, CLORHIDRATO": 0.78935,
-  "TIABENDAZOL": 0.29441,
-  "TIACETAZONA": 0.138999,
-  "TIAMINA, CLORHIDRATO (vitamina B1 clorhidrato)": 0.294627,
-  "TIAMINA, MONONITRATO (vitamina B1 mononitrato)": 0.210119,
-  "TIMOLOL MALETATO": 39.3492,
-  "TIOSULFATO SODICO (sodio hiposulfito, sodio tiosulfato)": 0.047745,
-  "TIOXOLONA": 3.529281,
-  "TIROTRICINA": 3.194082,
-  "TIROXINA = LEVOTIROXINA": 28.84981,
-  "TOCOFEROL, ACETATO (vitamina E acetato)": 0.443859,
-  "TOCOFEROL, SUCCINATO (vitamina E succinato)": 0.366136,
-  "TOLBUTAMIDA": 0.048778,
-  "TOLNAFTATO": 1.441939,
-  "TREONINA": 0.230327,
-  "TRIAMCINOLONA BASE": 24.38827,
-  "TRIAMCINOLONA, ACETONIDO": 10.769,
-  "TRIAMTERENO": 1.360849,
-  "TRIIODOTIRONINA (liotironina)": 147.413175,
-  "TRIMETILPSORALENO (trioxalen, trioxaleno)": 15.944876,
-  "TRIMETROPRIMA": 0.174065,
-  "TRIPELENAMINA, CLORHIDRATO": 0.207984,
-  "TRIPOTASIO DICITRATO DE BISMUTO": 2.448853,
-  "TRIPTOFANO": 0.465093,
-  "TRIS": 0.12693,
-  "TROMETAMOL": 0.067659,
-  "TUMENOL": 0.34717,
-  "UNDECILENICO, ACIDO": 0.214971,
-  "UROTROPINA": 0.09628,
-  "URSODESOXICOLICO, ACIDO": 6.875021,
-  "VALERIANA, EXTRACTO FLUIDO": 0.079462,
-  "VALERIANA, TINTURA": 0.064683,
-  "VALPROATO SODICO": 0.70571,
-  "VERAPAMILO": 4.618536,
-  "VERDE DE METILO": 13.097821,
-  "VERONAL": 0.026577,
-  "VINCAMINA": 5.687272,
-  "VIOFORMO": 0.429907,
-  "VIOLETA DE GENCIANA": 1.813825,
-  "VITAMINA A, ACETATO": 0.881721,
-  "VITAMINA A, HIDROSOLUBLE": 0.352254,
-  "VITAMINA A, PALMITATO": 0.870232,
-  "VITAMINA B1 = TIAMINA": 0.294626,
-  "VITAMINA B12 = CIANOCOBALAMINA": 32.74962,
-  "VITAMINA B2 = RIBOFLAVINA": 0.363245,
-  "VITAMINA B6 = PIRIDOXINA": 0.53503,
-  "VITAMINA C = ACIDO ASCORBICO": 0.058421,
-  "VITAMINA D2 = CALCIFEROL = ERGOCALCIFEROL": 18.95807,
-  "VITAMINA D3 = COLECALCIFEROL": 23.596521,
-  "VITAMINA E OLEOSA (tocoferol)": 0.616605,
-  "VITAMINA E, ACETATO = TOCOFEROL ACETATO": 0.443859,
-  "VITAMINA E, SUCCINATO = TOCOFEROL SUCCINATO": 0.366136,
-  "VITAMINA H = BIOTINA": 9.045133,
-  "VITAMINA K3 HIDROSOLUBLE (menadiona)": 7.400519,
-  "VITAMINA PP = NICOTINAMIDA": 1.146837,
-  "XILOCAINA": 0.308067,
-  "ZINC, ACETATO": 0.129079,
-  "ZINC, GLUCONATO": 0.243283,
-  "ZINC, SULFATO CRISTAL": 0.068138,
-  "ZINC, SULFATO DIFFUCAPS": 0.59813,
-  "ZINC, SULFATO POLVO": 0.064779,
-  "ZONISAMIDA": 18.56459
+  "KETOCONAZOL": 1.00,
+  "MEDROXIPROGESTERONA, ACETATO": 17.02,
+  "METILPREDNISOLONA 6-ALFA": 22.81,
+  "METOXALENO": 15.27,
+  "METRONIDAZOL": 0.56,
+  "NICOTINATO DE METILO": 0.22,
+  "NIFEDIPINA": 3.29,
+  "NISTATINA": 1.63,
+  "OMEPRAZOL BASE": 2.65,
+  "OXIBUTININA": 8.29,
+  "PIRAZINAMIDA": 1.17,
+  "POTASIO, CITRATO": 0.06,
+  "POTASIO, CLORURO": 0.01,
+  "POTASIO, HIDROXIDO": 0.11,
+  "POTASIO, IODURO": 0.27,
+  "PREDNISOLONA": 3.12,
+  "PREDNISONA": 5.05,
+  "PROCAINA, CLORHIDRATO": 1.28,
+  "PROGESTERONA": 3.15,
+  "PROPRANOLOL": 0.54,
+  "QUININA, SULFATO": 0.97,
+  "SODIO, HIPOSULFITO CRISTAL": 0.05,
+  "SULFADIAZINA": 0.22,
+  "SULFAMETOXAZOL": 0.05,
+  "SULPIRIDE": 0.81,
+  "TACROLIMUS": 298.24,
+  "TERBINAFINA": 2.24,
+  "TESTOSTERONA, PROPIONATO": 7.93,
+  "TETRACAINA, CLORHIDRATO": 1.44,
+  "TETRACICLINA, CLORHIDRATO": 0.48,
+  "TOCOFEROL, ACETATO": 0.23,
+  "TOCOFEROL, SUCCINATO": 0.29,
+  "TRANEXAMICO, ACIDO": 4.07,
+  "TRIAMCINOLONA BASE": 25.85,
+  "TRIAMCINOLONA, ACETONIDO": 11.13, 
+  "UREA": 0.06,
+  "URSODEOXICÓLICO, AC": 3.18,
+  "VERAPAMILO": 5.35
 };
-// ------------------------------------
-// Funciones para manejar el cálculo
-// ------------------------------------
-function agregarActivo() {
+
+// ======================================================
+// ESPECIFICACIONES DE PRINCIPIOS ACTIVOS - CASTILLA-LA MANCHA
+// ======================================================
+
+var especificacionesPACLMancha = {
+    "ACEITE DE CADE": {
+        comentario: "Como antipsoriásico y solo asociado a otros principios activos",
+        via: "",
+        envase: ""
+    },
+    "ACETATO VITAMINA A": {
+        comentario: "",
+        via: "",
+        envase: "X"
+    },
+    "ACETAZOLAMIDA": {
+        comentario: "",
+        via: "",
+        envase: "X"
+    },
+    "ACETILSALICILICO, ACIDO": {
+        comentario: "Vía oral en dosis pediátrica/geriátrica con problemas de disfagia",
+        via: "vo",
+        envase: ""
+    },
+    "ALOPURINOL": {
+        comentario: "Vía oral en dosis pediátrica/geriátrica con problemas de disfagia",
+        via: "vo",
+        envase: "X"
+    },
+    "AMIODARONA, CLORHIDRATO": {
+        comentario: "Vía oral en dosis pediátrica/geriátrica con problemas de disfagia",
+        via: "vo",
+        envase: ""
+    },
+    "AMITRIPTILINA": {
+        comentario: "Vía oral en dosis pediátrica/geriátrica con problemas de disfagia",
+        via: "vo",
+        envase: "X"
+    },
+    "AMLODIPINO": {
+        comentario: "Vía oral en dosis pediátrica/geriátrica con problemas de disfagia",
+        via: "vo",
+        envase: "OX"
+    },
+    "ATENOLOL": {
+        comentario: "Vía oral en dosis pediátrica/geriátrica con problemas de disfagia",
+        via: "vo",
+        envase: "X"
+    },
+    "ATROPINA, SULFATO": {
+        comentario: "Solo como monofármaco para uso oftálmico. Dosificación en mcg",
+        via: "",
+        envase: "X"
+    },
+    "AZUFRE PRECIPITADO": {
+        comentario: "Vía tópica en escabiosis",
+        via: "vt",
+        envase: ""
+    },
+    "BECLOMETASONA, DIPROPIONATO": {
+        comentario: "Solo como monofármaco por vía tópica",
+        via: "vt",
+        envase: "X"
+    },
+    "BENZOATO DE BENCILO": {
+        comentario: "Solo vía tópica al 10-30%",
+        via: "vt",
+        envase: "X"
+    },
+    "BETAMETASONA": {
+        comentario: "Solo vía oftálmica, como monofármaco o asociada con gentamicina, tobramicina o tetraciclina",
+        via: "",
+        envase: "X"
+    },
+    "BETAMETASONA, 17-21-DIPROPIONATO": {
+        comentario: "Como monofármaco solo en dosis no comercializadas",
+        via: "",
+        envase: "X"
+    },
+    "BETAMETASONA, 17-VALERATO": {
+        comentario: "Como monofármaco solo en dosis no comercializadas",
+        via: "",
+        envase: "X"
+    },
+    "BIOTINA": {
+        comentario: "Dosificación en mcg",
+        via: "",
+        envase: ""
+    },
+    "BUDESONIDA": {
+        comentario: "Para tratamiento de esofagitis eosinofílica en gel oral",
+        via: "vo",
+        envase: ""
+    },
+    "CALCIO, CARBONATO PRECIPITADO": {
+        comentario: "Como monofármaco. Vía oral, dosis pediátricas",
+        via: "vo",
+        envase: "X"
+    },
+    "CALCIO, CITRATO": {
+        comentario: "Como monofármaco o asociado a otras sales de calcio o vitamina D",
+        via: "",
+        envase: ""
+    },
+    "CALCIO, FOSFATO DIBASICO": {
+        comentario: "Como monofármaco o asociado a otras sales de calcio o vitamina D",
+        via: "",
+        envase: ""
+    },
+    "CALCIO, GLUCONATO": {
+        comentario: "Como monofármaco o asociado a otras sales de calcio o vitamina D",
+        via: "",
+        envase: ""
+    },
+    "CALCIO, HIDROXIDO": {
+        comentario: "Como monofármaco o asociado a otras sales de calcio o vitamina D",
+        via: "",
+        envase: ""
+    },
+    "CALCIO, LACTATO": {
+        comentario: "Como monofármaco o asociado a otras sales de calcio o vitamina D",
+        via: "",
+        envase: ""
+    },
+    "CAPTOPRILO": {
+        comentario: "Vía oral en dosis pediátrica/geriátrica con problemas de disfagia",
+        via: "vo",
+        envase: ""
+    },
+    "CARBAMAZEPINA": {
+        comentario: "Vía oral en dosis pediátrica/geriátrica con problemas de disfagia",
+        via: "vo",
+        envase: ""
+    },
+    "CARVEDILOL": {
+        comentario: "Vía oral en dosis pediátrica/geriátrica con problemas de disfagia",
+        via: "vo",
+        envase: "X"
+    },
+    "CLINDAMICINA, CLORHIDRATO": {
+        comentario: "Vía oral en dosis pediátrica/geriátrica con problemas de disfagia",
+        via: "vo",
+        envase: ""
+    },
+    "CLOBETASOL, PROPIONATO": {
+        comentario: "Vía tópica como monofármaco en dosis no comercializadas",
+        via: "vt",
+        envase: "X"
+    },
+    "CLONIDINA, CLORHIDRATO": {
+        comentario: "Vía oral en dosis pediátrica/geriátrica con problemas de disfagia. Dosificación en mcg",
+        via: "vo",
+        envase: "OX"
+    },
+    "CLOTRIMAZOL": {
+        comentario: "Como monofármaco por vía tópica en dosis no comercializadas",
+        via: "vt",
+        envase: ""
+    },
+    "COBRE, SULFATO CRISTAL": {
+        comentario: "Uso como fungicida y para dermatitis",
+        via: "",
+        envase: ""
+    },
+    "COBRE, SULFATO POLVO": {
+        comentario: "Uso como fungicida y para dermatitis",
+        via: "",
+        envase: ""
+    },
+    "CROMOGLICATO DISODICO": {
+        comentario: "Mastocitosis: vía oral en dosis no comercializadas y vía tópica",
+        via: "",
+        envase: ""
+    },
+    "DEXAMETASONA": {
+        comentario: "Vía oftálmica asociada a gentamicina o tetraciclina. Vía oral para dosis no comercializadas",
+        via: "",
+        envase: "OX"
+    },
+    "DIAZEPAM": {
+        comentario: "Solo vía vaginal",
+        via: "",
+        envase: ""
+    },
+    "DILTIAZEM, CLORHIDRATO": {
+        comentario: "Solo para vía tópica rectal",
+        via: "vt",
+        envase: ""
+    },
+    "ENALAPRIL": {
+        comentario: "Vía oral en dosis pediátrica/geriátrica con problemas de disfagia",
+        via: "vo",
+        envase: "OX"
+    },
+    "ERITROMICINA BASE": {
+        comentario: "Como monofármaco: vía oral en dosis pediátricas y vía tópica en dosis no comercializadas",
+        via: "",
+        envase: ""
+    },
+    "ESPIRONOLACTONA": {
+        comentario: "Vía oral en dosis pediátricas",
+        via: "vo",
+        envase: "OX"
+    },
+    "ESTRADIOL 17-ALFA": {
+        comentario: "",
+        via: "",
+        envase: "X"
+    },
+    "ESTRADIOL 17-BETA": {
+        comentario: "Vía transdérmica en gel, a concentraciones máximas de hasta un 0,06%",
+        via: "vt",
+        envase: "X"
+    },
+    "FENOBARBITAL": {
+        comentario: "Vía oral en dosis pediátricas",
+        via: "vo",
+        envase: "OX"
+    },
+    "FLECAINIDA": {
+        comentario: "Vía oral en dosis pediátricas",
+        via: "vo",
+        envase: ""
+    },
+    "FLUOCINOLONA, ACETONIDO": {
+        comentario: "Como monofármaco en dosis no comercializadas. Vía oftálmica asociada a gentamicina, tobramicina o tetraciclina",
+        via: "",
+        envase: ""
+    },
+    "FUROSEMIDA": {
+        comentario: "Vía oral en dosis pediátrica/geriátrica con problemas de disfagia",
+        via: "vo",
+        envase: "OX"
+    },
+    "GABAPENTINA": {
+        comentario: "Vía oral en dosis pediátricas",
+        via: "vo",
+        envase: "OX"
+    },
+    "GRISEOFULVINA": {
+        comentario: "",
+        via: "",
+        envase: "X"
+    },
+    "HIDRALAZINA CLORHIDRATO": {
+        comentario: "Vía oral en dosis pediátricas",
+        via: "vo",
+        envase: "OX"
+    },
+    "HIDROCLOROTIAZIDA": {
+        comentario: "Vía oral en dosis pediátrica/geriátrica con problemas de disfagia",
+        via: "vo",
+        envase: "OX"
+    },
+    "HIDROCORTISONA BASE": {
+        comentario: "Vía oral en dosis pediátricas/geriátricas con problemas de disfagia. Vía tópica como monofármaco o asociada a queratolíticos",
+        via: "",
+        envase: "OX"
+    },
+    "ISONIAZIDA": {
+        comentario: "Vía oral en dosis pediátrica/geriátrica con problemas de disfagia",
+        via: "vo",
+        envase: "OX"
+    },
+    "IVERMECTINA": {
+        comentario: "Vía oral en pacientes con problemas de disfagia",
+        via: "vo",
+        envase: ""
+    },
+    "KETOCONAZOL": {
+        comentario: "Como monofármaco solo en dosis no comercializadas",
+        via: "",
+        envase: "X"
+    },
+    "MEDROXIPROGESTERONA, ACETATO": {
+        comentario: "Solo vía oftálmica como monofármaco o asociada a gentamicina, tobramicina o tetraciclina",
+        via: "",
+        envase: ""
+    },
+    "METILPREDNISOLONA 6-ALFA": {
+        comentario: "Como monofármaco por vía oftálmica o vía oral para dosificación pediátrica",
+        via: "",
+        envase: "X"
+    },
+    "METOXALENO": {
+        comentario: "",
+        via: "",
+        envase: "X"
+    },
+    "METRONIDAZOL": {
+        comentario: "Como monofármaco solo en dosis no comercializadas",
+        via: "",
+        envase: "X"
+    },
+    "NICOTINATO DE METILO": {
+        comentario: "",
+        via: "",
+        envase: ""
+    },
+    "NIFEDIPINA": {
+        comentario: "Solo para vía tópica rectal",
+        via: "vt",
+        envase: "X"
+    },
+    "NISTATINA": {
+        comentario: "Solo como monofármaco por vía tópica o vaginal",
+        via: "",
+        envase: "X"
+    },
+    "OMEPRAZOL BASE": {
+        comentario: "Vía oral en dosis pediátrica/geriátrica con problemas de disfagia",
+        via: "vo",
+        envase: "OX"
+    },
+    "OXIBUTININA": {
+        comentario: "Solo dosis pediátricas para incontinencia urinaria",
+        via: "vo",
+        envase: ""
+    },
+    "PIRAZINAMIDA": {
+        comentario: "Vía oral en dosis pediátricas",
+        via: "vo",
+        envase: ""
+    },
+    "POTASIO, CITRATO": {
+        comentario: "Vía oral en dosis pediátrica/geriátrica con problemas de disfagia",
+        via: "vo",
+        envase: ""
+    },
+    "POTASIO, CLORURO": {
+        comentario: "Vía oral en dosis pediátrica/geriátrica con problemas de disfagia",
+        via: "vo",
+        envase: ""
+    },
+    "POTASIO, HIDROXIDO": {
+        comentario: "No formulable como reblandecedor del cerumen",
+        via: "",
+        envase: ""
+    },
+    "POTASIO, IODURO": {
+        comentario: "Solo vía sistémica",
+        via: "",
+        envase: "X"
+    },
+    "PREDNISOLONA": {
+        comentario: "Solo vía oftálmica como monofármaco o asociada a gentamicina, tobramicina o tetraciclina",
+        via: "",
+        envase: "X"
+    },
+    "PREDNISONA": {
+        comentario: "Solo vía oral en dosificación pediátrica y vía tópica como monofármaco o asociada a queratolíticos",
+        via: "",
+        envase: "X"
+    },
+    "PROCAINA, CLORHIDRATO": {
+        comentario: "Vía mucosa. No formulable en antihemorroidales",
+        via: "",
+        envase: ""
+    },
+    "PROGESTERONA": {
+        comentario: "Solo vía vaginal en dosis no comercializadas",
+        via: "",
+        envase: ""
+    },
+    "PROPRANOLOL": {
+        comentario: "Vía oral en dosis pediátrica/geriátrica con problemas de disfagia",
+        via: "vo",
+        envase: "X"
+    },
+    "QUININA, SULFATO": {
+        comentario: "Como antimalárico",
+        via: "",
+        envase: "X"
+    },
+    "SODIO, HIPOSULFITO CRISTAL": {
+        comentario: "Tratamiento de la pitiriasis versicolor. También denominado tiosulfato sódico",
+        via: "",
+        envase: ""
+    },
+    "SULFADIAZINA": {
+        comentario: "Vía oral en dosis pediátrica/geriátrica con problemas de disfagia",
+        via: "vo",
+        envase: "X"
+    },
+    "SULFAMETOXAZOL": {
+        comentario: "Solo como monofármaco",
+        via: "",
+        envase: "X"
+    },
+    "SULPIRIDE": {
+        comentario: "Vía oral en dosis pediátrica/geriátrica con problemas de disfagia",
+        via: "vo",
+        envase: ""
+    },
+    "TACROLIMUS": {
+        comentario: "",
+        via: "",
+        envase: ""
+    },
+    "TERBINAFINA": {
+        comentario: "Vía oral en pacientes con problemas de disfagia",
+        via: "vo",
+        envase: ""
+    },
+    "TESTOSTERONA, PROPIONATO": {
+        comentario: "Como monofármaco por vía tópica en dosis no comercializadas",
+        via: "vt",
+        envase: ""
+    },
+    "TETRACAINA, CLORHIDRATO": {
+        comentario: "Vía mucosa. No formulable en antihemorroidales",
+        via: "",
+        envase: "X"
+    },
+    "TETRACICLINA, CLORHIDRATO": {
+        comentario: "Vía oftálmica, como monofármaco o asociada a corticoides",
+        via: "",
+        envase: "X"
+    },
+    "TOCOFEROL, ACETATO": {
+        comentario: "Vía oral en dosis pediátrica/geriátrica con problemas de disfagia",
+        via: "vo",
+        envase: ""
+    },
+    "TOCOFEROL, SUCCINATO": {
+        comentario: "Vía oral en dosis pediátrica/geriátrica con problemas de disfagia",
+        via: "vo",
+        envase: "X"
+    },
+    "TRANEXAMICO, ACIDO": {
+        comentario: "Para curado de heridas",
+        via: "",
+        envase: ""
+    },
+    "TRIAMCINOLONA BASE": {
+        comentario: "Vía tópica como monofármaco",
+        via: "vt",
+        envase: ""
+    },
+    "TRIAMCINOLONA, ACETONIDO": {
+        comentario: "Vía tópica, como monofármaco o asociado a queratolíticos para psoriasis en concentración hasta el 0,5%",
+        via: "vt",
+        envase: ""
+    },
+    "UREA": {
+        comentario: "Como principio activo queratolítico asociado a otros principios activos, como corticosteroides",
+        via: "vt",
+        envase: ""
+    },
+    "URSODEOXICÓLICO, AC": {
+        comentario: "",
+        via: "",
+        envase: "X"
+    },
+    "VERAPAMILO": {
+        comentario: "Vía oral en dosis pediátrica/geriátrica con problemas de disfagia",
+        via: "vo",
+        envase: ""
+    }
+};
+
+// ----------------------
+// UI: Añadir select
+// ----------------------
+function agregarPrincipioActivo() {
   const container = document.getElementById("principiosActivosContainer");
   const div = document.createElement("div");
-  div.className = "fila";
-  div.innerHTML = `
-    <select onchange="calcularTotalesPrincipioActivo()">
-      <option value="">-- Selecciona --</option>
-      ${Object.keys(principiosActivos).map(nombre => `<option value="${principiosActivos[nombre]}">${nombre}</option>`).join("")}
-    </select>
-    <input type="number" placeholder="Cantidad" min="0" step="any" onchange="calcularTotalesPrincipioActivo()" />
-    <span class="subtotal"></span>
-  `;
+  div.classList.add("activo-item");
+
+  const select = document.createElement("select");
+  const defaultOption = document.createElement("option");
+  defaultOption.value = "";
+  defaultOption.textContent = "-- Selecciona un principio activo --";
+  select.appendChild(defaultOption);
+
+  // Añadir opciones dinámicas
+  for (let nombre in principiosCastillaLaMancha) {
+    const option = document.createElement("option");
+    option.value = nombre;
+    option.textContent = nombre;
+    select.appendChild(option);
+  }
+
+  const inputCantidad = document.createElement("input");
+  inputCantidad.type = "number";
+  inputCantidad.placeholder = "Cantidad (g)";
+  inputCantidad.step = "0.01";
+
+  const spanPrecio = document.createElement("span");
+  spanPrecio.classList.add("precio");
+  spanPrecio.textContent = "€0.00";
+
+  // Caja de especificaciones
+const especificacionesDiv = document.createElement("div");
+especificacionesDiv.classList.add("especificaciones-pa");
+especificacionesDiv.style.display = "none";
+
+  // Actualizar precio y especificaciones
+  function actualizarPrecio() {
+    const activo = select.value;
+    const cantidad = parseFloat(inputCantidad.value) || 0;
+
+    if (activo && principiosCastillaLaMancha[activo] !== undefined) {
+      const precioUnitario = principiosCastillaLaMancha[activo];
+      spanPrecio.textContent = "€" + (precioUnitario * cantidad).toFixed(2);
+    } else {
+      spanPrecio.textContent = "€0.00";
+    }
+
+  
+    // Mostrar especificaciones del principio activo
+    const especificacion = especificacionesPACLMancha[activo];
+
+    if (activo && especificacion) {
+      const comentario = especificacion.comentario || "";
+      const via = especificacion.via || "";
+      const envase = especificacion.envase || "";
+
+      let textoEnvase = "";
+
+      if (envase === "X") {
+        textoEnvase = "Plástico topacio";
+      } else if (envase === "OX") {
+        textoEnvase = "Cristal topacio";
+      }
+
+      if (comentario || via || textoEnvase) {
+        especificacionesDiv.innerHTML = `
+          <div class="especificaciones-titulo">
+            ⚠️ ESPECIFICACIONES DEL PRINCIPIO ACTIVO
+          </div>
+
+          ${comentario ? `
+            <div class="especificaciones-observaciones">
+              <strong>Observaciones:</strong>
+              <p>${comentario}</p>
+            </div>
+          ` : ""}
+
+          ${via ? `
+            <div class="especificaciones-linea">
+              <strong>Vía:</strong>
+              <span class="especificaciones-etiqueta">${via.toUpperCase()}</span>
+            </div>
+          ` : ""}
+
+          ${textoEnvase ? `
+            <div class="especificaciones-linea">
+              <strong>Envase:</strong>
+              <span class="especificaciones-etiqueta">${envase}</span>
+              <span>${textoEnvase}</span>
+            </div>
+          ` : ""}
+        `;
+
+        especificacionesDiv.style.display = "block";
+      } else {
+        especificacionesDiv.innerHTML = "";
+        especificacionesDiv.style.display = "none";
+      }
+    } else {
+      especificacionesDiv.innerHTML = "";
+      especificacionesDiv.style.display = "none";
+    }
+
+
+    calcularPrincipios();
+  }
+
+  select.addEventListener("change", actualizarPrecio);
+  inputCantidad.addEventListener("input", actualizarPrecio);
+
+  div.appendChild(select);
+  div.appendChild(inputCantidad);
+  div.appendChild(spanPrecio);
+  div.appendChild(especificacionesDiv);
+
   container.appendChild(div);
 }
 
-function calcularTotalesPrincipioActivo() {
-  const contenedor = document.getElementById("principiosActivosContainer");
-  const filas = contenedor.getElementsByClassName("fila");
+// ----------------------
+// Calcular total
+// ----------------------
+function calcularPrincipios() {
+  const items = document.querySelectorAll("#principiosActivosContainer .activo-item");
   let total = 0;
-
-  for (let fila of filas) {
-    const select = fila.querySelector("select");
-    const input = fila.querySelector("input");
-    const subtotalSpan = fila.querySelector(".subtotal");
-
-    const precio = parseFloat(select.value);
-    const cantidad = parseFloat(input.value) || 0; // ✅ ahora decimales
-    const subtotal = precio * cantidad;
-
-    subtotalSpan.textContent = subtotal > 0 ? `€${subtotal.toFixed(2)}` : "";
-    total += subtotal;
-  }
-
-  document.getElementById("totalPrincipioActivo").textContent =
-    `Total Principio Activo: €${total.toFixed(2)}`;
-
+  items.forEach(item => {
+    const select = item.querySelector("select");
+    const input = item.querySelector("input");
+    if (select && input) {
+      const activo = select.value;
+      const cantidad = parseFloat(input.value) || 0;
+      if (activo && principiosCastillaLaMancha[activo]) {
+        total += principiosCastillaLaMancha[activo] * cantidad;
+      }
+    }
+  });
+  document.getElementById("totalPrincipioActivo").innerText =
+    "Total Principio Activo: €" + total.toFixed(2);
   return total;
 }
+
+
