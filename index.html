@@ -179,6 +179,10 @@
             background: #2563eb;
         }
 
+        .card.formulario-nacional::before {
+            background: #7c3aed;
+        }
+
         /* ICONOS */
 
         .icon {
@@ -206,6 +210,10 @@
 
         .cima .icon {
             background: #e8f0ff;
+        }
+
+        .formulario-nacional .icon {
+            background: #f1eaff;
         }
 
         /* TEXTOS */
@@ -260,19 +268,12 @@
             background: #2563eb;
         }
 
-        .card:hover .enter {
-            opacity: 0.9;
+        .formulario-nacional .enter {
+            background: #7c3aed;
         }
 
-        /* TARJETA CIMA CENTRADA */
-
-        .card.cima {
-            grid-column: 1 / -1;
-
-            width: 50%;
-            min-width: 320px;
-
-            justify-self: center;
+        .card:hover .enter {
+            opacity: 0.9;
         }
 
         /* PIE */
@@ -314,12 +315,6 @@
                 min-height: 225px;
             }
 
-            .card.cima {
-                grid-column: auto;
-
-                width: 100%;
-                min-width: 0;
-            }
         }
 
     </style>
@@ -429,6 +424,34 @@
                 Buscador de medicamentos,
                 principios activos,
                 fichas técnicas y prospectos
+                de la AEMPS.
+            </p>
+
+            <div class="enter">
+                Entrar →
+            </div>
+
+        </a>
+
+        <!-- FORMULARIO NACIONAL -->
+
+        <a
+            href="formulario-nacional/index.html"
+            class="card formulario-nacional"
+        >
+
+            <div class="icon">
+                🧪
+            </div>
+
+            <h2>
+                Formulario Nacional
+            </h2>
+
+            <p>
+                Buscador de monografías oficiales,
+                fórmulas magistrales tipificadas,
+                preparados oficinales y procedimientos
                 de la AEMPS.
             </p>
 
