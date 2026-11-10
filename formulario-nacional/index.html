@@ -1,0 +1,730 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#102a43">
+
+<title>Formulario Nacional · CALCULAITOR 3000</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 25px 14px 40px;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg,#f4f7fa,#e9eef3);
+    color: #243447;
+}
+
+.container {
+    max-width: 1050px;
+    margin: auto;
+}
+
+.header {
+    background: linear-gradient(135deg,#102a43,#1f4e79);
+    color: white;
+    padding: 30px 20px;
+    border-radius: 17px;
+    text-align: center;
+    box-shadow: 0 7px 22px rgba(16,42,67,.15);
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.header p {
+    margin: 10px 0 0;
+    opacity: .9;
+    font-size: 14px;
+}
+
+.back {
+    display: inline-block;
+    margin: 20px 0;
+    color: #1f4e79;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.search-panel {
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    border: 1px solid #dce3e9;
+    box-shadow: 0 5px 18px rgba(0,0,0,.06);
+}
+
+.search-panel h2 {
+    margin: 0 0 18px;
+    font-size: 21px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #cbd5df;
+    border-radius: 10px;
+    font-size: 16px;
+    outline: none;
+}
+
+.search-input:focus {
+    border-color: #7c3aed;
+    box-shadow: 0 0 0 3px rgba(124,58,237,.12);
+}
+
+.filters {
+    display: flex;
+    gap: 12px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.filters select {
+    flex: 1;
+    min-width: 190px;
+    padding: 12px;
+    border: 1px solid #cbd5df;
+    border-radius: 9px;
+    background: white;
+    font-size: 14px;
+}
+
+.info {
+    margin-top: 18px;
+    color: #718096;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 25px 2px 14px;
+    gap: 10px;
+}
+
+.results-header h2 {
+    font-size: 19px;
+    margin: 0;
+}
+
+.counter {
+    color: #64748b;
+    font-size: 13px;
+}
+
+.results {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 13px;
+}
+
+.result {
+    background: white;
+    border: 1px solid #dce3e9;
+    border-radius: 13px;
+    padding: 18px 20px;
+    box-shadow: 0 3px 12px rgba(0,0,0,.04);
+}
+
+.result-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.result h3 {
+    font-size: 16px;
+    margin: 0 0 9px;
+    color: #26384a;
+    line-height: 1.4;
+}
+
+.code {
+    color: #7c3aed;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: .3px;
+}
+
+.category {
+    background: #f1eaff;
+    color: #6d28d9;
+    padding: 6px 9px;
+    border-radius: 7px;
+    font-size: 11px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.open-pdf {
+    display: inline-block;
+    margin-top: 13px;
+    background: #7c3aed;
+    color: white;
+    text-decoration: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.open-pdf:hover {
+    background: #6d28d9;
+}
+
+.empty {
+    text-align: center;
+    padding: 35px 15px;
+    background: white;
+    border-radius: 13px;
+    color: #718096;
+}
+
+.official {
+    margin-top: 25px;
+    padding: 20px;
+    background: #eef2f7;
+    border-radius: 12px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #526273;
+}
+
+.official a {
+    color: #1f4e79;
+    font-weight: bold;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 12px;
+    color: #87939e;
+}
+
+@media(max-width:600px) {
+    .header h1 {
+        font-size: 23px;
+    }
+
+    .search-panel {
+        padding: 19px;
+    }
+
+    .result-top {
+        flex-direction: column;
+    }
+
+    .category {
+        align-self: flex-start;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header class="header">
+    <h1>📖 FORMULARIO NACIONAL</h1>
+    <p>Buscador de monografías oficiales · AEMPS</p>
+</header>
+
+<a class="back" href="../index.html">
+    ← Volver a CALCULAITOR 3000
+</a>
+
+<section class="search-panel">
+
+    <h2>Buscar monografías</h2>
+
+    <input
+        type="search"
+        id="search"
+        class="search-input"
+        placeholder="Nombre, principio activo o código FN..."
+        autocomplete="off"
+    >
+
+    <div class="filters">
+
+        <select id="category">
+            <option value="">Todas las categorías</option>
+            <option value="PA">Principios activos</option>
+            <option value="EX">Excipientes</option>
+            <option value="FMT">Fórmulas magistrales tipificadas</option>
+            <option value="PO">Preparados oficinales</option>
+            <option value="PAF">Fitoterapia · Principios activos</option>
+            <option value="POF">Fitoterapia · Preparados oficinales</option>
+            <option value="PNT">Procedimientos normalizados</option>
+        </select>
+
+        <select id="sort">
+            <option value="name">Orden alfabético</option>
+            <option value="code">Orden por código</option>
+        </select>
+
+    </div>
+
+    <div class="info">
+        Introduce parte del nombre o el código de la monografía.
+        Puedes combinar la búsqueda con el filtro de categoría.
+        Los documentos se abren directamente desde la web oficial de la AEMPS.
+    </div>
+
+</section>
+
+<div class="results-header">
+    <h2>Resultados</h2>
+    <span class="counter" id="counter"></span>
+</div>
+
+<div class="results" id="results"></div>
+
+<section class="official">
+    <strong>Fuente oficial:</strong> Agencia Española de Medicamentos
+    y Productos Sanitarios (AEMPS).
+
+    <br><br>
+
+    Este buscador es una herramienta auxiliar de consulta.
+    Antes de elaborar una preparación, comprueba siempre la versión
+    vigente de la monografía original.
+
+    <br><br>
+
+    <a
+        href="https://www.aemps.gob.es/profesional-sanitario-2/farmacopea-formulacion-magistral/formulario-nacional/"
+        target="_blank"
+        rel="noopener"
+    >
+        Consultar el Formulario Nacional completo en la AEMPS →
+    </a>
+</section>
+
+<footer class="footer">
+    CALCULAITOR 3000 · Documentación galénica
+</footer>
+
+</div>
+
+<script>
+
+/* =====================================================
+   CONFIGURACIÓN DE ENLACES OFICIALES
+   ===================================================== */
+
+const BASE =
+"https://www.aemps.gob.es/formulario-nacional/monografias/";
+
+const ROUTES = {
+    PA: "materias-primas/principios-activos/",
+    EX: "materias-primas/excipientes/",
+    FMT: "formulas-magistrales-tipificadas/",
+    FMTP: "formulas-magistrales-tipificadas-pediatricas/",
+    PO: "preparados-oficinales/",
+    PAF: "fitoterapia/principios-activos/",
+    POF: "fitoterapia/preparados-oficinales/"
+};
+
+/* =====================================================
+   CATÁLOGO INICIAL DE MONOGRAFÍAS
+   ===================================================== */
+
+const DATA = [
+
+/* PRINCIPIOS ACTIVOS */
+
+["PA","FN/2003/PA/001","Ácido acético glacial"],
+["PA","FN/2003/PA/002","Alcanfor racémico"],
+["PA","FN/2003/PA/003","Aceite virgen de almendras"],
+["PA","FN/2003/PA/004","Almidón de trigo"],
+["PA","FN/2003/PA/005","Bicarbonato de sodio"],
+["PA","FN/2003/PA/006","Bórax"],
+["PA","FN/2003/PA/007","Ácido bórico"],
+["PA","FN/2003/PA/008","Calamina"],
+["PA","FN/2003/PA/009","Hidrato de cloral"],
+["PA","FN/2003/PA/010","Digluconato de clorhexidina"],
+["PA","FN/2003/PA/011","Difenhidramina hidrocloruro"],
+["PA","FN/2003/PA/012","Eritromicina"],
+["PA","FN/2003/PA/013","Glicerol"],
+["PA","FN/2003/PA/014","Hidrocortisona"],
+["PA","FN/2003/PA/015","Hidrocortisona acetato"],
+["PA","FN/2003/PA/016","Hidróxido de calcio"],
+["PA","FN/2003/PA/017","Iodo"],
+["PA","FN/2003/PA/018","Ioduro de potasio"],
+["PA","FN/2003/PA/020","Lidocaína hidrocloruro"],
+["PA","FN/2003/PA/021","Mentol racémico"],
+["PA","FN/2003/PA/022","Metadona hidrocloruro"],
+["PA","FN/2003/PA/024","Metronidazol"],
+["PA","FN/2003/PA/025","Morfina hidrocloruro"],
+["PA","FN/2003/PA/026","Nitrato de plata"],
+["PA","FN/2003/PA/027","Aceite virgen de oliva"],
+["PA","FN/2003/PA/028","Óxido de zinc"],
+["PA","FN/2003/PA/029","Permanganato de potasio"],
+["PA","FN/2003/PA/030","Povidona iodada"],
+["PA","FN/2003/PA/031","Aceite virgen de ricino"],
+["PA","FN/2003/PA/032","Salicilato de metilo"],
+["PA","FN/2003/PA/033","Ácido salicílico"],
+["PA","FN/2003/PA/034","Sulfato de aluminio"],
+["PA","FN/2003/PA/035","Sulfato de cobre pentahidrato"],
+["PA","FN/2003/PA/036","Ácido tánico"],
+["PA","FN/2003/PA/037","Timol"],
+["PA","FN/2003/PA/038","Tretinoína"],
+["PA","FN/2003/PA/039","Urea"],
+
+/* EXCIPIENTES */
+
+["EX","FN/2003/EX/001","Agua conservante"],
+["EX","FN/2003/EX/002","Crema base de Beeler"],
+["EX","FN/2003/EX/003","Crema consistente hidrófila 1"],
+["EX","FN/2003/EX/004","Crema consistente hidrófila 2"],
+["EX","FN/2003/EX/005","Emulsión A/O"],
+["EX","FN/2003/EX/006","Emulsión A/S"],
+["EX","FN/2003/EX/007","Emulsión O/A aniónica"],
+["EX","FN/2003/EX/008","Emulsión O/A fluida aniónica"],
+["EX","FN/2003/EX/009","Emulsión O/A fluida no iónica"],
+["EX","FN/2003/EX/010","Emulsión O/A no iónica 1"],
+["EX","FN/2003/EX/011","Emulsión O/A no iónica 2"],
+["EX","FN/2003/EX/012","Emulsión O/A no iónica 3"],
+["EX","FN/2003/EX/013","Excipiente n.º 1 para cápsulas"],
+["EX","FN/2003/EX/014","Excipiente n.º 2 para cápsulas"],
+["EX","FN/2003/EX/015","Gel adhesivo oral"],
+["EX","FN/2003/EX/016","Gel de carmelosa sódica"],
+["EX","FN/2003/EX/017","Gel de metilcelulosa"],
+["EX","FN/2003/EX/018","Gel fluido de metilcelulosa"],
+["EX","FN/2003/EX/019","Gel hidroalcohólico de metilcelulosa"],
+["EX","FN/2003/EX/020","Gel neutro"],
+["EX","FN/2003/EX/021","Gel neutro hidroalcohólico"],
+["EX","FN/2003/EX/022","Jarabe simple 84% p/v"],
+["EX","FN/2003/EX/023","Magma de bentonita"],
+["EX","FN/2003/EX/024","Sacarosa"],
+["EX","FN/2003/EX/025","Solución concentrada de hidroxibenzoatos"],
+["EX","FN/2003/EX/026","Solución hidroalcohólica 1"],
+["EX","FN/2003/EX/027","Solución hidroalcohólica 2"],
+["EX","FN/2017/EX/028","Agua conservante sin propilenglicol"],
+["EX","FN/2019/EX/029","Jarabe simple 84% p/v con conservante"],
+["EX","FN/2023/EX/030","Gel de carmelosa sódica oral al 1%"],
+
+/* FÓRMULAS MAGISTRALES TIPIFICADAS */
+
+["FMT","FN/2003/FMT/001","Acetato de aluminio, solución"],
+["FMT","FN/2003/FMT/002","Acetato de hidrocortisona y fenol, crema"],
+["FMT","FN/2003/FMT/003","Ácido acético, gotas óticas"],
+["FMT","FN/2003/FMT/004","Ácido salicílico y triamcinolona, crema"],
+["FMT","FN/2003/FMT/005","Ácido salicílico y triamcinolona, gel"],
+["FMT","FN/2003/FMT/006","Colodión con ácido salicílico y ácido láctico"],
+["FMT","FN/2003/FMT/007","Eritromicina, crema"],
+["FMT","FN/2003/FMT/008","Gel anestésico de lidocaína"],
+["FMT","FN/2003/FMT/011","Metadona hidrocloruro, solución al 1%"],
+["FMT","FN/2003/FMT/012","Morfina hidrocloruro, solución oral"],
+["FMT","FN/2003/FMT/013","Hidrocortisona, crema"],
+["FMT","FN/2003/FMT/014","Ipecacuana, jarabe"],
+["FMT","FN/2003/FMT/015","Lidocaína compuesta, suspensión bucal"],
+["FMT","FN/2003/FMT/016","Lidocaína viscosa"],
+["FMT","FN/2003/FMT/017","Lugol débil, solución"],
+["FMT","FN/2003/FMT/018","Lugol fuerte, solución"],
+["FMT","FN/2003/FMT/019","Metronidazol, gel"],
+["FMT","FN/2003/FMT/020","Nitrato de plata, solución al 2%"],
+["FMT","FN/2003/FMT/021","Tretinoína, gel"],
+
+/* FÓRMULAS PEDIÁTRICAS */
+
+["FMTP","FN/2014/FMT/022","Hidroclorotiazida 2 mg/ml, suspensión oral"],
+["FMTP","FN/2018/FMT/024","Captopril 1 mg/ml, solución oral"],
+["FMTP","FN/2018/FMT/025","Furosemida 2 mg/ml, solución oral"],
+["FMTP","FN/2019/FMT/026","Clonidina 20 microgramos/ml, solución oral"],
+["FMTP","FN/2020/FMT/027","Isoniazida 50 mg/ml, solución oral"],
+["FMTP","FN/2020/FMT/028","Etambutol 50 mg/ml, solución oral"],
+["FMTP","FN/2020/FMT/029","Piridoxina 25 mg/ml, solución oral"],
+["FMTP","FN/2020/FMT/030","Dexametasona 1 mg/ml, solución oral"],
+["FMTP","FN/2021/FMT/031","Fenobarbital 10 mg/ml, solución oral"],
+["FMTP","FN/2021/FMT/032","Hidralazina 10 mg/ml, solución oral"],
+["FMTP","FN/2021/FMT/033","Ácido fólico 1 mg/ml, solución oral"],
+["FMTP","FN/2021/FMT/034","Tiamina 100 mg/ml, solución oral"],
+["FMTP","FN/2021/FMT/035","Riboflavina 25 mg/ml, solución oral"],
+["FMTP","FN/2021/FMT/036","Enalapril 1 mg/ml, solución oral"],
+["FMTP","FN/2003/FMT/037","Hidrato de cloral, enema"],
+["FMTP","FN/2022/FMT/038","Amlodipino 0,5 mg/ml, solución oral"],
+["FMTP","FN/2003/FMT/039","Hidrato de cloral, jarabe"],
+["FMTP","FN/2024/FMT/040","Hidrocortisona 1 mg/ml, suspensión oral"],
+["FMTP","FN/2024/FMT/041","Gabapentina 50 mg/ml, solución oral"],
+["FMTP","FN/2024/FMT/042","Citrato sódico y ácido cítrico, solución oral"],
+
+/* PREPARADOS OFICINALES */
+
+["PO","FN/2003/PO/001","Aceite alcanforado"],
+["PO","FN/2003/PO/002","Aceite gomenolado"],
+["PO","FN/2003/PO/003","Aceite salicilado con alcohol"],
+["PO","FN/2003/PO/004","Aceite salicilado sin alcohol"],
+["PO","FN/2003/PO/005","Ácido tánico, solución"],
+["PO","FN/2003/PO/006","Agua boricada"],
+["PO","FN/2003/PO/007","Agua de cal, solución"],
+["PO","FN/2003/PO/008","Agua timolada"],
+["PO","FN/2003/PO/009","Alcohol alcanforado"],
+["PO","FN/2003/PO/010","Alcohol boricado"],
+["PO","FN/2003/PO/011","Alcohol iodado"],
+["PO","FN/2003/PO/012","Alcohol mentolado al 5%"],
+["PO","FN/2003/PO/013","Alcohol tánico"],
+["PO","FN/2003/PO/014","Calamina, loción"],
+["PO","FN/2003/PO/015","Clorhexidina, solución acuosa al 0,1%"],
+["PO","FN/2003/PO/016","Glicerolado de almidón"],
+["PO","FN/2003/PO/017","Pasta al agua"],
+["PO","FN/2003/PO/018","Pasta Lassar"],
+["PO","FN/2003/PO/019","Permanganato de potasio, solución 1/10.000"],
+["PO","FN/2003/PO/020","Polvos de óxido de zinc mentolados"],
+["PO","FN/2003/PO/021","Pomada alcanforada"],
+["PO","FN/2003/PO/022","Pomada analgésica de mentol y salicilato de metilo"],
+["PO","FN/2003/PO/023","Povidona iodada, solución"],
+["PO","FN/2003/PO/024","Saliva artificial"],
+["PO","FN/2003/PO/025","Solución para gargarismos"],
+["PO","FN/2003/PO/026","Solución rubefaciente"],
+["PO","FN/2003/PO/027","Sulfato de cobre, solución al 0,1%"],
+["PO","FN/2003/PO/028","Talco mentolado"],
+["PO","FN/2003/PO/029","Urea, crema al 15%"],
+["PO","FN/2003/PO/030","Vaselina boricada"],
+["PO","FN/2003/PO/031","Vaselina mentolada"],
+["PO","FN/2003/PO/032","Vaselina salicílica"],
+["PO","FN/2006/PO/034","Agua de Alibour"],
+["PO","FN/2006/PO/035","Alcohol de romero al 5%"],
+["PO","FN/2006/PO/036","Alcohol glicerinado"],
+["PO","FN/2006/PO/037","Crema analgésica de salicilato de metilo, mentol y alcanfor"],
+["PO","FN/2006/PO/038","Eosina al 2%, solución acuosa"],
+["PO","FN/2006/PO/039","Minoxidil al 2%, solución"],
+["PO","FN/2006/PO/040","Polvos pédicos"],
+["PO","FN/2006/PO/041","Pomada de bálsamo de Perú"],
+["PO","FN/2006/PO/042","Sulfato de zinc, solución al 0,1%"],
+
+/* FITOTERAPIA: PRINCIPIOS ACTIVOS */
+
+["PAF","FN/2003/PAF/001","Ajo, polvo"],
+["PAF","FN/2003/PAF/002","Áloe de Barbados"],
+["PAF","FN/2003/PAF/003","Cáscara sagrada"],
+["PAF","FN/2003/PAF/004","Frángula, corteza"],
+["PAF","FN/2003/PAF/005","Frángula, extracto seco normalizado"],
+["PAF","FN/2003/PAF/006","Gayuba, hoja"],
+["PAF","FN/2003/PAF/007","Harpagofito, raíz"],
+["PAF","FN/2003/PAF/008","Hinojo, fruto"],
+["PAF","FN/2003/PAF/009","Ispágula, cutícula seminal"],
+["PAF","FN/2003/PAF/010","Ortosifón, hoja"],
+["PAF","FN/2003/PAF/011","Romero, hoja"],
+["PAF","FN/2003/PAF/012","Sen, extracto seco normalizado"],
+["PAF","FN/2003/PAF/013","Sen, hoja"],
+["PAF","FN/2003/PAF/014","Valeriana, raíz"],
+["PAF","FN/2003/PAF/015","Zaragatona, semilla"],
+
+/* FITOTERAPIA: PREPARADOS OFICINALES */
+
+["POF","FN/2003/POF/001","Áloe de Barbados, cápsulas duras"],
+["POF","FN/2003/POF/002","Cáscara sagrada, cápsulas duras"],
+["POF","FN/2003/POF/003","Frángula, cápsulas duras"],
+["POF","FN/2003/POF/004","Cutícula de ispágula, polvo para suspensión oral"],
+["POF","FN/2003/POF/005","Extracto seco de frángula, cápsulas duras"],
+["POF","FN/2003/POF/006","Extracto seco de sen, cápsulas duras"],
+["POF","FN/2003/POF/007","Fruto de hinojo, cápsulas duras"],
+["POF","FN/2003/POF/008","Hoja de gayuba, cápsulas duras"],
+["POF","FN/2003/POF/009","Hoja de ortosifón, cápsulas duras"],
+["POF","FN/2003/POF/010","Hoja de romero, cápsulas duras"],
+["POF","FN/2003/POF/011","Hoja de sen, cápsulas duras"],
+["POF","FN/2003/POF/012","Polvo de ajo, cápsulas duras"],
+["POF","FN/2003/POF/013","Raíz de harpagofito, cápsulas duras"],
+["POF","FN/2003/POF/014","Raíz de valeriana, cápsulas duras"],
+["POF","FN/2003/POF/015","Semilla de zaragatona, polvo para suspensión oral"]
+
+];
+
+/* =====================================================
+   GENERACIÓN DE ENLACES PDF
+   ===================================================== */
+
+function getPdfUrl(item) {
+
+    const [type, code] = item;
+
+    const filename = code
+        .toLowerCase()
+        .replaceAll("/", "_") + ".pdf";
+
+    let route = ROUTES[type];
+
+    if (!route) return null;
+
+    return BASE + route + filename;
+}
+
+/* =====================================================
+   NORMALIZACIÓN DE TEXTO
+   ===================================================== */
+
+function normalize(text) {
+
+    return text
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .trim();
+
+}
+
+/* =====================================================
+   CATEGORÍAS
+   ===================================================== */
+
+const LABELS = {
+    PA: "Principio activo",
+    EX: "Excipiente",
+    FMT: "Fórmula magistral tipificada",
+    FMTP: "Fórmula magistral tipificada pediátrica",
+    PO: "Preparado oficinal",
+    PAF: "Fitoterapia · Principio activo",
+    POF: "Fitoterapia · Preparado oficinal"
+};
+
+/* =====================================================
+   BUSCADOR
+   ===================================================== */
+
+const searchInput = document.getElementById("search");
+const categoryInput = document.getElementById("category");
+const sortInput = document.getElementById("sort");
+const results = document.getElementById("results");
+const counter = document.getElementById("counter");
+
+function render() {
+
+    const query = normalize(searchInput.value);
+    const category = categoryInput.value;
+    const sort = sortInput.value;
+
+    let filtered = DATA.filter(item => {
+
+        const type = item[0];
+        const code = item[1];
+        const name = item[2];
+
+        const matchesCategory =
+            !category ||
+            type === category ||
+            (category === "FMT" && type === "FMTP");
+
+        const matchesQuery =
+            !query ||
+            normalize(name).includes(query) ||
+            normalize(code).includes(query);
+
+        return matchesCategory && matchesQuery;
+
+    });
+
+    if (sort === "name") {
+
+        filtered.sort((a,b) =>
+            a[2].localeCompare(b[2], "es")
+        );
+
+    } else {
+
+        filtered.sort((a,b) =>
+            a[1].localeCompare(b[1], "es")
+        );
+
+    }
+
+    counter.textContent =
+        filtered.length + " monografía(s)";
+
+    results.innerHTML = "";
+
+    if (filtered.length === 0) {
+
+        results.innerHTML = `
+            <div class="empty">
+                <strong>No se han encontrado resultados.</strong>
+                <br><br>
+                Prueba con otro término o consulta el
+                índice completo de la AEMPS.
+            </div>
+        `;
+
+        return;
+    }
+
+    filtered.forEach(item => {
+
+        const type = item[0];
+        const code = item[1];
+        const name = item[2];
+
+        const url = getPdfUrl(item);
+
+        const card = document.createElement("article");
+        card.className = "result";
+
+        const top = document.createElement("div");
+        top.className = "result-top";
+
+        const info = document.createElement("div");
+
+        const title = document.createElement("h3");
+        title.textContent = name;
+
+        const codeText = document.createElement("div");
+        codeText.className = "code";
+        codeText.textContent = code;
+
+        info.appendChild(title);
+        info.appendChild(codeText);
+
+        const badge = document.createElement("span");
+        badge.className = "category";
+        badge.textContent = LABELS[type] || type;
+
+        top.appendChild(info);
+        top.appendChild(badge);
+
+        const link = document.createElement("a");
+        link.className = "open-pdf";
+        link.href = url;
+        link.target = "_blank";
+        link.rel = "noopener";
+        link.textContent = "Abrir monografía PDF →";
+
+        card.appendChild(top);
+        card.appendChild(link);
+
+        results.appendChild(card);
+
+    });
+
+}
+
+/* =====================================================
+   EVENTOS
+   ===================================================== */
+
+searchInput.addEventListener("input", render);
+categoryInput.addEventListener("change", render);
+sortInput.addEventListener("change", render);
+
+/* INICIO */
+
+render();
+
+</script>
+
+</body>
+</html>
