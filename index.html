@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -30,10 +31,7 @@
 
         body {
             margin: 0;
-            font-family:
-                Arial,
-                Helvetica,
-                sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
 
             background:
                 linear-gradient(
@@ -43,33 +41,21 @@
                 );
 
             color: #243447;
-
             min-height: 100vh;
         }
 
-
-        /* =========================
-           CONTENEDOR PRINCIPAL
-           ========================= */
+        /* CONTENEDOR PRINCIPAL */
 
         .container {
-
             width: 92%;
             max-width: 1050px;
-
             margin: 0 auto;
-
-            padding:
-                45px 0 35px;
+            padding: 45px 0 35px;
         }
 
-
-        /* =========================
-           CABECERA
-           ========================= */
+        /* CABECERA */
 
         .header {
-
             background:
                 linear-gradient(
                     135deg,
@@ -78,12 +64,8 @@
                 );
 
             color: white;
-
             border-radius: 18px;
-
-            padding:
-                38px 35px 34px;
-
+            padding: 38px 35px 34px;
             text-align: center;
 
             box-shadow:
@@ -93,54 +75,32 @@
             margin-bottom: 38px;
         }
 
-
         .header h1 {
-
             margin: 0;
-
             font-size: 34px;
-
             letter-spacing: 1px;
-
             font-weight: 700;
         }
 
-
         .header p {
-
-            margin:
-                10px 0 0;
-
+            margin: 10px 0 0;
             font-size: 16px;
-
             opacity: 0.88;
         }
 
-
-        /* =========================
-           TÍTULO DE SECCIÓN
-           ========================= */
+        /* TÍTULO DE SECCIÓN */
 
         .section-title {
-
             text-align: center;
-
             margin-bottom: 22px;
-
             color: #405568;
-
             font-size: 19px;
-
             font-weight: 600;
         }
 
-
-        /* =========================
-           MENÚ PRINCIPAL
-           ========================= */
+        /* MENÚ PRINCIPAL */
 
         .menu {
-
             display: grid;
 
             grid-template-columns:
@@ -149,37 +109,25 @@
             gap: 24px;
         }
 
-
-        /* =========================
-           TARJETAS
-           ========================= */
+        /* TARJETAS */
 
         .card {
-
             position: relative;
 
             display: flex;
-
             flex-direction: column;
-
             align-items: center;
-
             justify-content: center;
 
             min-height: 260px;
-
             padding: 32px;
 
             border-radius: 18px;
-
             text-decoration: none;
-
             color: #243447;
-
             background: white;
 
-            border:
-                1px solid #dce3e9;
+            border: 1px solid #dce3e9;
 
             box-shadow:
                 0 6px 20px
@@ -190,31 +138,21 @@
                 box-shadow 0.18s ease;
         }
 
-
         .card:hover {
-
-            transform:
-                translateY(-4px);
+            transform: translateY(-4px);
 
             box-shadow:
                 0 12px 28px
                 rgba(0, 0, 0, 0.12);
         }
 
-
         .card:active {
-
-            transform:
-                translateY(-1px);
+            transform: translateY(-1px);
         }
 
-
-        /* =========================
-           FRANJA SUPERIOR
-           ========================= */
+        /* FRANJA SUPERIOR */
 
         .card::before {
-
             content: "";
 
             position: absolute;
@@ -229,32 +167,27 @@
                 18px 18px 0 0;
         }
 
-
         .card.calculadores::before {
-
             background: #102a43;
         }
 
-
         .card.documentacion::before {
-
             background: #166534;
         }
 
+        .card.cima::before {
+            background: #2563eb;
+        }
 
-        /* =========================
-           ICONOS
-           ========================= */
+        /* ICONOS */
 
         .icon {
-
             width: 76px;
             height: 76px;
 
             border-radius: 20px;
 
             display: flex;
-
             align-items: center;
             justify-content: center;
 
@@ -263,67 +196,50 @@
             margin-bottom: 20px;
         }
 
-
         .calculadores .icon {
-
             background: #eaf0f6;
         }
 
-
         .documentacion .icon {
-
             background: #eaf5ef;
         }
 
-
-        /* =========================
-           TEXTOS TARJETAS
-           ========================= */
-
-        .card h2 {
-
-            margin:
-                0 0 10px;
-
-            font-size: 24px;
-
-            font-weight: 700;
-
-            color: #26384a;
+        .cima .icon {
+            background: #e8f0ff;
         }
 
+        /* TEXTOS */
+
+        .card h2 {
+            margin: 0 0 10px;
+            font-size: 24px;
+            font-weight: 700;
+            color: #26384a;
+            text-align: center;
+        }
 
         .card p {
-
             margin: 0;
 
             text-align: center;
-
             line-height: 1.5;
 
             color: #6c7b88;
-
             font-size: 14px;
 
             max-width: 320px;
         }
 
-
-        /* =========================
-           BOTÓN ENTRAR
-           ========================= */
+        /* BOTÓN ENTRAR */
 
         .enter {
-
             margin-top: 24px;
 
-            padding:
-                10px 22px;
+            padding: 10px 22px;
 
             border-radius: 9px;
 
             font-size: 14px;
-
             font-weight: 600;
 
             color: white;
@@ -332,85 +248,77 @@
                 opacity 0.18s ease;
         }
 
-
         .calculadores .enter {
-
             background: #102a43;
         }
 
-
         .documentacion .enter {
-
             background: #166534;
         }
 
+        .cima .enter {
+            background: #2563eb;
+        }
 
         .card:hover .enter {
-
             opacity: 0.9;
         }
 
+        /* TARJETA CIMA CENTRADA */
 
-        /* =========================
-           PIE
-           ========================= */
+        .card.cima {
+            grid-column: 1 / -1;
+
+            width: 50%;
+            min-width: 320px;
+
+            justify-self: center;
+        }
+
+        /* PIE */
 
         .footer {
-
             text-align: center;
-
             margin-top: 35px;
-
             color: #87939e;
-
             font-size: 12px;
         }
 
-
-        /* =========================
-           MÓVIL
-           ========================= */
+        /* MÓVIL */
 
         @media (max-width: 700px) {
 
             .container {
-
                 width: 94%;
-
                 padding-top: 25px;
             }
 
-
             .header {
-
-                padding:
-                    30px 20px;
+                padding: 30px 20px;
             }
 
-
             .header h1 {
-
                 font-size: 27px;
             }
 
-
             .header p {
-
                 font-size: 14px;
             }
 
-
             .menu {
-
                 grid-template-columns: 1fr;
-
                 gap: 18px;
             }
 
-
             .card {
-
                 min-height: 225px;
+            }
+
+            .card.cima {
+                grid-column: auto;
+
+                width: 100%;
+                min-width: 0;
             }
         }
 
@@ -418,16 +326,11 @@
 
 </head>
 
-
 <body>
-
 
 <div class="container">
 
-
-    <!-- =========================
-         CABECERA
-         ========================= -->
+    <!-- CABECERA -->
 
     <header class="header">
 
@@ -441,10 +344,7 @@
 
     </header>
 
-
-    <!-- =========================
-         MENÚ
-         ========================= -->
+    <!-- TÍTULO -->
 
     <div class="section-title">
 
@@ -452,15 +352,16 @@
 
     </div>
 
+    <!-- MENÚ -->
 
     <main class="menu">
 
+        <!-- CALCULADORES -->
 
-        <!-- =====================
-             CALCULADORES
-             ===================== -->
-
-       <a href="calculadoras/index.html" class="card calculadores">
+        <a
+            href="calculadoras/index.html"
+            class="card calculadores"
+        >
 
             <div class="icon">
                 🧮
@@ -482,44 +383,64 @@
 
         </a>
 
+        <!-- DOCUMENTACIÓN GALÉNICA -->
 
-        <!-- =====================
-             DOCUMENTACIÓN
-             ===================== -->
+        <a
+            href="documentacion/index.html"
+            class="card documentacion"
+        >
 
+            <div class="icon">
+                📚
+            </div>
 
-<a
-    href="documentacion/index.html"
-    class="card documentacion"
->
+            <h2>
+                Documentación galénica
+            </h2>
 
-    <div class="icon">
-        📚
-    </div>
+            <p>
+                Conversiones, principios activos,
+                bases, fórmulas tipo,
+                propiedades e incompatibilidades.
+            </p>
 
-    <h2>
-        Documentación galénica
-    </h2>
+            <div class="enter">
+                Entrar →
+            </div>
 
-    <p>
-        Conversiones, principios activos,
-        bases, fórmulas tipo,
-        propiedades e incompatibilidades.
-    </p>
+        </a>
 
-    <div class="enter">
-        Entrar →
-    </div>
+        <!-- CONSULTA CIMA -->
 
-</a>
+        <a
+            href="cima/index.html"
+            class="card cima"
+        >
 
+            <div class="icon">
+                💊
+            </div>
+
+            <h2>
+                Consulta CIMA
+            </h2>
+
+            <p>
+                Buscador de medicamentos,
+                principios activos,
+                fichas técnicas y prospectos
+                de la AEMPS.
+            </p>
+
+            <div class="enter">
+                Entrar →
+            </div>
+
+        </a>
 
     </main>
 
-
-    <!-- =========================
-         PIE
-         ========================= -->
+    <!-- PIE -->
 
     <footer class="footer">
 
@@ -531,13 +452,9 @@
 
     </footer>
 
-
 </div>
 
-
-<!-- =============================
-     SERVICE WORKER
-     ============================= -->
+<!-- SERVICE WORKER -->
 
 <script>
 
@@ -571,7 +488,6 @@ if ("serviceWorker" in navigator) {
 }
 
 </script>
-
 
 </body>
 
