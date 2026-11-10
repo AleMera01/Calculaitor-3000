@@ -1,0 +1,998 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Consulta CIMA · CALCULAITOR 3000</title>
+
+    <meta
+        name="theme-color"
+        content="#102a43"
+    >
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f4f7fa 0%,
+                    #e9eef3 100%
+                );
+
+            color: #243447;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 1050px;
+            margin: auto;
+            padding: 35px 0;
+        }
+
+        /* CABECERA */
+
+        .header {
+            background:
+                linear-gradient(
+                    135deg,
+                    #102a43,
+                    #1f4e79
+                );
+
+            color: white;
+            border-radius: 18px;
+            padding: 30px;
+            text-align: center;
+
+            box-shadow:
+                0 8px 25px
+                rgba(16, 42, 67, 0.16);
+
+            margin-bottom: 28px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 30px;
+        }
+
+        .header p {
+            margin: 10px 0 0;
+            opacity: 0.9;
+            font-size: 15px;
+        }
+
+        /* VOLVER */
+
+        .back {
+            display: inline-block;
+            margin-bottom: 20px;
+
+            color: #1f4e79;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back:hover {
+            text-decoration: underline;
+        }
+
+        /* BUSCADOR */
+
+        .search-panel {
+            background: white;
+
+            border: 1px solid #dce3e9;
+            border-radius: 18px;
+
+            padding: 28px;
+
+            box-shadow:
+                0 6px 20px
+                rgba(0, 0, 0, 0.05);
+
+            margin-bottom: 25px;
+        }
+
+        .search-panel h2 {
+            margin: 0 0 20px;
+            font-size: 22px;
+            color: #26384a;
+        }
+
+        .search-form {
+            display: flex;
+            gap: 12px;
+        }
+
+        .search-input {
+            flex: 1;
+            min-width: 0;
+
+            padding: 14px 16px;
+
+            border: 1px solid #cbd5df;
+            border-radius: 10px;
+
+            font-size: 16px;
+            outline: none;
+        }
+
+        .search-input:focus {
+            border-color: #2563eb;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(37, 99, 235, 0.12);
+        }
+
+        .search-button {
+            padding: 14px 24px;
+
+            background: #2563eb;
+            color: white;
+
+            border: none;
+            border-radius: 10px;
+
+            font-size: 15px;
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+        .search-button:hover {
+            background: #1d4ed8;
+        }
+
+        .search-button:disabled {
+            opacity: 0.6;
+            cursor: wait;
+        }
+
+        /* FILTRO */
+
+        .filter {
+            margin-top: 18px;
+
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            color: #526477;
+            font-size: 14px;
+        }
+
+        .filter input {
+            width: 17px;
+            height: 17px;
+            cursor: pointer;
+        }
+
+        /* ESTADO */
+
+        .status {
+            text-align: center;
+
+            color: #64748b;
+            font-size: 14px;
+
+            padding: 20px;
+        }
+
+        .status.error {
+            color: #b91c1c;
+        }
+
+        /* RESULTADOS */
+
+        .results-title {
+            margin: 25px 0 15px;
+
+            font-size: 20px;
+            color: #405568;
+        }
+
+        .results {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
+        .medicine-card {
+            background: white;
+
+            border: 1px solid #dce3e9;
+            border-radius: 15px;
+
+            padding: 23px;
+
+            box-shadow:
+                0 5px 16px
+                rgba(0, 0, 0, 0.05);
+        }
+
+        .medicine-card h3 {
+            margin: 0 0 14px;
+
+            font-size: 19px;
+            line-height: 1.4;
+
+            color: #1f4e79;
+        }
+
+        .medicine-info {
+            color: #64748b;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .medicine-info strong {
+            color: #405568;
+        }
+
+        /* ESTADO COMERCIAL */
+
+        .status-badge {
+            display: inline-block;
+
+            margin-top: 12px;
+
+            padding: 5px 10px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .status-badge.market {
+            background: #e8f5e9;
+            color: #166534;
+        }
+
+        .status-badge.no-market {
+            background: #fff3e0;
+            color: #b45309;
+        }
+
+        /* DOCUMENTOS */
+
+        .documents {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+
+            margin-top: 20px;
+        }
+
+        .document-link {
+            display: inline-block;
+
+            padding: 10px 14px;
+
+            border-radius: 8px;
+
+            background: #eaf0f6;
+            color: #1f4e79;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            text-decoration: none;
+        }
+
+        .document-link:hover {
+            background: #dbe7f3;
+        }
+
+        .document-link.primary {
+            background: #2563eb;
+            color: white;
+        }
+
+        .document-link.primary:hover {
+            background: #1d4ed8;
+        }
+
+        /* PIE */
+
+        .footer {
+            text-align: center;
+
+            margin-top: 35px;
+
+            color: #87939e;
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        /* MÓVIL */
+
+        @media (max-width: 700px) {
+
+            .container {
+                width: 94%;
+                padding-top: 20px;
+            }
+
+            .header {
+                padding: 25px 18px;
+            }
+
+            .header h1 {
+                font-size: 25px;
+            }
+
+            .search-panel {
+                padding: 20px;
+            }
+
+            .search-form {
+                flex-direction: column;
+            }
+
+            .search-button {
+                width: 100%;
+            }
+
+            .medicine-card {
+                padding: 18px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- CABECERA -->
+
+    <header class="header">
+
+        <h1>
+            💊 Consulta CIMA
+        </h1>
+
+        <p>
+            Buscador de medicamentos de la AEMPS
+        </p>
+
+    </header>
+
+    <!-- VOLVER -->
+
+    <a
+        href="../index.html"
+        class="back"
+    >
+
+        ← Volver a CALCULAITOR 3000
+
+    </a>
+
+    <!-- BUSCADOR -->
+
+    <section class="search-panel">
+
+        <h2>
+            Buscar medicamento
+        </h2>
+
+        <form
+            id="searchForm"
+            class="search-form"
+        >
+
+            <input
+                type="text"
+                id="searchInput"
+                class="search-input"
+                placeholder="Nombre comercial o principio activo..."
+                autocomplete="off"
+                required
+            >
+
+            <button
+                type="submit"
+                id="searchButton"
+                class="search-button"
+            >
+
+                Buscar
+
+            </button>
+
+        </form>
+
+        <label class="filter">
+
+            <input
+                type="checkbox"
+                id="marketedOnly"
+                checked
+            >
+
+            Mostrar únicamente medicamentos comercializados
+
+        </label>
+
+    </section>
+
+    <!-- ESTADO -->
+
+    <div
+        id="status"
+        class="status"
+    >
+
+        Introduce el nombre de un medicamento
+        o principio activo para comenzar.
+
+    </div>
+
+    <!-- RESULTADOS -->
+
+    <h2
+        id="resultsTitle"
+        class="results-title"
+        hidden
+    >
+
+        Resultados de búsqueda
+
+    </h2>
+
+    <div
+        id="results"
+        class="results"
+    >
+
+    </div>
+
+    <!-- PIE -->
+
+    <footer class="footer">
+
+        CALCULAITOR 3000
+
+        <br>
+
+        Fuente de información:
+        Agencia Española de Medicamentos
+        y Productos Sanitarios (AEMPS)
+
+        <br>
+
+        Los datos se consultan directamente
+        desde CIMA.
+
+    </footer>
+
+</div>
+
+<script>
+
+const API_URL =
+    "https://cima.aemps.es/cima/rest/medicamentos";
+
+
+const searchForm =
+    document.getElementById("searchForm");
+
+
+const searchInput =
+    document.getElementById("searchInput");
+
+
+const searchButton =
+    document.getElementById("searchButton");
+
+
+const marketedOnly =
+    document.getElementById("marketedOnly");
+
+
+const statusElement =
+    document.getElementById("status");
+
+
+const resultsElement =
+    document.getElementById("results");
+
+
+const resultsTitle =
+    document.getElementById("resultsTitle");
+
+
+// ========================================
+// BUSCAR MEDICAMENTOS
+// ========================================
+
+async function buscarMedicamentos() {
+
+    const termino =
+        searchInput.value.trim();
+
+    if (!termino) {
+        return;
+    }
+
+    resultsElement.replaceChildren();
+
+    resultsTitle.hidden = true;
+
+    statusElement.className = "status";
+
+    statusElement.textContent =
+        "Consultando la base de datos de CIMA...";
+
+    searchButton.disabled = true;
+
+    searchButton.textContent =
+        "Buscando...";
+
+    try {
+
+        const parametros =
+            new URLSearchParams();
+
+        parametros.set(
+            "nombre",
+            termino
+        );
+
+        if (marketedOnly.checked) {
+
+            parametros.set(
+                "comerc",
+                "1"
+            );
+
+        }
+
+        const url =
+            API_URL +
+            "?" +
+            parametros.toString();
+
+        const respuesta =
+            await fetch(url);
+
+        if (!respuesta.ok) {
+
+            throw new Error(
+                "La API de CIMA ha devuelto un error."
+            );
+
+        }
+
+        const datos =
+            await respuesta.json();
+
+        let medicamentos = [];
+
+        if (Array.isArray(datos)) {
+
+            medicamentos = datos;
+
+        } else if (
+            datos &&
+            Array.isArray(datos.resultados)
+        ) {
+
+            medicamentos =
+                datos.resultados;
+
+        } else if (
+            datos &&
+            Array.isArray(datos.medicamentos)
+        ) {
+
+            medicamentos =
+                datos.medicamentos;
+
+        }
+
+        mostrarResultados(
+            medicamentos
+        );
+
+    } catch (error) {
+
+        console.error(error);
+
+        statusElement.className =
+            "status error";
+
+        statusElement.textContent =
+            "No se ha podido conectar con CIMA. " +
+            "Comprueba tu conexión e inténtalo de nuevo. " +
+            "Si el problema persiste, puede deberse a " +
+            "restricciones de acceso de la API.";
+
+    } finally {
+
+        searchButton.disabled = false;
+
+        searchButton.textContent =
+            "Buscar";
+
+    }
+
+}
+
+
+// ========================================
+// MOSTRAR RESULTADOS
+// ========================================
+
+function mostrarResultados(
+    medicamentos
+) {
+
+    resultsElement.replaceChildren();
+
+    if (
+        !medicamentos ||
+        medicamentos.length === 0
+    ) {
+
+        statusElement.className =
+            "status";
+
+        statusElement.textContent =
+            "No se han encontrado medicamentos " +
+            "con ese criterio de búsqueda.";
+
+        resultsTitle.hidden = true;
+
+        return;
+
+    }
+
+    statusElement.className =
+        "status";
+
+    statusElement.textContent =
+        "Se han encontrado " +
+        medicamentos.length +
+        " resultados.";
+
+    resultsTitle.hidden = false;
+
+
+    medicamentos.forEach(
+        medicamento => {
+
+            const tarjeta =
+                document.createElement("article");
+
+            tarjeta.className =
+                "medicine-card";
+
+
+            // NOMBRE
+
+            const titulo =
+                document.createElement("h3");
+
+            titulo.textContent =
+                medicamento.nombre ||
+                "Medicamento sin nombre";
+
+            tarjeta.appendChild(
+                titulo
+            );
+
+
+            // INFORMACIÓN
+
+            const informacion =
+                document.createElement("div");
+
+            informacion.className =
+                "medicine-info";
+
+
+            const registro =
+                medicamento.nregistro ||
+                "No disponible";
+
+
+            const laboratorio =
+                medicamento.labtitular ||
+                "No disponible";
+
+
+            const forma =
+                medicamento.formaFarmaceutica ||
+                medicamento.forma ||
+                "No disponible";
+
+
+            const dosis =
+                medicamento.dosis ||
+                "No disponible";
+
+
+            informacion.innerHTML = "";
+
+
+            agregarDato(
+                informacion,
+                "N.º de registro: ",
+                registro
+            );
+
+            agregarDato(
+                informacion,
+                "Laboratorio titular: ",
+                laboratorio
+            );
+
+            agregarDato(
+                informacion,
+                "Forma farmacéutica: ",
+                forma
+            );
+
+            agregarDato(
+                informacion,
+                "Dosis: ",
+                dosis
+            );
+
+
+            tarjeta.appendChild(
+                informacion
+            );
+
+
+            // COMERCIALIZACIÓN
+
+            const comercializado =
+                String(
+                    medicamento.comerc
+                ) === "1";
+
+
+            const insignia =
+                document.createElement("span");
+
+
+            insignia.className =
+                comercializado
+                    ? "status-badge market"
+                    : "status-badge no-market";
+
+
+            insignia.textContent =
+                comercializado
+                    ? "Comercializado"
+                    : "No comercializado";
+
+
+            tarjeta.appendChild(
+                insignia
+            );
+
+
+            // DOCUMENTOS
+
+            const documentos =
+                document.createElement("div");
+
+            documentos.className =
+                "documents";
+
+
+            if (medicamento.nregistro) {
+
+                const nregistro =
+                    encodeURIComponent(
+                        medicamento.nregistro
+                    );
+
+
+                const fichaTecnica =
+                    "https://cima.aemps.es/cima/dochtml/ft/" +
+                    nregistro +
+                    "/FichaTecnica.html";
+
+
+                const prospecto =
+                    "https://cima.aemps.es/cima/dochtml/p/" +
+                    nregistro +
+                    "/Prospecto.html";
+
+
+                documentos.appendChild(
+                    crearEnlace(
+                        "Ficha técnica",
+                        fichaTecnica,
+                        true
+                    )
+                );
+
+
+                documentos.appendChild(
+                    crearEnlace(
+                        "Prospecto",
+                        prospecto,
+                        false
+                    )
+                );
+
+            }
+
+
+            documentos.appendChild(
+                crearEnlace(
+                    "Ver en CIMA ↗",
+                    "https://cima.aemps.es/cima/publico/home.html",
+                    false
+                )
+            );
+
+
+            tarjeta.appendChild(
+                documentos
+            );
+
+
+            resultsElement.appendChild(
+                tarjeta
+            );
+
+        }
+    );
+
+}
+
+
+// ========================================
+// AÑADIR DATOS DE FORMA SEGURA
+// ========================================
+
+function agregarDato(
+    contenedor,
+    etiqueta,
+    valor
+) {
+
+    const linea =
+        document.createElement("div");
+
+
+    const strong =
+        document.createElement("strong");
+
+
+    strong.textContent =
+        etiqueta;
+
+
+    const texto =
+        document.createElement("span");
+
+
+    texto.textContent =
+        valor;
+
+
+    linea.appendChild(
+        strong
+    );
+
+
+    linea.appendChild(
+        texto
+    );
+
+
+    contenedor.appendChild(
+        linea
+    );
+
+}
+
+
+// ========================================
+// CREAR ENLACES
+// ========================================
+
+function crearEnlace(
+    texto,
+    url,
+    principal
+) {
+
+    const enlace =
+        document.createElement("a");
+
+
+    enlace.href =
+        url;
+
+
+    enlace.target =
+        "_blank";
+
+
+    enlace.rel =
+        "noopener noreferrer";
+
+
+    enlace.className =
+        principal
+            ? "document-link primary"
+            : "document-link";
+
+
+    enlace.textContent =
+        texto;
+
+
+    return enlace;
+
+}
+
+
+// ========================================
+// EVENTOS
+// ========================================
+
+searchForm.addEventListener(
+    "submit",
+    event => {
+
+        event.preventDefault();
+
+        buscarMedicamentos();
+
+    }
+);
+
+
+marketedOnly.addEventListener(
+    "change",
+    () => {
+
+        if (
+            searchInput.value.trim()
+        ) {
+
+            buscarMedicamentos();
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+
+</html>
