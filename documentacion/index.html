@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -118,20 +119,14 @@
             font-weight: bold;
         }
 
-        .proximamente {
-            cursor: default;
+        /* BUSCADOR GALÉNICO */
+
+        .card.buscador::before {
+            background: #7c3aed;
         }
 
-        .proximamente:hover {
-            transform: none;
-        }
-
-        .proximamente::before {
-            background: #829ab1;
-        }
-
-        .proximamente .flecha {
-            color: #829ab1;
+        .card.buscador .flecha {
+            color: #7c3aed;
         }
 
         .volver {
@@ -189,8 +184,29 @@
 
     <div class="grid">
 
+        <!-- BUSCADOR GALÉNICO CON IA -->
+
+        <a href="buscador-galenico/index.html" class="card buscador">
+
+            <div class="icono">🤖</div>
+
+            <h3>Buscador galénico con IA</h3>
+
+            <p>
+                Busca modus operandi, fórmulas magistrales y
+                documentación técnica pública de Acofarma,
+                Fagron, Guinama, SEFH y otras fuentes oficiales.
+            </p>
+
+            <span class="flecha">Buscar documentación →</span>
+
+        </a>
+
+
         <!-- CONVERSIONES -->
+
         <a href="conversiones/index.html" class="card">
+
             <div class="icono">🔄</div>
 
             <h3>Conversiones</h3>
@@ -201,95 +217,8 @@
             </p>
 
             <span class="flecha">Entrar →</span>
+
         </a>
-
-
-        <!-- PRINCIPIOS ACTIVOS -->
-        <div class="card proximamente">
-            <div class="icono">🧪</div>
-
-            <h3>Principios activos</h3>
-
-            <p>
-                Información y documentación sobre principios activos.
-            </p>
-
-            <span class="flecha">Próximamente</span>
-        </div>
-
-
-        <!-- BASES Y SALES -->
-        <div class="card proximamente">
-            <div class="icono">⚗️</div>
-
-            <h3>Bases y sales</h3>
-
-            <p>
-                Equivalencias, características y consideraciones
-                galénicas de bases y sales.
-            </p>
-
-            <span class="flecha">Próximamente</span>
-        </div>
-
-
-        <!-- FÓRMULAS TIPO -->
-        <div class="card proximamente">
-            <div class="icono">📋</div>
-
-            <h3>Fórmulas tipo</h3>
-
-            <p>
-                Fórmulas magistrales, procedimientos y documentación
-                de elaboración.
-            </p>
-
-            <span class="flecha">Próximamente</span>
-        </div>
-
-
-        <!-- EXCIPIENTES -->
-        <div class="card proximamente">
-            <div class="icono">📦</div>
-
-            <h3>Excipientes</h3>
-
-            <p>
-                Información y características de los excipientes
-                utilizados en formulación magistral.
-            </p>
-
-            <span class="flecha">Próximamente</span>
-        </div>
-
-
-        <!-- INCOMPATIBILIDADES -->
-        <div class="card proximamente">
-            <div class="icono">⚠️</div>
-
-            <h3>Incompatibilidades</h3>
-
-            <p>
-                Incompatibilidades y consideraciones de estabilidad
-                en formulación magistral.
-            </p>
-
-            <span class="flecha">Próximamente</span>
-        </div>
-
-
-        <!-- BIBLIOGRAFÍA -->
-        <div class="card proximamente">
-            <div class="icono">📖</div>
-
-            <h3>Bibliografía y fuentes</h3>
-
-            <p>
-                Fuentes bibliográficas y documentación de referencia.
-            </p>
-
-            <span class="flecha">Próximamente</span>
-        </div>
 
     </div>
 
