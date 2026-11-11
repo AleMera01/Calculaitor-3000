@@ -1,0 +1,501 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Buscador galénico - CALCULAITOR 3000</title>
+
+    <link rel="manifest" href="../../manifest.json">
+
+    <meta name="theme-color" content="#102a43">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f8fb;
+            color: #243b53;
+        }
+
+        header {
+            background: linear-gradient(135deg, #102a43, #1f4e79);
+            color: white;
+            text-align: center;
+            padding: 35px 20px 30px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        header p {
+            margin: 10px 0 0;
+            opacity: 0.9;
+        }
+
+        main {
+            max-width: 950px;
+            margin: 35px auto;
+            padding: 0 20px;
+        }
+
+        .panel {
+            background: white;
+            padding: 28px;
+            border-radius: 16px;
+            box-shadow: 0 4px 14px rgba(16, 42, 67, 0.10);
+        }
+
+        .titulo {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .titulo h2 {
+            margin: 0;
+            color: #102a43;
+        }
+
+        .titulo p {
+            color: #627d98;
+            line-height: 1.5;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #bcccdc;
+            border-radius: 10px;
+            font-size: 1rem;
+            background: white;
+            color: #243b53;
+        }
+
+        input:focus,
+        select:focus {
+            outline: 2px solid #7c3aed;
+            border-color: #7c3aed;
+        }
+
+        .campo {
+            margin-bottom: 20px;
+        }
+
+        .boton {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: #7c3aed;
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .boton:hover {
+            background: #6d28d9;
+        }
+
+        .ayuda {
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: #829ab1;
+            line-height: 1.5;
+        }
+
+        #resultados {
+            margin-top: 30px;
+        }
+
+        .resultados-titulo {
+            color: #102a43;
+            margin-bottom: 18px;
+        }
+
+        .resultado {
+            background: white;
+            border: 1px solid #d9e2ec;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(16, 42, 67, 0.05);
+        }
+
+        .resultado h3 {
+            margin: 0 0 8px;
+            color: #102a43;
+        }
+
+        .resultado p {
+            margin: 0 0 15px;
+            color: #627d98;
+            line-height: 1.5;
+        }
+
+        .enlace {
+            display: inline-block;
+            background: #ede9fe;
+            color: #6d28d9;
+            padding: 10px 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .enlace:hover {
+            background: #ddd6fe;
+        }
+
+        .aviso {
+            margin-top: 25px;
+            background: #fff7ed;
+            border-left: 5px solid #f59e0b;
+            padding: 15px;
+            border-radius: 8px;
+            color: #92400e;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .volver {
+            display: inline-block;
+            margin-top: 30px;
+            color: #1f4e79;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .volver:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px 20px 30px;
+            color: #829ab1;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 600px) {
+
+            header {
+                padding: 28px 15px;
+            }
+
+            header h1 {
+                font-size: 1.6rem;
+            }
+
+            main {
+                margin: 25px auto;
+            }
+
+            .panel {
+                padding: 20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>🤖 Buscador galénico</h1>
+
+    <p>CALCULAITOR 3000</p>
+
+</header>
+
+<main>
+
+    <div class="panel">
+
+        <div class="titulo">
+
+            <h2>Buscar documentación galénica</h2>
+
+            <p>
+                Localiza modus operandi, fórmulas magistrales,
+                procedimientos de elaboración y documentación técnica
+                en fuentes públicas.
+            </p>
+
+        </div>
+
+        <form id="formularioBusqueda">
+
+            <div class="campo">
+
+                <label for="busqueda">
+                    Principio activo o fórmula magistral
+                </label>
+
+                <input
+                    type="text"
+                    id="busqueda"
+                    placeholder="Ej. espironolactona 5 mg/ml jarabe"
+                    required
+                >
+
+                <div class="ayuda">
+                    Puedes introducir el principio activo, concentración,
+                    forma farmacéutica o procedimiento que necesitas.
+                </div>
+
+            </div>
+
+            <div class="campo">
+
+                <label for="tipoDocumento">
+                    Tipo de documentación
+                </label>
+
+                <select id="tipoDocumento">
+
+                    <option value="">
+                        Toda la documentación
+                    </option>
+
+                    <option value="modus operandi">
+                        Modus operandi
+                    </option>
+
+                    <option value="procedimiento normalizado de elaboración">
+                        Procedimientos normalizados
+                    </option>
+
+                    <option value="fórmula magistral">
+                        Fórmulas magistrales
+                    </option>
+
+                    <option value="jarabe">
+                        Jarabes
+                    </option>
+
+                    <option value="suspensión oral">
+                        Suspensiones orales
+                    </option>
+
+                    <option value="estabilidad conservación caducidad">
+                        Estabilidad y conservación
+                    </option>
+
+                </select>
+
+            </div>
+
+            <button type="submit" class="boton">
+                🔎 Buscar documentación
+            </button>
+
+        </form>
+
+    </div>
+
+    <div id="resultados"></div>
+
+    <div class="aviso">
+
+        <strong>⚠️ Importante</strong><br>
+
+        Este buscador localiza documentos mediante búsquedas web
+        restringidas a fuentes públicas. Los resultados pueden incluir
+        documentos incompletos o referencias no aplicables a una
+        elaboración concreta.
+
+        Verifica siempre el documento original, su versión,
+        composición, procedimiento, estabilidad y condiciones
+        de conservación antes de utilizarlo en formulación magistral.
+
+    </div>
+
+    <a href="../index.html" class="volver">
+        ← Volver a Documentación galénica
+    </a>
+
+</main>
+
+<footer>
+
+    CALCULAITOR 3000 · Calculador de fórmulas magistrales
+
+</footer>
+
+<script>
+
+    const fuentes = [
+
+        {
+            nombre: "ACOFARMA",
+            descripcion:
+                "Documentación técnica, formación y formulación magistral.",
+            dominio: "acofarma.com"
+        },
+
+        {
+            nombre: "FAGRON",
+            descripcion:
+                "Documentación pública de formulación y procedimientos.",
+            dominio: "fagron.es"
+        },
+
+        {
+            nombre: "GUINAMA",
+            descripcion:
+                "Información técnica y documentación de formulación magistral.",
+            dominio: "guinama.com"
+        },
+
+        {
+            nombre: "SEFH",
+            descripcion:
+                "Procedimientos normalizados, farmacotecnia y elaboración de jarabes.",
+            dominio: "gruposdetrabajo.sefh.es"
+        },
+
+        {
+            nombre: "AEMPS",
+            descripcion:
+                "Documentación oficial, Formulario Nacional y procedimientos.",
+            dominio: "aemps.gob.es"
+        }
+
+    ];
+
+
+    document
+        .getElementById("formularioBusqueda")
+        .addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const texto =
+                document.getElementById("busqueda").value.trim();
+
+            const tipo =
+                document.getElementById("tipoDocumento").value;
+
+            if (!texto) {
+                return;
+            }
+
+            const consulta = texto + " " + tipo;
+
+            const resultados =
+                document.getElementById("resultados");
+
+            resultados.innerHTML = "";
+
+            const titulo =
+                document.createElement("h2");
+
+            titulo.className = "resultados-titulo";
+
+            titulo.textContent =
+                "Resultados de búsqueda para: " + texto;
+
+            resultados.appendChild(titulo);
+
+
+            fuentes.forEach(function(fuente) {
+
+                const tarjeta =
+                    document.createElement("div");
+
+                tarjeta.className = "resultado";
+
+
+                const tituloFuente =
+                    document.createElement("h3");
+
+                tituloFuente.textContent =
+                    fuente.nombre;
+
+
+                const descripcion =
+                    document.createElement("p");
+
+                descripcion.textContent =
+                    fuente.descripcion;
+
+
+                const enlace =
+                    document.createElement("a");
+
+                const consultaGoogle =
+                    "site:" + fuente.dominio + " " + consulta;
+
+                enlace.href =
+                    "https://www.google.com/search?q=" +
+                    encodeURIComponent(consultaGoogle);
+
+                enlace.target = "_blank";
+
+                enlace.rel = "noopener noreferrer";
+
+                enlace.className = "enlace";
+
+                enlace.textContent =
+                    "Buscar en " + fuente.nombre + " ↗";
+
+
+                tarjeta.appendChild(tituloFuente);
+
+                tarjeta.appendChild(descripcion);
+
+                tarjeta.appendChild(enlace);
+
+                resultados.appendChild(tarjeta);
+
+            });
+
+
+            resultados.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+        });
+
+
+    if ("serviceWorker" in navigator) {
+
+        navigator.serviceWorker.register("../../sw.js")
+            .catch(function(error) {
+
+                console.error(
+                    "Error registrando Service Worker:",
+                    error
+                );
+
+            });
+
+    }
+
+</script>
+
+</body>
+</html>
