@@ -2,498 +2,766 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buscador galénico - CALCULAITOR 3000</title>
 
-    <title>Buscador galénico - CALCULAITOR 3000</title>
+<link rel="manifest" href="../../manifest.json">
+<meta name="theme-color" content="#102a43">
 
-    <link rel="manifest" href="../../manifest.json">
+<style>
+* {
+    box-sizing: border-box;
+}
 
-    <meta name="theme-color" content="#102a43">
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f8fb;
+    color: #243b53;
+}
 
-    <style>
+header {
+    background: linear-gradient(135deg, #102a43, #1f4e79);
+    color: white;
+    text-align: center;
+    padding: 35px 20px 30px;
+}
 
-        * {
-            box-sizing: border-box;
-        }
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
 
-        body {
-            margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f5f8fb;
-            color: #243b53;
-        }
+header p {
+    margin: 10px 0 0;
+    opacity: 0.9;
+}
 
-        header {
-            background: linear-gradient(135deg, #102a43, #1f4e79);
-            color: white;
-            text-align: center;
-            padding: 35px 20px 30px;
-        }
+main {
+    max-width: 1050px;
+    margin: 35px auto;
+    padding: 0 20px;
+}
 
-        header h1 {
-            margin: 0;
-            font-size: 2rem;
-        }
+.panel {
+    background: white;
+    padding: 28px;
+    border-radius: 16px;
+    box-shadow: 0 4px 14px rgba(16,42,67,0.10);
+}
 
-        header p {
-            margin: 10px 0 0;
-            opacity: 0.9;
-        }
+.titulo {
+    text-align: center;
+    margin-bottom: 25px;
+}
 
-        main {
-            max-width: 950px;
-            margin: 35px auto;
-            padding: 0 20px;
-        }
+.titulo h2 {
+    margin: 0;
+    color: #102a43;
+}
 
-        .panel {
-            background: white;
-            padding: 28px;
-            border-radius: 16px;
-            box-shadow: 0 4px 14px rgba(16, 42, 67, 0.10);
-        }
+.titulo p {
+    color: #627d98;
+    line-height: 1.5;
+}
 
-        .titulo {
-            text-align: center;
-            margin-bottom: 25px;
-        }
+.campo {
+    margin-bottom: 18px;
+}
 
-        .titulo h2 {
-            margin: 0;
-            color: #102a43;
-        }
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
 
-        .titulo p {
-            color: #627d98;
-            line-height: 1.5;
-        }
+input, select {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #bcccdc;
+    border-radius: 10px;
+    font-size: 1rem;
+    background: white;
+    color: #243b53;
+}
 
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 8px;
-        }
+input:focus, select:focus {
+    outline: 2px solid #7c3aed;
+    border-color: #7c3aed;
+}
 
-        input,
-        select {
-            width: 100%;
-            padding: 14px;
-            border: 1px solid #bcccdc;
-            border-radius: 10px;
-            font-size: 1rem;
-            background: white;
-            color: #243b53;
-        }
+.filtros {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 15px;
+}
 
-        input:focus,
-        select:focus {
-            outline: 2px solid #7c3aed;
-            border-color: #7c3aed;
-        }
+.boton {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background: #7c3aed;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
 
-        .campo {
-            margin-bottom: 20px;
-        }
+.boton:hover {
+    background: #6d28d9;
+}
 
-        .boton {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            border: none;
-            border-radius: 10px;
-            background: #7c3aed;
-            color: white;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
+.resultados-titulo {
+    color: #102a43;
+    margin: 30px 0 18px;
+}
 
-        .boton:hover {
-            background: #6d28d9;
-        }
+.resultado {
+    background: white;
+    border: 1px solid #d9e2ec;
+    border-radius: 14px;
+    padding: 22px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(16,42,67,0.05);
+}
 
-        .ayuda {
-            margin-top: 10px;
-            font-size: 0.85rem;
-            color: #829ab1;
-            line-height: 1.5;
-        }
+.resultado h3 {
+    margin: 0 0 10px;
+    color: #102a43;
+    font-size: 1.15rem;
+}
 
-        #resultados {
-            margin-top: 30px;
-        }
+.meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+}
 
-        .resultados-titulo {
-            color: #102a43;
-            margin-bottom: 18px;
-        }
+.etiqueta {
+    display: inline-block;
+    padding: 5px 9px;
+    border-radius: 20px;
+    background: #e0f2fe;
+    color: #075985;
+    font-size: 0.78rem;
+    font-weight: bold;
+}
 
-        .resultado {
-            background: white;
-            border: 1px solid #d9e2ec;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 15px;
-            box-shadow: 0 2px 8px rgba(16, 42, 67, 0.05);
-        }
+.etiqueta.fuente {
+    background: #ede9fe;
+    color: #6d28d9;
+}
 
-        .resultado h3 {
-            margin: 0 0 8px;
-            color: #102a43;
-        }
+.resultado p {
+    margin: 0 0 15px;
+    color: #627d98;
+    line-height: 1.55;
+}
 
-        .resultado p {
-            margin: 0 0 15px;
-            color: #627d98;
-            line-height: 1.5;
-        }
+.enlace {
+    display: inline-block;
+    padding: 11px 15px;
+    background: #166534;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+}
 
-        .enlace {
-            display: inline-block;
-            background: #ede9fe;
-            color: #6d28d9;
-            padding: 10px 15px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-        }
+.enlace:hover {
+    background: #14532d;
+}
 
-        .enlace:hover {
-            background: #ddd6fe;
-        }
+.sin-resultados {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    color: #627d98;
+    line-height: 1.6;
+    text-align: center;
+}
 
-        .aviso {
-            margin-top: 25px;
-            background: #fff7ed;
-            border-left: 5px solid #f59e0b;
-            padding: 15px;
-            border-radius: 8px;
-            color: #92400e;
-            font-size: 0.9rem;
-            line-height: 1.5;
-        }
+.aviso {
+    margin-top: 25px;
+    background: #fff7ed;
+    border-left: 5px solid #f59e0b;
+    padding: 16px;
+    border-radius: 8px;
+    color: #92400e;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
 
-        .volver {
-            display: inline-block;
-            margin-top: 30px;
-            color: #1f4e79;
-            text-decoration: none;
-            font-weight: bold;
-        }
+.volver {
+    display: inline-block;
+    margin-top: 30px;
+    color: #1f4e79;
+    text-decoration: none;
+    font-weight: bold;
+}
 
-        .volver:hover {
-            text-decoration: underline;
-        }
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #829ab1;
+    font-size: 0.85rem;
+}
 
-        footer {
-            text-align: center;
-            padding: 25px 20px 30px;
-            color: #829ab1;
-            font-size: 0.85rem;
-        }
+@media(max-width:600px) {
+    header {
+        padding: 28px 15px;
+    }
 
-        @media (max-width: 600px) {
+    header h1 {
+        font-size: 1.6rem;
+    }
 
-            header {
-                padding: 28px 15px;
-            }
+    main {
+        margin: 25px auto;
+    }
 
-            header h1 {
-                font-size: 1.6rem;
-            }
+    .panel {
+        padding: 20px;
+    }
 
-            main {
-                margin: 25px auto;
-            }
-
-            .panel {
-                padding: 20px;
-            }
-
-        }
-
-    </style>
-
+    .filtros {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
 </head>
 
 <body>
 
 <header>
-
     <h1>🤖 Buscador galénico</h1>
-
     <p>CALCULAITOR 3000</p>
-
 </header>
 
 <main>
 
-    <div class="panel">
+<div class="panel">
 
-        <div class="titulo">
+    <div class="titulo">
+        <h2>Biblioteca de documentación galénica</h2>
+        <p>
+            Busca fórmulas magistrales, modus operandi,
+            procedimientos normalizados y documentación técnica.
+        </p>
+    </div>
 
-            <h2>Buscar documentación galénica</h2>
+    <form id="formularioBusqueda">
 
-            <p>
-                Localiza modus operandi, fórmulas magistrales,
-                procedimientos de elaboración y documentación técnica
-                en fuentes públicas.
-            </p>
+        <div class="campo">
+            <label for="busqueda">
+                Principio activo, fórmula o procedimiento
+            </label>
+
+            <input
+                type="search"
+                id="busqueda"
+                placeholder="Ej. espironolactona 5 mg/ml jarabe"
+                autocomplete="off"
+            >
+        </div>
+
+        <div class="filtros">
+
+            <div class="campo">
+                <label for="fuente">Fuente documental</label>
+
+                <select id="fuente">
+                    <option value="todas">Todas las fuentes</option>
+                    <option value="SEFH">SEFH</option>
+                    <option value="ACOFARMA">ACOFARMA</option>
+                    <option value="FAGRON">FAGRON</option>
+                    <option value="GUINAMA">GUINAMA</option>
+                    <option value="AEMPS">AEMPS</option>
+                </select>
+            </div>
+
+            <div class="campo">
+                <label for="tipo">Tipo de documento</label>
+
+                <select id="tipo">
+                    <option value="todos">Todos</option>
+                    <option value="PN">Procedimiento normalizado</option>
+                    <option value="PDF">Documento PDF</option>
+                    <option value="WEB">Página web / artículo</option>
+                    <option value="MANUAL">Manual técnico</option>
+                </select>
+            </div>
 
         </div>
 
-        <form id="formularioBusqueda">
+        <button type="submit" class="boton">
+            🔎 Buscar documentos
+        </button>
 
-            <div class="campo">
+    </form>
 
-                <label for="busqueda">
-                    Principio activo o fórmula magistral
-                </label>
+</div>
 
-                <input
-                    type="text"
-                    id="busqueda"
-                    placeholder="Ej. espironolactona 5 mg/ml jarabe"
-                    required
-                >
+<div id="resultados"></div>
 
-                <div class="ayuda">
-                    Puedes introducir el principio activo, concentración,
-                    forma farmacéutica o procedimiento que necesitas.
-                </div>
+<div class="aviso">
+    <strong>⚠️ Consideraciones importantes</strong><br>
+    Esta biblioteca contiene documentos públicos identificados.
+    No constituye todavía un rastreador automático de toda la web.
+    Los documentos deben consultarse en su fuente original.
 
-            </div>
+    Verifica siempre la fórmula, concentración, vía, estabilidad,
+    conservación, caducidad y controles de calidad antes de utilizar
+    cualquier procedimiento en la elaboración de una fórmula magistral.
+</div>
 
-            <div class="campo">
-
-                <label for="tipoDocumento">
-                    Tipo de documentación
-                </label>
-
-                <select id="tipoDocumento">
-
-                    <option value="">
-                        Toda la documentación
-                    </option>
-
-                    <option value="modus operandi">
-                        Modus operandi
-                    </option>
-
-                    <option value="procedimiento normalizado de elaboración">
-                        Procedimientos normalizados
-                    </option>
-
-                    <option value="fórmula magistral">
-                        Fórmulas magistrales
-                    </option>
-
-                    <option value="jarabe">
-                        Jarabes
-                    </option>
-
-                    <option value="suspensión oral">
-                        Suspensiones orales
-                    </option>
-
-                    <option value="estabilidad conservación caducidad">
-                        Estabilidad y conservación
-                    </option>
-
-                </select>
-
-            </div>
-
-            <button type="submit" class="boton">
-                🔎 Buscar documentación
-            </button>
-
-        </form>
-
-    </div>
-
-    <div id="resultados"></div>
-
-    <div class="aviso">
-
-        <strong>⚠️ Importante</strong><br>
-
-        Este buscador localiza documentos mediante búsquedas web
-        restringidas a fuentes públicas. Los resultados pueden incluir
-        documentos incompletos o referencias no aplicables a una
-        elaboración concreta.
-
-        Verifica siempre el documento original, su versión,
-        composición, procedimiento, estabilidad y condiciones
-        de conservación antes de utilizarlo en formulación magistral.
-
-    </div>
-
-    <a href="../index.html" class="volver">
-        ← Volver a Documentación galénica
-    </a>
+<a href="../index.html" class="volver">
+    ← Volver a Documentación galénica
+</a>
 
 </main>
 
 <footer>
-
     CALCULAITOR 3000 · Calculador de fórmulas magistrales
-
 </footer>
 
 <script>
 
-    const fuentes = [
+/* =====================================================
+   CATÁLOGO INICIAL DE DOCUMENTOS PÚBLICOS
+   ===================================================== */
 
-        {
-            nombre: "ACOFARMA",
-            descripcion:
-                "Documentación técnica, formación y formulación magistral.",
-            dominio: "acofarma.com"
-        },
+const documentos = [
 
-        {
-            nombre: "FAGRON",
-            descripcion:
-                "Documentación pública de formulación y procedimientos.",
-            dominio: "fagron.es"
-        },
+    {
+        titulo: "Espironolactona 10 mg/ml suspensión oral",
+        fuente: "SEFH",
+        tipo: "PN",
+        descripcion:
+            "Procedimiento normalizado con composición, método específico de elaboración, acondicionamiento en vidrio topacio, conservación en nevera protegida de la luz y plazo de validez indicado en el documento. El PN también menciona preparaciones a 2,5 y 5 mg/ml.",
+        url:
+            "https://gruposdetrabajo.sefh.es/farmacotecnia/images/stories/PN_Formulas/E/PN_ESPIRONOLACTONA_ORAL_10.pdf",
+        etiquetas:
+            "espironolactona jarabe suspension oral 10 mg ml 5 mg ml 2,5 mg ml modus operandi pediatria"
+    },
 
-        {
-            nombre: "GUINAMA",
-            descripcion:
-                "Información técnica y documentación de formulación magistral.",
-            dominio: "guinama.com"
-        },
+    {
+        titulo: "Base de datos de procedimientos normalizados SEFH",
+        fuente: "SEFH",
+        tipo: "PN",
+        descripcion:
+            "Repositorio de procedimientos normalizados de elaboración de fórmulas magistrales y preparaciones estériles y no estériles. Permite consultar los documentos por principio activo.",
+        url:
+            "https://gruposdetrabajo.sefh.es/farmacotecnia/formulas-magistrales",
+        etiquetas:
+            "sefh formulas magistrales procedimientos normalizados pnt pn jarabes soluciones suspensiones"
+    },
 
-        {
-            nombre: "SEFH",
-            descripcion:
-                "Procedimientos normalizados, farmacotecnia y elaboración de jarabes.",
-            dominio: "gruposdetrabajo.sefh.es"
-        },
+    {
+        titulo: "Manual de Farmacotecnia SEFH 2023",
+        fuente: "SEFH",
+        tipo: "MANUAL",
+        descripcion:
+            "Manual de referencia de farmacotecnia hospitalaria. Incluye información sobre elaboración, formas farmacéuticas, excipientes y procedimientos.",
+        url:
+            "https://www.sefh.es/bibliotecavirtual/manual_farmacotecnia/manualFARMACOTECNIAFINAL_.pdf",
+        etiquetas:
+            "sefh manual farmacotecnia hospitalaria jarabes excipientes procedimientos elaboracion"
+    },
 
-        {
-            nombre: "AEMPS",
-            descripcion:
-                "Documentación oficial, Formulario Nacional y procedimientos.",
-            dominio: "aemps.gob.es"
-        }
+    {
+        titulo: "Guías y documentos de interés de Farmacotecnia SEFH",
+        fuente: "SEFH",
+        tipo: "WEB",
+        descripcion:
+            "Página de referencia con manuales, guías y documentos técnicos relacionados con farmacotecnia.",
+        url:
+            "https://gruposdetrabajo.sefh.es/farmacotecnia/documentos-de-interes",
+        etiquetas:
+            "sefh guias documentos interes farmacotecnia estabilidad buenas practicas"
+    },
 
-    ];
+    {
+        titulo: "Elaboración de jarabes PN/L/FF/004/00",
+        fuente: "AEMPS",
+        tipo: "PN",
+        descripcion:
+            "Procedimiento normalizado oficial del Formulario Nacional. Incluye fórmula patrón, método de elaboración, acondicionamiento y controles.",
+        url:
+            "https://www.aemps.gob.es/formulario-nacional/procedimientos-normalizados-de-trabajo/procedimientos-de-elaboracion-de-formas-farmaceuticas/pn_l_ff_004_00.pdf",
+        etiquetas:
+            "aemps formulario nacional jarabes syrup elaboracion procedimiento normalizado pn l ff 004 00"
+    },
+
+    {
+        titulo: "Formulario Nacional - AEMPS",
+        fuente: "AEMPS",
+        tipo: "WEB",
+        descripcion:
+            "Portal oficial del Formulario Nacional, con fórmulas magistrales tipificadas, preparados oficinales y documentación de preparación y control.",
+        url:
+            "https://www.aemps.gob.es/profesional-sanitario-2/farmacopea-formulacion-magistral/formulario-nacional/",
+        etiquetas:
+            "aemps formulario nacional formulas magistrales preparados oficinales monografias"
+    },
+
+    {
+        titulo: "Ficha técnica de hidroquinona - Acofarma",
+        fuente: "ACOFARMA",
+        tipo: "PDF",
+        descripcion:
+            "Ficha técnica pública con propiedades, incompatibilidades, conservación y ejemplos de formulación que incluyen modus operandi.",
+        url:
+            "https://formulasmagistrales.acofarma.com/idb/descarga/3/fab295038767b30e.pdf",
+        etiquetas:
+            "acofarma hidroquinona crema ungüento solución modus operandi antioxidante formulacion"
+    },
+
+    {
+        titulo: "Portal de formación Acofarma",
+        fuente: "ACOFARMA",
+        tipo: "WEB",
+        descripcion:
+            "Portal público de formación para profesionales del medicamento individualizado. Incluye contenidos de formulación magistral y formas farmacéuticas líquidas.",
+        url:
+            "https://formacion.acofarma.com/",
+        etiquetas:
+            "acofarma formación jarabes líquidos formulacion magistral"
+    },
+
+    {
+        titulo: "Formulación de formas farmacéuticas líquidas - Acofarma",
+        fuente: "ACOFARMA",
+        tipo: "WEB",
+        descripcion:
+            "Contenido formativo de Acofarma dedicado a jarabes pediátricos, vehículos, pH y aspectos de elaboración.",
+        url:
+            "https://formacion.acofarma.com/formulacion-de-formas-farmaceuticas-liquidas-jarabes/",
+        etiquetas:
+            "acofarma jarabes pediátricos vehículos ph líquidos"
+    },
+
+    {
+        titulo: "Información Magistral - Fagron",
+        fuente: "FAGRON",
+        tipo: "WEB",
+        descripcion:
+            "Archivo público de una publicación de Información Magistral de Fagron con ejemplos de formulación y modus operandi. El documento está alojado en Yumpu.",
+        url:
+            "https://www.yumpu.com/es/document/view/27405603/informacion-magistral-fagron",
+        etiquetas:
+            "fagron información magistral modus operandi formulas magistrales formulación"
+    },
+
+    {
+        titulo: "Información Magistral Fagron - guía de elaboración",
+        fuente: "FAGRON",
+        tipo: "WEB",
+        descripcion:
+            "Publicación de Fagron con ejemplos de fórmulas y procedimientos de elaboración. Documento público alojado en Yumpu.",
+        url:
+            "https://www.yumpu.com/es/document/view/27405769/im-n-14-ene-feb-2006pdf-fagron",
+        etiquetas:
+            "fagron guia elaboración modus operandi isotretinoina clindamicina pasta al agua"
+    },
+
+    {
+        titulo: "Tratamiento magistral - Sildenafilo",
+        fuente: "GUINAMA",
+        tipo: "PDF",
+        descripcion:
+            "Documento técnico de Guinama con composición y pasos de elaboración de cápsulas de sildenafilo, homogeneización y control de peso.",
+        url:
+            "https://www.guinama.com/documentacion/Formula_abril_Laboratorios%20GUINAMA.pdf",
+        etiquetas:
+            "guinama sildenafilo cápsulas modus operandi capsucel control peso"
+    },
+
+    {
+        titulo: "Fórmula Magistral - Diciembre Guinama",
+        fuente: "GUINAMA",
+        tipo: "PDF",
+        descripcion:
+            "Documento ilustrado de Guinama que incluye un modus operandi de preparación de una fórmula con aceites y tintura de própolis.",
+        url:
+            "https://www.guinama.com/documentacion/Formula-Magistral-Diciembre-Laboratorios-GUINAMA.pdf",
+        etiquetas:
+            "guinama aceites propolis calentamiento 80 grados modus operandi"
+    },
+
+    {
+        titulo: "Modus operandi - Aftersun Guinama",
+        fuente: "GUINAMA",
+        tipo: "PDF",
+        descripcion:
+            "Documento de elaboración de una emulsión aftersun con fases, emulsionante, homogeneización y ajuste de pH.",
+        url:
+            "https://www.guinama.com/documentacion/modus_operandi_Aftersun_Laboratorios_GUINAMA.pdf",
+        etiquetas:
+            "guinama aftersun emulsión pH emulsionante modus operandi"
+    },
+
+    {
+        titulo: "Crema despigmentante - Guinama",
+        fuente: "GUINAMA",
+        tipo: "PDF",
+        descripcion:
+            "Documento técnico con composición, elaboración y consideraciones de conservación de una crema con hidroquinona, ácido kójico y vitamina C.",
+        url:
+            "https://guinama.com/documentacion/modus-operandi-guinama-crema-hidroquinona.pdf",
+        etiquetas:
+            "guinama hidroquinona kojico vitamina c crema despigmentante modus operandi"
+    },
+
+    {
+        titulo: "Fórmulas magistrales antipiojos - Guinama",
+        fuente: "GUINAMA",
+        tipo: "WEB",
+        descripcion:
+            "Artículo público con ejemplos de champú y loción antipiojos, componentes y modus operandi.",
+        url:
+            "https://www.guinama.com/blog/formulas-magistrales-antipiojos/",
+        etiquetas:
+            "guinama champu locion antipiojos permetrina modus operandi"
+    }
+
+];
 
 
-    document
-        .getElementById("formularioBusqueda")
-        .addEventListener("submit", function(event) {
+/* =====================================================
+   MOTOR DE BÚSQUEDA LOCAL
+   ===================================================== */
 
-            event.preventDefault();
+const formulario =
+    document.getElementById("formularioBusqueda");
 
-            const texto =
-                document.getElementById("busqueda").value.trim();
+const campoBusqueda =
+    document.getElementById("busqueda");
 
-            const tipo =
-                document.getElementById("tipoDocumento").value;
+const filtroFuente =
+    document.getElementById("fuente");
 
-            if (!texto) {
-                return;
-            }
+const filtroTipo =
+    document.getElementById("tipo");
 
-            const consulta = texto + " " + tipo;
-
-            const resultados =
-                document.getElementById("resultados");
-
-            resultados.innerHTML = "";
-
-            const titulo =
-                document.createElement("h2");
-
-            titulo.className = "resultados-titulo";
-
-            titulo.textContent =
-                "Resultados de búsqueda para: " + texto;
-
-            resultados.appendChild(titulo);
+const contenedor =
+    document.getElementById("resultados");
 
 
-            fuentes.forEach(function(fuente) {
+function normalizar(texto) {
 
-                const tarjeta =
-                    document.createElement("div");
+    return texto
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[.,/#!$%^&*;:{}=_`~()]/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
 
-                tarjeta.className = "resultado";
-
-
-                const tituloFuente =
-                    document.createElement("h3");
-
-                tituloFuente.textContent =
-                    fuente.nombre;
+}
 
 
-                const descripcion =
-                    document.createElement("p");
+function buscarDocumentos() {
 
-                descripcion.textContent =
-                    fuente.descripcion;
+    const consulta =
+        normalizar(campoBusqueda.value);
 
+    const palabras =
+        consulta.split(" ").filter(Boolean);
 
-                const enlace =
-                    document.createElement("a");
+    const fuenteSeleccionada =
+        filtroFuente.value;
 
-                const consultaGoogle =
-                    "site:" + fuente.dominio + " " + consulta;
-
-                enlace.href =
-                    "https://www.google.com/search?q=" +
-                    encodeURIComponent(consultaGoogle);
-
-                enlace.target = "_blank";
-
-                enlace.rel = "noopener noreferrer";
-
-                enlace.className = "enlace";
-
-                enlace.textContent =
-                    "Buscar en " + fuente.nombre + " ↗";
+    const tipoSeleccionado =
+        filtroTipo.value;
 
 
-                tarjeta.appendChild(tituloFuente);
+    const filtrados = documentos.filter(function(doc) {
 
-                tarjeta.appendChild(descripcion);
+        const textoDocumento = normalizar(
+            doc.titulo + " " +
+            doc.descripcion + " " +
+            doc.etiquetas + " " +
+            doc.fuente
+        );
 
-                tarjeta.appendChild(enlace);
-
-                resultados.appendChild(tarjeta);
-
+        const coincideBusqueda =
+            palabras.length === 0 ||
+            palabras.some(function(palabra) {
+                return textoDocumento.includes(palabra);
             });
 
+        const coincideFuente =
+            fuenteSeleccionada === "todas" ||
+            doc.fuente === fuenteSeleccionada;
 
-            resultados.scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-            });
+        const coincideTipo =
+            tipoSeleccionado === "todos" ||
+            doc.tipo === tipoSeleccionado;
 
-        });
+        return coincideBusqueda &&
+               coincideFuente &&
+               coincideTipo;
+
+    });
 
 
-    if ("serviceWorker" in navigator) {
+    mostrarResultados(filtrados);
 
-        navigator.serviceWorker.register("../../sw.js")
-            .catch(function(error) {
+}
 
-                console.error(
-                    "Error registrando Service Worker:",
-                    error
-                );
 
-            });
+function crearEtiqueta(texto, clase) {
+
+    const etiqueta = document.createElement("span");
+
+    etiqueta.className = "etiqueta " + clase;
+
+    etiqueta.textContent = texto;
+
+    return etiqueta;
+
+}
+
+
+function mostrarResultados(lista) {
+
+    contenedor.innerHTML = "";
+
+    const titulo =
+        document.createElement("h2");
+
+    titulo.className = "resultados-titulo";
+
+    titulo.textContent =
+        lista.length + " documentos encontrados";
+
+    contenedor.appendChild(titulo);
+
+
+    if (lista.length === 0) {
+
+        const mensaje =
+            document.createElement("div");
+
+        mensaje.className = "sin-resultados";
+
+        mensaje.textContent =
+            "No se han encontrado documentos en el catálogo actual. " +
+            "Prueba con un término más general o cambia el filtro de fuente. " +
+            "El catálogo se ampliará progresivamente.";
+
+        contenedor.appendChild(mensaje);
+
+        return;
 
     }
+
+
+    lista.forEach(function(doc) {
+
+        const tarjeta =
+            document.createElement("article");
+
+        tarjeta.className = "resultado";
+
+
+        const nombre =
+            document.createElement("h3");
+
+        nombre.textContent = doc.titulo;
+
+
+        const meta =
+            document.createElement("div");
+
+        meta.className = "meta";
+
+        meta.appendChild(
+            crearEtiqueta(doc.fuente, "fuente")
+        );
+
+        meta.appendChild(
+            crearEtiqueta(doc.tipo, "")
+        );
+
+
+        const descripcion =
+            document.createElement("p");
+
+        descripcion.textContent =
+            doc.descripcion;
+
+
+        const enlace =
+            document.createElement("a");
+
+        enlace.className = "enlace";
+
+        enlace.href = doc.url;
+
+        enlace.target = "_blank";
+
+        enlace.rel = "noopener noreferrer";
+
+        enlace.textContent =
+            "📄 Abrir documento original ↗";
+
+
+        tarjeta.appendChild(nombre);
+
+        tarjeta.appendChild(meta);
+
+        tarjeta.appendChild(descripcion);
+
+        tarjeta.appendChild(enlace);
+
+
+        contenedor.appendChild(tarjeta);
+
+    });
+
+}
+
+
+/* =====================================================
+   EVENTOS
+   ===================================================== */
+
+formulario.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    buscarDocumentos();
+
+});
+
+
+filtroFuente.addEventListener("change", buscarDocumentos);
+
+filtroTipo.addEventListener("change", buscarDocumentos);
+
+
+/* Mostrar inicialmente el catálogo */
+
+mostrarResultados(documentos);
+
+
+if ("serviceWorker" in navigator) {
+
+    navigator.serviceWorker.register("../../sw.js")
+        .catch(function(error) {
+            console.error(
+                "Error registrando Service Worker:",
+                error
+            );
+        });
+
+}
 
 </script>
 
