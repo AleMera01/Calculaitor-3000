@@ -1,14 +1,12 @@
 
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Buscador galénico - CALCULAITOR 3000</title>
 
-    <link rel="manifest" href="../../manifest.json">
     <meta name="theme-color" content="#102a43">
 
     <style>
@@ -18,202 +16,167 @@
 
         body {
             margin: 0;
+            padding: 24px 16px;
             font-family: Arial, Helvetica, sans-serif;
-            background: #f5f8fb;
-            color: #243b53;
+            background: #f3f6fa;
+            color: #243447;
         }
 
-        header {
-            background: linear-gradient(135deg, #102a43, #1f4e79);
+        .contenedor {
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        .cabecera {
+            background: linear-gradient(135deg, #102a43, #176b87);
             color: white;
-            text-align: center;
-            padding: 35px 20px 30px;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 2rem;
-        }
-
-        header p {
-            margin: 10px 0 0;
-            opacity: 0.9;
-        }
-
-        main {
-            max-width: 1050px;
-            margin: 35px auto;
-            padding: 0 20px;
-        }
-
-        .panel {
-            background: white;
-            padding: 28px;
+            padding: 30px 24px;
             border-radius: 16px;
-            box-shadow: 0 4px 14px rgba(16,42,67,0.10);
-        }
-
-        .titulo {
             text-align: center;
             margin-bottom: 25px;
         }
 
-        .titulo h2 {
+        .cabecera h1 {
+            margin: 0 0 10px;
+            font-size: 27px;
+        }
+
+        .cabecera p {
             margin: 0;
-            color: #102a43;
+            font-size: 15px;
+            opacity: 0.9;
         }
 
-        .titulo p {
-            color: #627d98;
-            line-height: 1.5;
-        }
-
-        .campo {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 8px;
-        }
-
-        input {
-            width: 100%;
-            padding: 15px;
-            border: 1px solid #bcccdc;
-            border-radius: 10px;
-            font-size: 1rem;
+        .panel-busqueda {
             background: white;
-            color: #243b53;
-        }
-
-        input:focus {
-            outline: 2px solid #7c3aed;
-            border-color: #7c3aed;
-        }
-
-        .ayuda {
-            margin-top: 8px;
-            color: #829ab1;
-            font-size: 0.85rem;
-        }
-
-        .subtitulo {
-            margin: 30px 0 16px;
-            color: #102a43;
-        }
-
-        .fuentes {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-        }
-
-        .fuente {
-            background: white;
-            border: 1px solid #d9e2ec;
+            padding: 24px;
             border-radius: 14px;
-            padding: 21px;
-            box-shadow: 0 2px 8px rgba(16,42,67,0.05);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            gap: 14px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+            margin-bottom: 25px;
         }
 
-        .fuente h3 {
-            margin: 0 0 8px;
-            color: #102a43;
-            font-size: 1.15rem;
-        }
-
-        .fuente p {
-            margin: 0;
-            color: #627d98;
-            line-height: 1.5;
-            font-size: 0.92rem;
-        }
-
-        .boton {
+        .panel-busqueda label {
             display: block;
-            width: 100%;
-            padding: 13px;
-            border: none;
-            border-radius: 9px;
-            background: #7c3aed;
-            color: white;
-            font-size: 0.95rem;
-            font-weight: bold;
-            cursor: pointer;
-            text-align: center;
-        }
-
-        .boton:hover {
-            background: #6d28d9;
-        }
-
-        .boton:disabled {
-            background: #bcccdc;
-            cursor: not-allowed;
-        }
-
-        .etiqueta {
-            display: inline-block;
-            padding: 5px 9px;
-            border-radius: 20px;
-            background: #e0f2fe;
-            color: #075985;
-            font-size: 0.75rem;
             font-weight: bold;
             margin-bottom: 10px;
         }
 
-        .aviso {
-            margin-top: 25px;
-            background: #fff7ed;
-            border-left: 5px solid #f59e0b;
-            padding: 16px;
+        .panel-busqueda input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #cbd5e1;
+            border-radius: 9px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .panel-busqueda input:focus {
+            border-color: #176b87;
+            box-shadow: 0 0 0 3px rgba(23,107,135,0.12);
+        }
+
+        #aviso {
+            display: none;
+            margin-top: 12px;
+            padding: 11px 13px;
+            background: #fff3cd;
+            color: #856404;
             border-radius: 8px;
-            color: #92400e;
-            font-size: 0.9rem;
+            font-size: 14px;
+        }
+
+        .titulo-seccion {
+            margin: 28px 0 15px;
+            font-size: 19px;
+            color: #102a43;
+        }
+
+        .tarjetas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 16px;
+        }
+
+        .tarjeta {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 13px;
+            padding: 21px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .tarjeta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 18px rgba(0,0,0,0.09);
+        }
+
+        .tarjeta h3 {
+            margin: 0 0 9px;
+            color: #102a43;
+            font-size: 19px;
+        }
+
+        .tarjeta p {
+            color: #64748b;
+            font-size: 14px;
+            line-height: 1.5;
+            margin: 0 0 18px;
+            flex-grow: 1;
+        }
+
+        .tarjeta button {
+            width: 100%;
+            border: none;
+            border-radius: 8px;
+            padding: 12px;
+            background: #176b87;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .tarjeta button:hover {
+            background: #102a43;
+        }
+
+        .nota {
+            margin-top: 25px;
+            padding: 15px;
+            background: #e8f1f5;
+            border-radius: 10px;
+            color: #40566b;
+            font-size: 13px;
             line-height: 1.6;
         }
 
         .volver {
             display: inline-block;
-            margin-top: 30px;
-            color: #1f4e79;
+            margin-top: 24px;
+            color: #176b87;
             text-decoration: none;
             font-weight: bold;
+            font-size: 14px;
         }
 
-        footer {
-            text-align: center;
-            padding: 25px;
-            color: #829ab1;
-            font-size: 0.85rem;
+        .volver:hover {
+            text-decoration: underline;
         }
 
-        @media(max-width: 650px) {
-            header {
-                padding: 28px 15px;
+        @media (max-width: 500px) {
+            body {
+                padding: 14px 10px;
             }
 
-            header h1 {
-                font-size: 1.6rem;
+            .cabecera h1 {
+                font-size: 23px;
             }
 
-            main {
-                margin: 25px auto;
-            }
-
-            .panel {
-                padding: 20px;
-            }
-
-            .fuentes {
-                grid-template-columns: 1fr;
+            .panel-busqueda {
+                padding: 18px;
             }
         }
     </style>
@@ -221,246 +184,161 @@
 
 <body>
 
-<header>
-    <h1>🔎 Buscador galénico</h1>
-    <p>CALCULAITOR 3000</p>
-</header>
+<div class="contenedor">
 
-<main>
+    <header class="cabecera">
+        <h1>Buscador galénico</h1>
+        <p>Consulta documentación técnica y fuentes farmacéuticas</p>
+    </header>
 
-    <div class="panel">
+    <section class="panel-busqueda">
 
-        <div class="titulo">
-            <h2>Documentación galénica</h2>
+        <label for="busqueda">
+            ¿Qué fórmula, principio activo o consulta quieres buscar?
+        </label>
+
+        <input
+            type="search"
+            id="busqueda"
+            placeholder="Ej. ibuprofeno suspensión oral"
+            autocomplete="off"
+        >
+
+        <div id="aviso" role="alert">
+            Introduce un término de búsqueda antes de seleccionar una fuente.
+        </div>
+
+    </section>
+
+    <h2 class="titulo-seccion">Selecciona la fuente de consulta</h2>
+
+    <section class="tarjetas">
+
+        <article class="tarjeta">
+            <h3>ACOFARMA</h3>
             <p>
-                Busca fórmulas magistrales, procedimientos de elaboración,
-                fichas técnicas, excipientes y documentación farmacéutica.
+                Información sobre materias primas, formulación,
+                documentación técnica y preparados farmacéuticos.
             </p>
-        </div>
+            <button onclick="buscar('acofarma')">
+                Buscar en Acofarma
+            </button>
+        </article>
 
-        <div class="campo">
-            <label for="busqueda">
-                Principio activo, fórmula o procedimiento
-            </label>
-
-            <input
-                type="search"
-                id="busqueda"
-                placeholder="Ej. espironolactona 5 mg/ml suspensión oral"
-                autocomplete="off"
-            >
-
-            <p class="ayuda">
-                Introduce tu consulta y selecciona la fuente documental.
+        <article class="tarjeta">
+            <h3>FAGRON</h3>
+            <p>
+                Documentación técnica, fichas de materias primas,
+                vehículos y formulación magistral.
             </p>
-        </div>
+            <button onclick="buscar('fagron')">
+                Buscar en Fagron
+            </button>
+        </article>
 
+        <article class="tarjeta">
+            <h3>GUINAMA</h3>
+            <p>
+                Consulta información técnica de materias primas,
+                excipientes y formulaciones.
+            </p>
+            <button onclick="buscar('guinama')">
+                Buscar en Guinama
+            </button>
+        </article>
+
+        <article class="tarjeta">
+            <h3>SEFH</h3>
+            <p>
+                Sociedad Española de Farmacia Hospitalaria.
+                Protocolos, publicaciones y documentación farmacéutica.
+            </p>
+            <button onclick="buscar('sefh')">
+                Buscar en SEFH
+            </button>
+        </article>
+
+        <article class="tarjeta">
+            <h3>AEMPS</h3>
+            <p>
+                Agencia Española de Medicamentos y Productos Sanitarios.
+                Fichas técnicas, alertas y documentación oficial.
+            </p>
+            <button onclick="buscar('aemps')">
+                Buscar en AEMPS
+            </button>
+        </article>
+
+    </section>
+
+    <div class="nota">
+        <strong>Información:</strong> las búsquedas se realizan mediante
+        Google y se limitan al dominio de la fuente seleccionada.
+        Los resultados dependen de la indexación disponible en Google.
+        CALCULAITOR 3000 permanece abierto mientras consultas los resultados
+        en una pestaña nueva.
     </div>
 
-    <h2 class="subtitulo">Fuentes documentales</h2>
-
-    <div class="fuentes">
-
-        <article class="fuente">
-            <div>
-                <span class="etiqueta">Formulación magistral</span>
-                <h3>ACOFARMA</h3>
-                <p>
-                    Fichas técnicas, materias primas, vehículos,
-                    formulación y documentación técnica.
-                </p>
-            </div>
-
-            <button class="boton" data-source="acofarma">
-                🔎 Buscar en Acofarma
-            </button>
-        </article>
-
-        <article class="fuente">
-            <div>
-                <span class="etiqueta">Formulación magistral</span>
-                <h3>FAGRON</h3>
-                <p>
-                    Información magistral, materias primas,
-                    bases, excipientes y procedimientos.
-                </p>
-            </div>
-
-            <button class="boton" data-source="fagron">
-                🔎 Buscar en Fagron
-            </button>
-        </article>
-
-        <article class="fuente">
-            <div>
-                <span class="etiqueta">Documentación técnica</span>
-                <h3>GUINAMA</h3>
-                <p>
-                    Fórmulas magistrales, modus operandi,
-                    materias primas y documentación de elaboración.
-                </p>
-            </div>
-
-            <button class="boton" data-source="guinama">
-                🔎 Buscar en Guinama
-            </button>
-        </article>
-
-        <article class="fuente">
-            <div>
-                <span class="etiqueta">Farmacia hospitalaria</span>
-                <h3>SEFH</h3>
-                <p>
-                    Procedimientos normalizados, farmacotecnia,
-                    estabilidad y documentación hospitalaria.
-                </p>
-            </div>
-
-            <button class="boton" data-source="sefh">
-                🔎 Buscar en SEFH
-            </button>
-        </article>
-
-        <article class="fuente">
-            <div>
-                <span class="etiqueta">Fuente oficial</span>
-                <h3>AEMPS</h3>
-                <p>
-                    Formulario Nacional, normativa,
-                    documentación oficial y formulación magistral.
-                </p>
-            </div>
-
-            <button class="boton" data-source="aemps">
-                🔎 Buscar en AEMPS
-            </button>
-        </article>
-
-    </div>
-
-    <div class="aviso">
-        <strong>⚠️ Consideraciones importantes</strong><br>
-
-        Las búsquedas se realizan mediante Google, restringiendo
-        los resultados a los dominios de las fuentes seleccionadas.
-
-        Los documentos se consultan en sus páginas originales.
-        La disponibilidad depende de que estén publicados e indexados
-        por el buscador.
-
-        Verifica siempre la fórmula, concentración, vía,
-        estabilidad, conservación, caducidad y controles de calidad
-        antes de utilizar cualquier procedimiento.
-    </div>
-
-    <a href="../index.html" class="volver">
+    <a class="volver" href="../index.html">
         ← Volver a Documentación galénica
     </a>
 
-</main>
-
-<footer>
-    CALCULAITOR 3000 · Calculador de fórmulas magistrales
-</footer>
+</div>
 
 <script>
 
-    // Dominios de las fuentes documentales
+function buscar(fuente) {
 
-    const fuentes = {
+    const campo = document.getElementById("busqueda");
+    const aviso = document.getElementById("aviso");
 
-        acofarma: {
-            dominio: "site:acofarma.com"
-        },
+    const termino = campo.value.trim();
 
-        fagron: {
-            dominio: "(site:fagron.es OR site:fagron.com)"
-        },
+    if (!termino) {
+        aviso.style.display = "block";
+        campo.focus();
+        return;
+    }
 
-        guinama: {
-            dominio: "site:guinama.com"
-        },
+    aviso.style.display = "none";
 
-        sefh: {
-            dominio: "(site:sefh.es OR site:gruposdetrabajo.sefh.es)"
-        },
-
-        aemps: {
-            dominio: "site:aemps.gob.es"
-        }
-
+    const dominios = {
+        acofarma: "site:acofarma.com",
+        fagron: "(site:fagron.es OR site:fagron.com)",
+        guinama: "site:guinama.com",
+        sefh: "(site:sefh.es OR site:gruposdetrabajo.sefh.es)",
+        aemps: "site:aemps.gob.es"
     };
 
+    const filtro = dominios[fuente];
 
-    const campoBusqueda = document.getElementById("busqueda");
-
-
-    function buscarEnFuente(nombreFuente) {
-
-        const consulta = campoBusqueda.value.trim();
-
-        if (consulta.length < 2) {
-            alert("Introduce al menos dos caracteres para realizar la búsqueda.");
-            campoBusqueda.focus();
-            return;
-        }
-
-        const fuente = fuentes[nombreFuente];
-
-        if (!fuente) {
-            return;
-        }
-
-        const busquedaCompleta =
-            consulta + " " + fuente.dominio;
-
-        const url =
-            "https://www.google.com/search?q=" +
-            encodeURIComponent(busquedaCompleta);
-
-        window.open(url, "_blank", "noopener,noreferrer");
-
+    if (!filtro) {
+        return;
     }
 
+    const consulta = termino + " " + filtro;
 
-    document.querySelectorAll("[data-source]").forEach(function(boton) {
+    const url = "https://www.google.com/search?q=" +
+        encodeURIComponent(consulta);
 
-        boton.addEventListener("click", function() {
+    window.open(url, "_blank", "noopener,noreferrer");
+}
 
-            buscarEnFuente(this.dataset.source);
-
-        });
-
-    });
-
-
-    // Permitir enviar la consulta con la tecla Enter.
-    // Por defecto abre la búsqueda de AEMPS.
-
-    campoBusqueda.addEventListener("keydown", function(event) {
-
-        if (event.key === "Enter") {
-            event.preventDefault();
-            buscarEnFuente("aemps");
-        }
-
-    });
-
-
-    // Registro del Service Worker de la aplicación
-
-    if ("serviceWorker" in navigator) {
-
-        navigator.serviceWorker.register("../../sw.js")
-            .catch(function(error) {
-                console.error(
-                    "Error registrando Service Worker:",
-                    error
-                );
-            });
-
+// Ocultar el aviso cuando el usuario empieza a escribir.
+document.getElementById("busqueda").addEventListener("input", function() {
+    if (this.value.trim()) {
+        document.getElementById("aviso").style.display = "none";
     }
+});
 
+</script>
+
+<script>
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function() {
+        navigator.serviceWorker.register("../../sw.js");
+    });
+}
 </script>
 
 </body>
